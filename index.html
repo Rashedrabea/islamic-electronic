@@ -7,7 +7,7 @@
     <meta name="description" content="المسبحة الإلكترونية النهائية">
     <meta name="keywords" content="المسبحة, الإلكترونية, صدقة جارية, راشد ربيع">
     <meta name="author" content="راشد ربيع">
-    <title> المسبحة الإلكترونية |  صدقة جارية  </title>
+    <title> المسبحة الإلكترونية | صدقة جارية </title>
     <style>
         * {
             margin: 0;
@@ -1621,7 +1621,8 @@
         <!-- البانر -->
         <div class="banner">
             <span class="banner-emoji">📿</span>
-            <h1> المسبحة الإلكترونية - صدقة جارية على روح ابي و ارواح المسلمين جميعا </h1>
+            <h1> المسبحة الإلكترونية - صدقة جارية </h1>
+            <h2> على روح ابي و ارواح المسلمين جميعا </h2>
         </div>
 
         <!-- قسم التسبيح -->
@@ -1740,6 +1741,8 @@
             <div style="text-align: center; margin-top: 20px;">
                 <button class="btn secondary" onclick="requestNotificationPermission()">🔔 تفعيل إشعارات الصلاة</button>
                 <button class="btn secondary" onclick="playAdhanSound()">🎵 اختبار صوت الأذان</button>
+                <div id="adhanIndicator" style="display: none; margin-top: 10px; color: #4CAF50; font-weight: bold;">🎵
+                    يتم تشغيل الأذان...</div>
             </div>
         </div>
 
@@ -1795,13 +1798,7 @@
                     البريد الإلكتروني : <a href="mailto : rashedrbaee20081217@gmail.com"> rashedrbaee20081217@gmail.com
                     </a>
                 </p>
-                <p style="margin-top: 15px;">
-                    <a href="admin.html" style="color: #FFD700; text-decoration: none; font-weight: bold; background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; display: inline-block; transition: all 0.3s ease;" 
-                       onmouseover="this.style.background='rgba(255, 215, 0, 0.3)'" 
-                       onmouseout="this.style.background='rgba(255, 215, 0, 0.2)'">
-                        ⚙️ لوحة التحكم الإدارية
-                    </a>
-                </p>
+
             </div>
         </div>
     </div>
@@ -2169,7 +2166,7 @@
                         <span class="control-label">رسالة الترحيب</span>
                         <div class="control-input">
                             <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
-أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
+                            أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
                         </div>
                     </div>
                     <div class="control-buttons">
@@ -2285,13 +2282,16 @@
 
     <!-- إصلاح لوحة التحكم النهائي -->
     <script src="إصلاح_لوحة_التحكم_النهائي.js"></script>
-    
+
+    <!-- إصلاح المواقيت النهائي -->
+    <script src="إصلاح_المواقيت_النهائي.js"></script>
+
     <!-- فتح لوحة التحكم تلقائياً من الرابط المباشر -->
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const urlParams = new URLSearchParams(window.location.search);
             const currentUser = localStorage.getItem('currentUser');
-            
+
             if (urlParams.get('admin') === 'true' && currentUser) {
                 setTimeout(() => {
                     showControlPanel();
