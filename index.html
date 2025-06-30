@@ -1795,6 +1795,13 @@
                     البريد الإلكتروني : <a href="mailto : rashedrbaee20081217@gmail.com"> rashedrbaee20081217@gmail.com
                     </a>
                 </p>
+                <p style="margin-top: 15px;">
+                    <a href="admin.html" style="color: #FFD700; text-decoration: none; font-weight: bold; background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; display: inline-block; transition: all 0.3s ease;" 
+                       onmouseover="this.style.background='rgba(255, 215, 0, 0.3)'" 
+                       onmouseout="this.style.background='rgba(255, 215, 0, 0.2)'">
+                        ⚙️ لوحة التحكم الإدارية
+                    </a>
+                </p>
             </div>
         </div>
     </div>
@@ -2278,6 +2285,20 @@
 
     <!-- إصلاح لوحة التحكم النهائي -->
     <script src="إصلاح_لوحة_التحكم_النهائي.js"></script>
+    
+    <!-- فتح لوحة التحكم تلقائياً من الرابط المباشر -->
+    <script>
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentUser = localStorage.getItem('currentUser');
+            
+            if (urlParams.get('admin') === 'true' && currentUser) {
+                setTimeout(() => {
+                    showControlPanel();
+                }, 1000);
+            }
+        });
+    </script>
 
     <!-- حماية ضد السرقة -->
     <script>

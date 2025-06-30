@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار شامل - لوحة التحكم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            direction: rtl;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border-right: 4px solid #4CAF50;
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+            color: #f44336;
+        }
+        .info {
+            background: rgba(33, 150, 243, 0.3);
+            color: #2196F3;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .credentials {
+            background: rgba(255, 193, 7, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 اختبار شامل - لوحة التحكم</h1>
+        
+        <div class="credentials">
+            <h3>🔐 بيانات تسجيل الدخول:</h3>
+            <p><strong>المدير:</strong> admin / 123456</p>
+            <p><strong>المستخدم:</strong> user / 123456</p>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 اختبار الوظائف الأساسية</h2>
+            <button class="test-button" onclick="testLoginPanel()">اختبار نافذة تسجيل الدخول</button>
+            <button class="test-button" onclick="testControlPanel()">اختبار لوحة التحكم</button>
+            <button class="test-button" onclick="testTabs()">اختبار التبويبات</button>
+            <div id="basic-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📿 اختبار إدارة الأذكار</h2>
+            <button class="test-button" onclick="testAzkarFunctions()">اختبار وظائف الأذكار</button>
+            <button class="test-button" onclick="testAzkarData()">اختبار بيانات الأذكار</button>
+            <div id="azkar-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🖼️ اختبار إدارة الشعار</h2>
+            <button class="test-button" onclick="testLogoFunctions()">اختبار وظائف الشعار</button>
+            <button class="test-button" onclick="testIconSelection()">اختبار اختيار الأيقونات</button>
+            <div id="logo-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🕌 اختبار إدارة المواقيت</h2>
+            <button class="test-button" onclick="testPrayerFunctions()">اختبار وظائف المواقيت</button>
+            <button class="test-button" onclick="testLocationUpdate()">اختبار تحديث الموقع</button>
+            <div id="prayer-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>👥 اختبار إدارة المستخدمين</h2>
+            <button class="test-button" onclick="testUserManagement()">اختبار إدارة المستخدمين</button>
+            <button class="test-button" onclick="testUserCreation()">اختبار إنشاء مستخدم</button>
+            <div id="users-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>💾 اختبار التخزين والاستيراد</h2>
+            <button class="test-button" onclick="testDataStorage()">اختبار حفظ البيانات</button>
+            <button class="test-button" onclick="testExportImport()">اختبار التصدير والاستيراد</button>
+            <div id="storage-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 تشغيل التطبيق الأصلي</h2>
+            <button class="test-button" onclick="openMainApp()" style="background: #FF9800; font-size: 16px; padding: 15px 30px;">
+                🌟 فتح المسبحة الإلكترونية
+            </button>
+            <div id="app-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // اختبار نافذة تسجيل الدخول
+        function testLoginPanel() {
+            const results = document.getElementById('basic-results');
+            let html = '';
+            
+            // اختبار وجود الوظائف
+            const functions = ['showLoginPanel', 'closeLoginPanel', 'attemptLogin'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار لوحة التحكم
+        function testControlPanel() {
+            const results = document.getElementById('basic-results');
+            let html = results.innerHTML;
+            
+            const functions = ['showControlPanel', 'closeControlPanel', 'showAdminTab'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار التبويبات
+        function testTabs() {
+            const results = document.getElementById('basic-results');
+            let html = results.innerHTML;
+            
+            const tabs = ['azkar', 'logo', 'prayers', 'adhan', 'sections', 'content', 'security'];
+            tabs.forEach(tab => {
+                const tabElement = document.getElementById(tab + '-tab');
+                if (tabElement) {
+                    html += `<div class="test-result success">✅ تبويب ${tab} موجود</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ تبويب ${tab} مفقود</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار وظائف الأذكار
+        function testAzkarFunctions() {
+            const results = document.getElementById('azkar-results');
+            let html = '';
+            
+            const functions = ['addNewAzkar', 'loadAzkarForEdit', 'editAzkar', 'deleteAzkar', 'previewAzkar'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار بيانات الأذكار
+        function testAzkarData() {
+            const results = document.getElementById('azkar-results');
+            let html = results.innerHTML;
+            
+            if (typeof azkarData !== 'undefined') {
+                html += `<div class="test-result success">✅ بيانات الأذكار موجودة</div>`;
+                const categories = Object.keys(azkarData);
+                html += `<div class="test-result info">📊 عدد التصنيفات: ${categories.length}</div>`;
+            } else {
+                html += `<div class="test-result error">❌ بيانات الأذكار مفقودة</div>`;
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار وظائف الشعار
+        function testLogoFunctions() {
+            const results = document.getElementById('logo-results');
+            let html = '';
+            
+            const functions = ['selectIcon', 'previewLogo', 'applyNewLogo', 'resetLogo'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار اختيار الأيقونات
+        function testIconSelection() {
+            const results = document.getElementById('logo-results');
+            let html = results.innerHTML;
+            
+            // محاكاة اختبار اختيار أيقونة
+            try {
+                if (typeof selectIcon === 'function') {
+                    html += `<div class="test-result success">✅ يمكن اختيار الأيقونات</div>`;
+                }
+            } catch (error) {
+                html += `<div class="test-result error">❌ خطأ في اختيار الأيقونات</div>`;
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار وظائف المواقيت
+        function testPrayerFunctions() {
+            const results = document.getElementById('prayer-results');
+            let html = '';
+            
+            const functions = ['updatePrayerLocation', 'getCurrentLocation', 'saveManualPrayerTimes'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار تحديث الموقع
+        function testLocationUpdate() {
+            const results = document.getElementById('prayer-results');
+            let html = results.innerHTML;
+            
+            // اختبار دعم الموقع الجغرافي
+            if (navigator.geolocation) {
+                html += `<div class="test-result success">✅ المتصفح يدعم تحديد الموقع</div>`;
+            } else {
+                html += `<div class="test-result error">❌ المتصفح لا يدعم تحديد الموقع</div>`;
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار إدارة المستخدمين
+        function testUserManagement() {
+            const results = document.getElementById('users-results');
+            let html = '';
+            
+            const functions = ['addNewUser', 'editUser', 'deleteUser', 'loadUsersList'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار إنشاء مستخدم
+        function testUserCreation() {
+            const results = document.getElementById('users-results');
+            let html = results.innerHTML;
+            
+            // اختبار وجود المستخدمين الافتراضيين
+            const users = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+            if (users.length > 0) {
+                html += `<div class="test-result success">✅ يوجد ${users.length} مستخدم في النظام</div>`;
+            } else {
+                html += `<div class="test-result info">ℹ️ لا يوجد مستخدمين - سيتم إنشاؤهم تلقائياً</div>`;
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار حفظ البيانات
+        function testDataStorage() {
+            const results = document.getElementById('storage-results');
+            let html = '';
+            
+            // اختبار التخزين المحلي
+            try {
+                localStorage.setItem('test', 'value');
+                const value = localStorage.getItem('test');
+                if (value === 'value') {
+                    html += `<div class="test-result success">✅ التخزين المحلي يعمل بشكل صحيح</div>`;
+                    localStorage.removeItem('test');
+                } else {
+                    html += `<div class="test-result error">❌ مشكلة في التخزين المحلي</div>`;
+                }
+            } catch (error) {
+                html += `<div class="test-result error">❌ التخزين المحلي غير متاح</div>`;
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // اختبار التصدير والاستيراد
+        function testExportImport() {
+            const results = document.getElementById('storage-results');
+            let html = results.innerHTML;
+            
+            const functions = ['exportAppSettings', 'importAppSettings'];
+            functions.forEach(func => {
+                if (typeof window[func] === 'function') {
+                    html += `<div class="test-result success">✅ ${func} موجودة</div>`;
+                } else {
+                    html += `<div class="test-result error">❌ ${func} مفقودة</div>`;
+                }
+            });
+            
+            results.innerHTML = html;
+        }
+
+        // فتح التطبيق الأصلي
+        function openMainApp() {
+            const results = document.getElementById('app-results');
+            results.innerHTML = '<div class="test-result info">🚀 جاري فتح التطبيق الأصلي...</div>';
+            
+            setTimeout(() => {
+                window.open('index.html', '_blank');
+                results.innerHTML += '<div class="test-result success">✅ تم فتح التطبيق في نافذة جديدة</div>';
+            }, 1000);
+        }
+
+        // تشغيل اختبار شامل عند تحميل الصفحة
+        window.onload = function() {
+            // تحميل ملفات JavaScript من التطبيق الأصلي
+            const scripts = [
+                'app.js',
+                'إصلاح_لوحة_التحكم_النهائي.js'
+            ];
+            
+            let loadedScripts = 0;
+            scripts.forEach(script => {
+                const scriptElement = document.createElement('script');
+                scriptElement.src = script;
+                scriptElement.onload = function() {
+                    loadedScripts++;
+                    if (loadedScripts === scripts.length) {
+                        console.log('✅ تم تحميل جميع الملفات بنجاح');
+                    }
+                };
+                scriptElement.onerror = function() {
+                    console.log(`❌ فشل في تحميل ${script}`);
+                };
+                document.head.appendChild(scriptElement);
+            });
+        };
+    </script>
+</body>
+</html>
