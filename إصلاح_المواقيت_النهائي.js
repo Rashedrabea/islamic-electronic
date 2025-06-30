@@ -1,472 +1,269 @@
-// إصلاح شامل لمواقيت الصلاة والعد التنازلي
+// إصلاح مواقيت الصلاة النهائي
 
 // متغيرات المواقيت
-let currentPrayerTimes = {};
-let nextPrayerInfo = {};
-let prayerUpdateInterval;
-let countdownInterval;
-
-// أسماء الصلوات
-const prayerNames = {
-    fajr: 'الفجر',
-    sunrise: 'الشروق', 
-    dhuhr: 'الظهر',
-    asr: 'العصر',
-    maghrib: 'المغرب',
-    isha: 'العشاء'
+let prayerTimes = {
+    fajr: '04:12',
+    sunrise: '05:58',
+    dhuhr: '12:59', 
+    asr: '16:33',
+    maghrib: '19:59',
+    isha: '21:32'
 };
 
-// ترتيب الصلوات
-const prayerOrder = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
+let adhanEnabled = true;
+let prayerAdhanSettings = {
+    fajr: true,
+    dhuhr: true,
+    asr: true,
+    maghrib: true,
+    isha: true
+};
 
-// تحديث مواقيت الصلاة
-function updatePrayerTimes() {
-    const manualTimes = localStorage.getItem('manualPrayerTimesActive');
-    
-    if (manualTimes === 'true') {
-        loadManualPrayerTimes();
-    } else {
-        loadAutomaticPrayerTimes();
-    }
-    
-    updatePrayerDisplay();
+// تحديث مواقيت الصلاة في الواجهة
+function updatePrayerTimesDisplay() {
+    const prayerNames = {
+        fajr: 'الفجر',
+        dhuhr: 'الظهر', 
+        asr: 'العصر',
+        maghrib: 'المغرب',
+        isha: 'العشاء'
+    };
+
+    Object.keys(prayerTimes).forEach(prayer => {
+        const element = document.getElementById(`${prayer}-time`);
+        if (element) {
+            element.textContent = formatTime(prayerTimes[prayer]);
+        }
+    });
+
     updateNextPrayer();
 }
 
-// تحميل المواقيت اليدوية
-function loadManualPrayerTimes() {
-    const savedTimes = localStorage.getItem('manualPrayerTimes');
-    if (savedTimes) {
-        const times = JSON.parse(savedTimes);
-        currentPrayerTimes = {
-            fajr: times.fajr || '05:15',
-            sunrise: times.sunrise || '06:45', 
-            dhuhr: times.dhuhr || '12:15',
-            asr: times.asr || '15:30',
-            maghrib: times.maghrib || '17:45',
-            isha: times.isha || '19:15'
-        };
-    } else {
-        // مواقيت افتراضية
-        currentPrayerTimes = {
-            fajr: '05:15',
-            sunrise: '06:45',
-            dhuhr: '12:15', 
-            asr: '15:30',
-            maghrib: '17:45',
-            isha: '19:15'
-        };
-    }
+// تنسيق الوقت
+function formatTime(timeStr) {
+    const [hour, minute] = timeStr.split(':');
+    const h = parseInt(hour);
+    const period = h >= 12 ? 'م' : 'ص';
+    const displayHour = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return `${displayHour}:${minute} ${period}`;
 }
 
-// تحميل المواقيت التلقائية
-function loadAutomaticPrayerTimes() {
-    const location = JSON.parse(localStorage.getItem('prayerLocation') || '{}');
-    const city = location.city || 'القاهرة';
-    
-    // حساب المواقيت بناءً على التوقيت الحالي
-    const now = new Date();
-    const today = now.toISOString().split('T')[0];
-    
-    // مواقيت تقريبية للقاهرة (يمكن تحسينها لاحقاً)
-    const baseHour = now.getHours();
-    currentPrayerTimes = {
-        fajr: '05:15',
-        sunrise: '06:45',
-        dhuhr: '12:15',
-        asr: '15:30', 
-        maghrib: '17:45',
-        isha: '19:15'
-    };
-    
-    // تعديل المواقيت حسب الفصل (تقريبي)
-    const month = now.getMonth() + 1;
-    if (month >= 6 && month <= 8) { // الصيف
-        currentPrayerTimes.fajr = '04:30';
-        currentPrayerTimes.sunrise = '06:00';
-        currentPrayerTimes.maghrib = '18:30';
-        currentPrayerTimes.isha = '20:00';
-    } else if (month >= 12 || month <= 2) { // الشتاء
-        currentPrayerTimes.fajr = '05:45';
-        currentPrayerTimes.sunrise = '07:15';
-        currentPrayerTimes.maghrib = '17:15';
-        currentPrayerTimes.isha = '18:45';
-    }
-}
-
-// تحديث عرض المواقيت
-function updatePrayerDisplay() {
-    Object.keys(currentPrayerTimes).forEach(prayer => {
-        const timeElement = document.getElementById(prayer + '-time');
-        if (timeElement) {
-            const time24 = currentPrayerTimes[prayer];
-            const time12 = convertTo12Hour(time24);
-            timeElement.textContent = time12;
-        }
-    });
-    
-    // تحديث الصلاة الحالية والقادمة
-    highlightCurrentAndNextPrayer();
-}
-
-// تحويل من 24 ساعة إلى 12 ساعة
-function convertTo12Hour(time24) {
-    const [hours, minutes] = time24.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'م' : 'ص';
-    const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
-    return `${hour12}:${minutes} ${ampm}`;
-}
-
-// تحويل من 12 ساعة إلى 24 ساعة
-function convertTo24Hour(time12) {
-    const [time, period] = time12.split(' ');
-    const [hours, minutes] = time.split(':');
-    let hour = parseInt(hours);
-    
-    if (period === 'م' && hour !== 12) {
-        hour += 12;
-    } else if (period === 'ص' && hour === 12) {
-        hour = 0;
-    }
-    
-    return `${hour.toString().padStart(2, '0')}:${minutes}`;
-}
-
-// تحديد الصلاة القادمة
+// تحديث الصلاة القادمة
 function updateNextPrayer() {
     const now = new Date();
-    const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    const currentTime = now.getHours() * 60 + now.getMinutes();
     
+    const prayerNames = {
+        fajr: 'الفجر',
+        dhuhr: 'الظهر',
+        asr: 'العصر', 
+        maghrib: 'المغرب',
+        isha: 'العشاء'
+    };
+
     let nextPrayer = null;
-    let nextPrayerTime = null;
-    
-    // البحث عن الصلاة القادمة
-    for (const prayer of prayerOrder) {
-        const prayerTime = currentPrayerTimes[prayer];
+    let nextTime = null;
+
+    for (const [prayer, time] of Object.entries(prayerTimes)) {
+        const [hour, minute] = time.split(':');
+        const prayerTime = parseInt(hour) * 60 + parseInt(minute);
+        
         if (prayerTime > currentTime) {
-            nextPrayer = prayer;
-            nextPrayerTime = prayerTime;
+            nextPrayer = prayerNames[prayer];
+            nextTime = time;
             break;
         }
     }
-    
-    // إذا لم نجد صلاة اليوم، فالصلاة القادمة هي فجر الغد
-    if (!nextPrayer) {
-        nextPrayer = 'fajr';
-        nextPrayerTime = currentPrayerTimes.fajr;
-    }
-    
-    nextPrayerInfo = {
-        name: nextPrayer,
-        time: nextPrayerTime,
-        displayName: prayerNames[nextPrayer]
-    };
-    
-    updateNextPrayerDisplay();
-}
 
-// تحديث عرض الصلاة القادمة
-function updateNextPrayerDisplay() {
+    // إذا لم نجد صلاة اليوم، الصلاة القادمة هي فجر الغد
+    if (!nextPrayer) {
+        nextPrayer = 'الفجر (غداً)';
+        nextTime = prayerTimes.fajr;
+    }
+
+    // تحديث العرض
     const nameElement = document.getElementById('nextPrayerName');
     const timeElement = document.getElementById('nextPrayerTime');
-    const countdownElement = document.getElementById('nextPrayerCountdown');
     
-    if (nameElement && nextPrayerInfo.displayName) {
-        nameElement.textContent = nextPrayerInfo.displayName;
-    }
-    
-    if (timeElement && nextPrayerInfo.time) {
-        timeElement.textContent = convertTo12Hour(nextPrayerInfo.time);
-    }
-    
-    if (countdownElement) {
-        updateCountdown();
-    }
+    if (nameElement) nameElement.textContent = nextPrayer;
+    if (timeElement) timeElement.textContent = formatTime(nextTime);
+
+    updateCountdown(nextTime);
 }
 
 // تحديث العد التنازلي
-function updateCountdown() {
-    if (!nextPrayerInfo.time) return;
-    
+function updateCountdown(nextTime) {
     const now = new Date();
-    const [hours, minutes] = nextPrayerInfo.time.split(':');
+    const [hour, minute] = nextTime.split(':');
     
-    // إنشاء تاريخ الصلاة القادمة
-    let prayerDate = new Date();
-    prayerDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+    const nextPrayerTime = new Date();
+    nextPrayerTime.setHours(parseInt(hour), parseInt(minute), 0, 0);
     
-    // إذا كان وقت الصلاة قد مضى اليوم، فهي غداً
-    if (prayerDate <= now) {
-        prayerDate.setDate(prayerDate.getDate() + 1);
+    // إذا كان الوقت قد مضى اليوم، اجعله غداً
+    if (nextPrayerTime <= now) {
+        nextPrayerTime.setDate(nextPrayerTime.getDate() + 1);
     }
     
-    const timeDiff = prayerDate - now;
+    const diff = nextPrayerTime - now;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
     
-    if (timeDiff <= 0) {
-        // وقت الصلاة حان، تحديث للصلاة التالية
-        updateNextPrayer();
-        return;
-    }
-    
-    // حساب الساعات والدقائق والثواني
-    const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
-    const minutesLeft = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const secondsLeft = Math.floor((timeDiff % (1000 * 60)) / 1000);
-    
-    // تحديث العرض
     const countdownElement = document.getElementById('nextPrayerCountdown');
     if (countdownElement) {
-        countdownElement.textContent = `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
-    }
-}
-
-// تمييز الصلاة الحالية والقادمة
-function highlightCurrentAndNextPrayer() {
-    const now = new Date();
-    const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-    
-    // إزالة جميع التمييزات
-    document.querySelectorAll('.prayer-item').forEach(item => {
-        item.classList.remove('current', 'next');
-    });
-    
-    let currentPrayer = null;
-    let nextPrayer = null;
-    
-    // تحديد الصلاة الحالية
-    for (let i = prayerOrder.length - 1; i >= 0; i--) {
-        const prayer = prayerOrder[i];
-        const prayerTime = currentPrayerTimes[prayer];
-        
-        if (currentTime >= prayerTime) {
-            currentPrayer = prayer;
-            break;
-        }
-    }
-    
-    // تحديد الصلاة القادمة
-    for (const prayer of prayerOrder) {
-        const prayerTime = currentPrayerTimes[prayer];
-        if (prayerTime > currentTime) {
-            nextPrayer = prayer;
-            break;
-        }
-    }
-    
-    // إذا لم نجد صلاة قادمة اليوم، فالقادمة هي الفجر
-    if (!nextPrayer) {
-        nextPrayer = 'fajr';
-    }
-    
-    // تطبيق التمييز
-    if (currentPrayer) {
-        const currentElement = document.querySelector(`[data-prayer="${currentPrayer}"]`);
-        if (currentElement) {
-            currentElement.classList.add('current');
-        }
-    }
-    
-    if (nextPrayer) {
-        const nextElement = document.querySelector(`[data-prayer="${nextPrayer}"]`);
-        if (nextElement) {
-            nextElement.classList.add('next');
-        }
-    }
-}
-
-// إضافة خاصية data-prayer للعناصر
-function addPrayerDataAttributes() {
-    const prayerItems = document.querySelectorAll('.prayer-item');
-    prayerItems.forEach((item, index) => {
-        if (index < prayerOrder.length) {
-            item.setAttribute('data-prayer', prayerOrder[index]);
-        }
-    });
-}
-
-// تشغيل الأذان
-function playAdhanSound() {
-    try {
-        const customAdhan = localStorage.getItem('customAdhanUrl') || localStorage.getItem('customAdhanFile');
-        const volume = (localStorage.getItem('adhanVolume') || 80) / 100;
-        
-        let adhanUrl = customAdhan || './sounds/الاذان 1.mp3';
-        
-        const audio = new Audio(adhanUrl);
-        audio.volume = volume;
-        audio.play().catch(error => {
-            console.log('لا يمكن تشغيل الأذان:', error);
-        });
-        
-        // إظهار مؤشر تشغيل الأذان
-        const indicator = document.getElementById('adhanIndicator');
-        if (indicator) {
-            indicator.style.display = 'block';
-            setTimeout(() => {
-                indicator.style.display = 'none';
-            }, 5000);
-        }
-        
-    } catch (error) {
-        console.log('خطأ في تشغيل الأذان:', error);
+        countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 }
 
 // فحص مواقيت الصلاة للأذان
 function checkPrayerTimes() {
+    if (!adhanEnabled) return;
+    
     const now = new Date();
     const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
     
-    // فحص إذا كان الوقت الحالي يطابق وقت صلاة
-    Object.keys(currentPrayerTimes).forEach(prayer => {
-        if (prayer !== 'sunrise') { // لا نؤذن للشروق
-            const prayerTime = currentPrayerTimes[prayer];
-            if (currentTime === prayerTime) {
-                const adhanSettings = JSON.parse(localStorage.getItem('adhanSettings') || '{}');
-                if (adhanSettings[prayer] !== false) { // افتراضياً مفعل
-                    playAdhanSound();
-                    
-                    // إشعار
-                    if (Notification.permission === 'granted') {
-                        new Notification(`حان وقت ${prayerNames[prayer]}`, {
-                            body: `الوقت الآن ${convertTo12Hour(prayerTime)}`,
-                            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🕌</text></svg>'
-                        });
-                    }
-                }
-            }
+    Object.keys(prayerTimes).forEach(prayer => {
+        if (prayerTimes[prayer] === currentTime && prayerAdhanSettings[prayer]) {
+            showPrayerNotification(prayer);
         }
     });
 }
 
-// طلب إذن الإشعارات
-function requestNotificationPermission() {
-    if ('Notification' in window) {
-        if (Notification.permission === 'default') {
-            Notification.requestPermission().then(permission => {
-                if (permission === 'granted') {
-                    alert('✅ تم تفعيل إشعارات الصلاة بنجاح');
-                } else {
-                    alert('❌ لم يتم تفعيل الإشعارات');
-                }
-            });
-        } else if (Notification.permission === 'granted') {
-            alert('✅ الإشعارات مفعلة بالفعل');
-        } else {
-            alert('❌ الإشعارات محظورة في المتصفح');
-        }
-    } else {
-        alert('❌ المتصفح لا يدعم الإشعارات');
-    }
-}
-
-// تهيئة المواقيت
-function initializePrayerTimes() {
-    // إضافة خصائص البيانات للعناصر
-    addPrayerDataAttributes();
-    
-    // تحديث المواقيت
-    updatePrayerTimes();
-    
-    // تشغيل التحديث كل دقيقة
-    if (prayerUpdateInterval) {
-        clearInterval(prayerUpdateInterval);
-    }
-    prayerUpdateInterval = setInterval(() => {
-        updatePrayerTimes();
-        checkPrayerTimes();
-    }, 60000); // كل دقيقة
-    
-    // تشغيل العد التنازلي كل ثانية
-    if (countdownInterval) {
-        clearInterval(countdownInterval);
-    }
-    countdownInterval = setInterval(updateCountdown, 1000);
-}
-
-// تحديث الموقع الجغرافي للمواقيت
-function updatePrayerLocation() {
-    const city = document.getElementById('cityName')?.value.trim();
-    const country = document.getElementById('countryName')?.value.trim();
-    const lat = document.getElementById('latitude')?.value;
-    const lng = document.getElementById('longitude')?.value;
-    
-    if (city && country) {
-        const locationData = { city, country, lat, lng };
-        localStorage.setItem('prayerLocation', JSON.stringify(locationData));
-        
-        // إعادة تحميل المواقيت
-        updatePrayerTimes();
-        
-        alert(`✅ تم تحديث الموقع إلى: ${city}, ${country}`);
-    } else {
-        alert('⚠️ يرجى إدخال اسم المدينة والبلد');
-    }
-}
-
-// حفظ المواقيت اليدوية
-function saveManualPrayerTimes() {
-    const manualTimes = {
-        fajr: document.getElementById('fajrTime')?.value,
-        sunrise: document.getElementById('sunriseTime')?.value,
-        dhuhr: document.getElementById('dhuhrTime')?.value,
-        asr: document.getElementById('asrTime')?.value,
-        maghrib: document.getElementById('maghribTime')?.value,
-        isha: document.getElementById('ishaTime')?.value
+// عرض إشعار الصلاة
+function showPrayerNotification(prayer) {
+    const prayerNames = {
+        fajr: 'الفجر',
+        dhuhr: 'الظهر',
+        asr: 'العصر',
+        maghrib: 'المغرب', 
+        isha: 'العشاء'
     };
     
-    // التحقق من وجود جميع المواقيت
-    const missingTimes = Object.entries(manualTimes).filter(([key, value]) => !value);
-    if (missingTimes.length > 0) {
-        alert('⚠️ يرجى ملء جميع مواقيت الصلاة');
-        return;
+    const prayerName = prayerNames[prayer];
+    
+    if (confirm(`🕌 حان وقت صلاة ${prayerName}\n\nهل تريد تشغيل الأذان؟`)) {
+        playAdhanSound();
+    }
+}
+
+// تشغيل صوت الأذان
+function playAdhanSound() {
+    try {
+        const adhan = new Audio('sounds/الاذان 1.mp3');
+        adhan.volume = 0.8;
+        adhan.play().catch(() => {});
+    } catch (e) {}
+}
+
+// وظائف لوحة التحكم
+function updatePrayerTime(prayer) {
+    const input = document.getElementById(`${prayer}Time`);
+    if (input) {
+        prayerTimes[prayer] = input.value;
+        savePrayerTimes();
+        updatePrayerTimesDisplay();
+    }
+}
+
+function savePrayerTimes() {
+    localStorage.setItem('prayerTimes', JSON.stringify(prayerTimes));
+    localStorage.setItem('prayerAdhanSettings', JSON.stringify(prayerAdhanSettings));
+    alert('✅ تم حفظ مواقيت الصلاة');
+    updatePrayerTimesDisplay();
+}
+
+function resetPrayerTimes() {
+    if (confirm('هل تريد إعادة تعيين مواقيت الصلاة للقيم الافتراضية؟')) {
+        prayerTimes = {
+            fajr: '04:12',
+            sunrise: '05:58',
+            dhuhr: '12:59',
+            asr: '16:33', 
+            maghrib: '19:59',
+            isha: '21:32'
+        };
+        
+        // تحديث الحقول في لوحة التحكم
+        Object.keys(prayerTimes).forEach(prayer => {
+            const input = document.getElementById(`${prayer}Time`);
+            if (input) input.value = prayerTimes[prayer];
+        });
+        
+        savePrayerTimes();
+    }
+}
+
+function toggleAdhan() {
+    adhanEnabled = !adhanEnabled;
+    const toggle = document.getElementById('adhanToggle');
+    if (toggle) {
+        toggle.classList.toggle('active', adhanEnabled);
+    }
+    localStorage.setItem('adhanEnabled', adhanEnabled);
+}
+
+function togglePrayerAdhan(prayer) {
+    const checkbox = document.getElementById(`${prayer}AdhanEnabled`);
+    if (checkbox) {
+        prayerAdhanSettings[prayer] = checkbox.checked;
+        localStorage.setItem('prayerAdhanSettings', JSON.stringify(prayerAdhanSettings));
+    }
+}
+
+// تحميل الإعدادات المحفوظة
+function loadPrayerSettings() {
+    const savedTimes = localStorage.getItem('prayerTimes');
+    if (savedTimes) {
+        prayerTimes = JSON.parse(savedTimes);
     }
     
-    localStorage.setItem('manualPrayerTimes', JSON.stringify(manualTimes));
-    localStorage.setItem('manualPrayerTimesActive', 'true');
+    const savedAdhanSettings = localStorage.getItem('prayerAdhanSettings');
+    if (savedAdhanSettings) {
+        prayerAdhanSettings = JSON.parse(savedAdhanSettings);
+    }
     
-    // إعادة تحميل المواقيت
-    updatePrayerTimes();
+    const savedAdhanEnabled = localStorage.getItem('adhanEnabled');
+    if (savedAdhanEnabled !== null) {
+        adhanEnabled = JSON.parse(savedAdhanEnabled);
+    }
     
-    alert('💾 تم حفظ المواقيت اليدوية بنجاح');
-}
-
-// إلغاء المواقيت اليدوية
-function disableManualPrayerTimes() {
-    localStorage.removeItem('manualPrayerTimesActive');
-    
-    // إعادة تحميل المواقيت التلقائية
-    updatePrayerTimes();
-    
-    alert('🌐 تم العودة للمواقيت التلقائية');
-}
-
-// تحميل المواقيت الحالية في حقول التعديل
-function loadCurrentPrayerTimes() {
-    Object.keys(currentPrayerTimes).forEach(prayer => {
-        const input = document.getElementById(prayer + 'Time');
-        if (input) {
-            input.value = currentPrayerTimes[prayer];
-        }
-    });
-    
-    alert('✅ تم تحميل المواقيت الحالية');
-}
-
-// تهيئة النظام عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    // تأخير قصير للتأكد من تحميل جميع العناصر
+    // تحديث الواجهة
     setTimeout(() => {
-        initializePrayerTimes();
+        Object.keys(prayerTimes).forEach(prayer => {
+            const input = document.getElementById(`${prayer}Time`);
+            if (input) input.value = prayerTimes[prayer];
+            
+            const checkbox = document.getElementById(`${prayer}AdhanEnabled`);
+            if (checkbox) checkbox.checked = prayerAdhanSettings[prayer];
+        });
+        
+        const adhanToggle = document.getElementById('adhanToggle');
+        if (adhanToggle) {
+            adhanToggle.classList.toggle('active', adhanEnabled);
+        }
+        
+        updatePrayerTimesDisplay();
+    }, 1000);
+}
+
+// تهيئة النظام
+document.addEventListener('DOMContentLoaded', function() {
+    loadPrayerSettings();
+    
+    // تحديث كل دقيقة
+    setInterval(() => {
+        updateNextPrayer();
+        checkPrayerTimes();
+    }, 60000);
+    
+    // تحديث العد التنازلي كل ثانية
+    setInterval(() => {
+        const nextTimeElement = document.getElementById('nextPrayerTime');
+        if (nextTimeElement && nextTimeElement.textContent) {
+            const timeText = nextTimeElement.textContent.replace(/[صم]/g, '').trim();
+            updateCountdown(timeText);
+        }
     }, 1000);
 });
 
-// إعادة تهيئة عند تغيير الإعدادات
-window.addEventListener('storage', function(e) {
-    if (e.key === 'manualPrayerTimes' || e.key === 'manualPrayerTimesActive' || e.key === 'prayerLocation') {
-        updatePrayerTimes();
-    }
-});
-
-console.log('✅ تم تحميل إصلاح المواقيت النهائي');
+console.log('✅ تم تحميل نظام مواقيت الصلاة النهائي');
