@@ -638,30 +638,79 @@ function updateNextPrayerDisplay() {
   updateCountdown();
 }
 
-// تحديث العد التنازلي
+// تحديث العد التنازلي المحسن
 function updateCountdown() {
   if (!nextPrayerInfo.timeInMinutes) return;
 
   const now = new Date();
   const currentTimeInMinutes = now.getHours() * 60 + now.getMinutes();
+  const currentSeconds = now.getSeconds();
 
   let remainingMinutes = nextPrayerInfo.timeInMinutes - currentTimeInMinutes;
+  let remainingSeconds = 60 - currentSeconds;
 
   // إذا كانت الصلاة غداً
   if (remainingMinutes <= 0) {
     remainingMinutes += 24 * 60;
   }
 
+  // تعديل الدقائق إذا كانت الثواني أقل من 60
+  if (remainingSeconds === 60) {
+    remainingSeconds = 0;
+  } else {
+    remainingMinutes -= 1;
+  }
+
   const hours = Math.floor(remainingMinutes / 60);
   const minutes = remainingMinutes % 60;
-  const seconds = now.getSeconds() === 0 ? 0 : 60 - now.getSeconds();
 
+  // تحديث العناصر الجديدة
+  const hoursElement = document.getElementById("hoursLeft");
+  const minutesElement = document.getElementById("minutesLeft");
+  const secondsElement = document.getElementById("secondsLeft");
+  const progressBar = document.getElementById("prayerProgressBar");
+
+  if (hoursElement && minutesElement && secondsElement) {
+    hoursElement.textContent = hours.toString().padStart(2, "0");
+    minutesElement.textContent = minutes.toString().padStart(2, "0");
+    secondsElement.textContent = remainingSeconds.toString().padStart(2, "0");
+  }
+
+  // تحديث شريط التقدم
+  if (progressBar) {
+    const totalMinutesInDay = 24 * 60;
+    const elapsedMinutes = totalMinutesInDay - remainingMinutes;
+    const progressPercentage = (elapsedMinutes / totalMinutesInDay) * 100;
+    progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
+  }
+
+  // تحديث العد التنازلي القديم كاحتياطي
   const countdownElement = document.getElementById("nextPrayerCountdown");
-  if (countdownElement) {
+  if (countdownElement && !hoursElement) {
     const hoursStr = hours.toString().padStart(2, "0");
     const minutesStr = minutes.toString().padStart(2, "0");
-    const secondsStr = seconds.toString().padStart(2, "0");
+    const secondsStr = remainingSeconds.toString().padStart(2, "0");
     countdownElement.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
+  }
+
+  // تأثيرات بصرية عند اقتراب وقت الصلاة
+  const totalRemainingMinutes = hours * 60 + minutes;
+  const nextPrayerBox = document.getElementById("nextPrayerBox");
+  
+  if (nextPrayerBox) {
+    if (totalRemainingMinutes <= 5) {
+      // أقل من 5 دقائق - تأثير أحمر
+      nextPrayerBox.style.background = "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)";
+      nextPrayerBox.style.animation = "nextPrayerUrgent 1s ease-in-out infinite alternate";
+    } else if (totalRemainingMinutes <= 15) {
+      // أقل من 15 دقيقة - تأثير برتقالي
+      nextPrayerBox.style.background = "linear-gradient(135deg, #f39c12 0%, #e67e22 100%)";
+      nextPrayerBox.style.animation = "nextPrayerWarning 2s ease-in-out infinite alternate";
+    } else {
+      // الوضع العادي
+      nextPrayerBox.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+      nextPrayerBox.style.animation = "nextPrayerGlow 4s ease-in-out infinite alternate";
+    }
   }
 }
 

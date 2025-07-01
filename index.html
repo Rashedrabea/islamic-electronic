@@ -237,57 +237,192 @@
         }
 
         /* قسم مواقيت الصلاة */
-        /* مربع الصلاة القادمة */
+        /* مربع الصلاة القادمة - تصميم محسن */
         .next-prayer-box {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 25px;
             text-align: center;
-            margin: 20px auto;
-            max-width: 300px;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            animation: nextPrayerGlow 3s ease-in-out infinite alternate;
+            margin: 25px auto;
+            max-width: 400px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: nextPrayerGlow 4s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-prayer-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .next-prayer-header {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 10px;
-            font-weight: 500;
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .next-prayer-name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
         }
 
         .next-prayer-countdown {
-            font-size: 32px;
+            font-size: 42px;
             font-weight: bold;
             font-family: 'Courier New', monospace;
             color: #FFD700;
-            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            text-shadow: 0 3px 12px rgba(255, 215, 0, 0.7);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-parts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-part {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .countdown-separator {
+            font-size: 30px;
+            opacity: 0.7;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 0.7; }
+            51%, 100% { opacity: 0.3; }
         }
 
         .next-prayer-time {
-            font-size: 16px;
-            opacity: 0.8;
-            font-weight: 500;
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prayer-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin: 15px 0 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .prayer-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .prayer-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         @keyframes nextPrayerGlow {
             0% {
-                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+                transform: translateY(0);
             }
-
             100% {
-                box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+                box-shadow: 0 20px 50px rgba(102, 126, 234, 0.7);
+                transform: translateY(-2px);
+            }
+        }
+
+        @keyframes nextPrayerWarning {
+            0% {
+                box-shadow: 0 15px 40px rgba(243, 156, 18, 0.5);
+                transform: translateY(0);
+            }
+            100% {
+                box-shadow: 0 20px 50px rgba(243, 156, 18, 0.8);
+                transform: translateY(-3px);
+            }
+        }
+
+        @keyframes nextPrayerUrgent {
+            0% {
+                box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                box-shadow: 0 25px 60px rgba(231, 76, 60, 0.9);
+                transform: translateY(-4px) scale(1.02);
             }
         }
 
@@ -1602,6 +1737,53 @@
                 left: 10px !important;
                 font-size: 9px !important;
             }
+
+            /* تحسينات للجوال - مربع الصلاة القادمة */
+            .next-prayer-box {
+                max-width: 350px;
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .next-prayer-countdown {
+                font-size: 32px;
+                padding: 12px 15px;
+            }
+
+            .countdown-number {
+                font-size: 28px;
+            }
+
+            .countdown-label {
+                font-size: 11px;
+            }
+
+            .countdown-part {
+                min-width: 50px;
+            }
+
+            .countdown-separator {
+                font-size: 24px;
+            }
+        }
+
+        /* تحسينات الوضع الليلي لمربع الصلاة القادمة */
+        body.dark-mode .next-prayer-box {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+            border: 3px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        body.dark-mode .next-prayer-countdown {
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 2px solid rgba(255, 215, 0, 0.4) !important;
+        }
+
+        body.dark-mode .prayer-progress {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode .next-prayer-time {
+            background: rgba(255, 255, 255, 0.1) !important;
         }
     </style>
 </head>
@@ -1706,9 +1888,35 @@
 
             <!-- مربع الصلاة القادمة -->
             <div class="next-prayer-box" id="nextPrayerBox">
-                <div class="next-prayer-header">🕐 الصلاة القادمة</div>
+                <div class="next-prayer-header">
+                    <span>🕐</span>
+                    <span>الصلاة القادمة</span>
+                </div>
                 <div class="next-prayer-name" id="nextPrayerName">الفجر</div>
-                <div class="next-prayer-countdown" id="nextPrayerCountdown">--:--:--</div>
+                
+                <div class="next-prayer-countdown" id="nextPrayerCountdown">
+                    <div class="countdown-parts">
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="hoursLeft">00</span>
+                            <span class="countdown-label">ساعة</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="minutesLeft">00</span>
+                            <span class="countdown-label">دقيقة</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="secondsLeft">00</span>
+                            <span class="countdown-label">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prayer-progress">
+                    <div class="prayer-progress-bar" id="prayerProgressBar" style="width: 0%"></div>
+                </div>
+                
                 <div class="next-prayer-time" id="nextPrayerTime">4:12 ص</div>
             </div>
 
@@ -2122,7 +2330,7 @@
                         </div>
                     </div>
                     <div class="control-row">
-                        < <div class="control-input">
+                        <div class="control-input">
                             <input type="checkbox" id="ishaAdhanEnabled" onchange="togglePrayerAdhan('isha')">
                     </div>
                 </div>
