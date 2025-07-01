@@ -761,20 +761,63 @@ window.addEventListener('load', function() {
 
 // === إدارة الشريط الإعلاني ===
 
-// تحديث نص الإعلان
+// متغيرات الإعلانات المتعددة
+let announcements = [];
+let currentAnnouncementIndex = 0;
+let announcementInterval;
+
+// تحديث الإعلانات المتعددة
 function updateAnnouncement() {
     try {
         const newText = document.getElementById('announcementTextAdmin')?.value?.trim();
+        const speed = document.getElementById('announcementSpeed')?.value || 40;
+        
         if (newText) {
-            const announcementElement = document.getElementById('announcementText');
-            if (announcementElement) {
-                announcementElement.textContent = newText;
-            }
+            // تقسيم النص إلى إعلانات منفصلة
+            announcements = newText.split('\n').filter(line => line.trim());
+            
             localStorage.setItem('announcementText', newText);
-            showSuccessMessage('📢 تم تحديث الإعلان بنجاح!');
+            localStorage.setItem('announcementSpeed', speed);
+            
+            // بدء دورة الإعلانات
+            startAnnouncementCycle(speed);
+            
+            showSuccessMessage(`📢 تم تحديث ${announcements.length} إعلان بسرعة ${speed}ث!`);
         }
     } catch (error) {
         console.error('خطأ في تحديث الإعلان:', error);
+    }
+}
+
+// بدء دورة الإعلانات
+function startAnnouncementCycle(speed) {
+    if (announcementInterval) clearInterval(announcementInterval);
+    
+    if (announcements.length === 0) return;
+    
+    const announcementElement = document.getElementById('announcementText');
+    if (!announcementElement) return;
+    
+    // عرض الإعلان الأول
+    announcementElement.textContent = announcements[0];
+    announcementElement.style.animationDuration = speed + 's';
+    currentAnnouncementIndex = 0;
+    
+    // إذا كان هناك أكثر من إعلان واحد
+    if (announcements.length > 1) {
+        announcementInterval = setInterval(() => {
+            currentAnnouncementIndex = (currentAnnouncementIndex + 1) % announcements.length;
+            announcementElement.textContent = announcements[currentAnnouncementIndex];
+        }, parseInt(speed) * 1000);
+    }
+}
+
+// تحديث عرض السرعة
+function updateSpeedDisplay() {
+    const speed = document.getElementById('announcementSpeed')?.value || 40;
+    const display = document.getElementById('speedValue');
+    if (display) {
+        display.textContent = speed + 'ث';
     }
 }
 
@@ -812,10 +855,25 @@ function loadAnnouncementSettings() {
         const isHidden = localStorage.getItem('announcementHidden');
         
         if (savedText) {
-            const announcementElement = document.getElementById('announcementText');
             const adminTextarea = document.getElementById('announcementTextAdmin');
-            if (announcementElement) announcementElement.textContent = savedText;
             if (adminTextarea) adminTextarea.value = savedText;
+            
+            // تقسيم النص وبدء الدورة
+            announcements = savedText.split('\n').filter(line => line.trim());
+        }
+        
+        const savedSpeed = localStorage.getItem('announcementSpeed') || '40';
+        const speedSlider = document.getElementById('announcementSpeed');
+        const speedDisplay = document.getElementById('speedValue');
+        if (speedSlider) {
+            speedSlider.value = savedSpeed;
+            speedSlider.addEventListener('input', updateSpeedDisplay);
+        }
+        if (speedDisplay) speedDisplay.textContent = savedSpeed + 'ث';
+        
+        // بدء دورة الإعلانات بالسرعة المحفوظة
+        if (announcements.length > 0) {
+            startAnnouncementCycle(savedSpeed);
         }
         
         if (isHidden === 'true') {

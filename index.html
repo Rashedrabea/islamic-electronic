@@ -1709,27 +1709,12 @@
 
         #announcementText {
             display: inline-block;
-            animation: scrollText 20s linear infinite;
-            padding-left: 100%;
+            animation: scrollText 40s linear infinite;
+            padding-right: 100%;
         }
 
         .announcement-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            margin-left: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .announcement-close:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
+            display: none;
         }
 
         @keyframes gradientMove {
@@ -1739,13 +1724,17 @@
         }
 
         @keyframes scrollText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         /* تعديل موضع الحاوية عند وجود الشريط */
         body {
             padding-top: 60px;
+        }
+        
+        .fixed-controls {
+            top: 70px;
         }
 
         .announcement-bar.hidden {
@@ -1769,6 +1758,14 @@
             
             body {
                 padding-top: 50px;
+            }
+            
+            .fixed-controls {
+                top: 60px;
+            }
+            
+            #announcementText {
+                animation-duration: 30s;
             }
         }
 
@@ -2490,9 +2487,21 @@
             <div class="control-section">
                 <h3>📢 إدارة الشريط الإعلاني</h3>
                 <div class="control-row">
-                    <span class="control-label">نص الإعلان</span>
+                    <span class="control-label">الإعلانات (كل إعلان في سطر)</span>
                     <div class="control-input">
-                        <textarea id="announcementTextAdmin" rows="2" placeholder="أدخل نص الإعلان هنا...">🎆 مرحباً بكم في المسبحة الإلكترونية</textarea>
+                        <textarea id="announcementTextAdmin" rows="4" placeholder="اكتب كل إعلان في سطر منفصل:
+🎆 مرحباً بكم في المسبحة الإلكترونية
+🕊 لا تنسوا صلاة الفجر
+💫 اذكروا الله كثيراً">🎆 مرحباً بكم في المسبحة الإلكترونية
+🕊 لا تنسوا صلاة الفجر
+💫 اذكروا الله كثيراً</textarea>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">سرعة الحركة</span>
+                    <div class="control-input">
+                        <input type="range" id="announcementSpeed" min="10" max="60" value="40">
+                        <span id="speedValue">40ث</span>
                     </div>
                 </div>
                 <div class="control-buttons">
