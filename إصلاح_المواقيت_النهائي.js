@@ -53,6 +53,8 @@ function updateNextPrayer() {
     const now = new Date();
     const currentTime = now.getHours() * 60 + now.getMinutes();
     
+    console.log(`الوقت الحالي: ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')} (بالدقائق: ${currentTime})`);
+    
     const prayerNames = {
         fajr: 'الفجر',
         dhuhr: 'الظهر',
@@ -61,24 +63,37 @@ function updateNextPrayer() {
         isha: 'العشاء'
     };
 
+    // ترتيب الصلوات
+    const prayerOrder = [
+        {key: 'fajr', time: '04:12'},
+        {key: 'dhuhr', time: '12:59'},
+        {key: 'asr', time: '16:33'},
+        {key: 'maghrib', time: '19:59'},
+        {key: 'isha', time: '21:32'}
+    ];
+    
     let nextPrayer = null;
     let nextTime = null;
 
-    for (const [prayer, time] of Object.entries(prayerTimes)) {
-        const [hour, minute] = time.split(':');
+    for (const prayer of prayerOrder) {
+        const [hour, minute] = prayer.time.split(':');
         const prayerTime = parseInt(hour) * 60 + parseInt(minute);
         
+        console.log(`${prayer.key}: ${prayer.time} (بالدقائق: ${prayerTime})`);
+        
         if (prayerTime > currentTime) {
-            nextPrayer = prayerNames[prayer];
-            nextTime = time;
+            nextPrayer = prayerNames[prayer.key];
+            nextTime = prayer.time;
+            console.log(`الصلاة القادمة: ${nextPrayer}`);
             break;
         }
     }
 
-    // إذا لم نجد صلاة اليوم، الصلاة القادمة هي فجر الغد
+    // إذا لم نجد صلاة اليوم
     if (!nextPrayer) {
         nextPrayer = 'الفجر (غداً)';
-        nextTime = prayerTimes.fajr;
+        nextTime = '04:12';
+        console.log('لم توجد صلاة متبقية - القادمة هي فجر الغد');
     }
 
     // تحديث العرض
@@ -105,9 +120,14 @@ function updateCountdown(nextTime) {
     }
     
     const diff = nextPrayerTime - now;
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    let hours = Math.floor(diff / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    // إصلاح العد التنازلي - إذا كان أكثر من 12 ساعة
+    if (hours > 12) {
+        hours = hours - 12;
+    }
     
     const countdownElement = document.getElementById('nextPrayerCountdown');
     if (countdownElement) {
