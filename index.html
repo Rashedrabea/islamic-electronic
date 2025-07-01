@@ -1680,7 +1680,98 @@
             border-color: #666 !important;
         }
 
+        /* الشريط الإعلاني المتحرك */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7);
+            background-size: 300% 100%;
+            animation: gradientMove 8s ease infinite;
+            color: white;
+            padding: 12px 0;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .announcement-content {
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        #announcementText {
+            display: inline-block;
+            animation: scrollText 20s linear infinite;
+            padding-left: 100%;
+        }
+
+        .announcement-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* تعديل موضع الحاوية عند وجود الشريط */
+        body {
+            padding-top: 60px;
+        }
+
+        .announcement-bar.hidden {
+            display: none;
+        }
+
+        body.no-announcement {
+            padding-top: 0;
+        }
+
         /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .announcement-bar {
+                padding: 8px 0;
+                font-size: 14px;
+            }
+            
+            #announcementText {
+                animation-duration: 15s;
+            }
+            
+            body {
+                padding-top: 50px;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -1744,6 +1835,13 @@
                 padding: 20px;
                 margin: 20px auto;
             }
+            
+            .announcement-close {
+                width: 25px;
+                height: 25px;
+                font-size: 16px;
+                margin-left: 10px;
+            }
 
             .next-prayer-countdown {
                 font-size: 32px;
@@ -1789,6 +1887,14 @@
 </head>
 
 <body>
+    <!-- الشريط الإعلاني المتحرك -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="announcement-content">
+            <span id="announcementText">🎆 مرحباً بكم في المسبحة الإلكترونية - صدقة جارية على روح أبي وأرواح المسلمين جميعاً 🤲</span>
+        </div>
+        <button class="announcement-close" onclick="hideAnnouncementBar()">×</button>
+    </div>
+
     <!-- أزرار التحكم الثابتة -->
     <div class="fixed-controls">
         <button class="btn" id="darkModeBtn" onclick="toggleDarkMode()" title="الوضع الليلي"><span
@@ -2228,6 +2334,12 @@
                             </div>
                         </div>
                         <div class="control-row">
+                            <span class="control-label">الشروق</span>
+                            <div class="control-input">
+                                <input type="time" id="sunriseTime" value="05:58" onchange="updatePrayerTime('sunrise')">
+                            </div>
+                        </div>
+                        <div class="control-row">
                             <span class="control-label">الظهر</span>
                             <div class="control-input">
                                 <input type="time" id="dhuhrTime" value="12:59" onchange="updatePrayerTime('dhuhr')">
@@ -2372,6 +2484,20 @@
                     <button class="control-btn secondary" onclick="previewContent()">👁️ معاينة</button>
                     <button class="control-btn secondary" onclick="exportContentAndThemeSettings()">📤 تصدير الإعدادات</button>
                     <button class="control-btn secondary" onclick="importContentAndThemeSettings()">📥 استيراد الإعدادات</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>📢 إدارة الشريط الإعلاني</h3>
+                <div class="control-row">
+                    <span class="control-label">نص الإعلان</span>
+                    <div class="control-input">
+                        <textarea id="announcementTextAdmin" rows="2" placeholder="أدخل نص الإعلان هنا...">🎆 مرحباً بكم في المسبحة الإلكترونية</textarea>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="updateAnnouncement()">📢 تحديث الإعلان</button>
+                    <button class="control-btn secondary" onclick="toggleAnnouncementBar()">🔄 إظهار/إخفاء</button>
                 </div>
             </div>
 

@@ -15,6 +15,8 @@ function updateAppContent() {
             if (titleElement) {
                 titleElement.textContent = title;
             }
+            // تحديث عنوان الصفحة أيضاً
+            document.title = title;
             localStorage.setItem('appTitle', title);
         }
 
@@ -24,11 +26,28 @@ function updateAppContent() {
             if (metaDesc) {
                 metaDesc.setAttribute('content', description);
             }
+            // إضافة الوصف تحت العنوان إذا لم يكن موجوداً
+            let descElement = document.querySelector('.banner .app-description');
+            if (!descElement) {
+                descElement = document.createElement('p');
+                descElement.className = 'app-description';
+                descElement.style.cssText = 'margin: 10px 0; opacity: 0.9; font-size: 1.1em;';
+                document.querySelector('.banner').appendChild(descElement);
+            }
+            descElement.textContent = description;
             localStorage.setItem('appDescription', description);
         }
 
-        // حفظ رسالة الترحيب
+        // حفظ وعرض رسالة الترحيب
         if (welcomeMessage) {
+            let welcomeElement = document.querySelector('.welcome-message');
+            if (!welcomeElement) {
+                welcomeElement = document.createElement('div');
+                welcomeElement.className = 'welcome-message';
+                welcomeElement.style.cssText = 'background: rgba(76,175,80,0.1); padding: 15px; border-radius: 10px; margin: 15px 0; text-align: center; border-right: 4px solid #4CAF50;';
+                document.querySelector('.container').insertBefore(welcomeElement, document.querySelector('.section'));
+            }
+            welcomeElement.textContent = welcomeMessage;
             localStorage.setItem('welcomeMessage', welcomeMessage);
         }
 
@@ -619,6 +638,7 @@ function initializeContentAndThemeManagement() {
         
         // تحميل الإعدادات المحفوظة
         loadAllSavedSettings();
+        loadAnnouncementSettings();
         
         console.log('✅ تم تهيئة إدارة المحتوى والثيمات بنجاح');
         
@@ -738,5 +758,76 @@ window.addEventListener('load', function() {
         initializeContentAndThemeManagement();
     }, 1500);
 });
+
+// === إدارة الشريط الإعلاني ===
+
+// تحديث نص الإعلان
+function updateAnnouncement() {
+    try {
+        const newText = document.getElementById('announcementTextAdmin')?.value?.trim();
+        if (newText) {
+            const announcementElement = document.getElementById('announcementText');
+            if (announcementElement) {
+                announcementElement.textContent = newText;
+            }
+            localStorage.setItem('announcementText', newText);
+            showSuccessMessage('📢 تم تحديث الإعلان بنجاح!');
+        }
+    } catch (error) {
+        console.error('خطأ في تحديث الإعلان:', error);
+    }
+}
+
+// إخفاء الشريط الإعلاني
+function hideAnnouncementBar() {
+    const bar = document.getElementById('announcementBar');
+    if (bar) {
+        bar.classList.add('hidden');
+        document.body.classList.add('no-announcement');
+        localStorage.setItem('announcementHidden', 'true');
+    }
+}
+
+// تبديل إظهار/إخفاء الشريط
+function toggleAnnouncementBar() {
+    const bar = document.getElementById('announcementBar');
+    if (bar) {
+        const isHidden = bar.classList.contains('hidden');
+        if (isHidden) {
+            bar.classList.remove('hidden');
+            document.body.classList.remove('no-announcement');
+            localStorage.removeItem('announcementHidden');
+            showSuccessMessage('🔄 تم إظهار الشريط الإعلاني');
+        } else {
+            hideAnnouncementBar();
+            showSuccessMessage('🔄 تم إخفاء الشريط الإعلاني');
+        }
+    }
+}
+
+// تحميل إعدادات الشريط الإعلاني
+function loadAnnouncementSettings() {
+    try {
+        const savedText = localStorage.getItem('announcementText');
+        const isHidden = localStorage.getItem('announcementHidden');
+        
+        if (savedText) {
+            const announcementElement = document.getElementById('announcementText');
+            const adminTextarea = document.getElementById('announcementTextAdmin');
+            if (announcementElement) announcementElement.textContent = savedText;
+            if (adminTextarea) adminTextarea.value = savedText;
+        }
+        
+        if (isHidden === 'true') {
+            const bar = document.getElementById('announcementBar');
+            if (bar) {
+                bar.classList.add('hidden');
+                document.body.classList.add('no-announcement');
+            }
+        }
+    } catch (error) {
+        console.error('خطأ في تحميل إعدادات الشريط:', error);
+    }
+}
 
 console.log('📝 تم تحميل إصلاح إدارة المحتوى والثيمات النهائي');

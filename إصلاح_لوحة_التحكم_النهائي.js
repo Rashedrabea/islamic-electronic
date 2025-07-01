@@ -421,7 +421,7 @@ function getCurrentLocation() {
     }
 }
 
-function saveManualPrayerTimes() {
+function savePrayerTimes() {
     const manualTimes = {
         fajr: document.getElementById('fajrTime')?.value,
         sunrise: document.getElementById('sunriseTime')?.value,
@@ -442,6 +442,22 @@ function saveManualPrayerTimes() {
     localStorage.setItem('manualPrayerTimesActive', 'true');
     
     alert('💾 تم حفظ المواقيت اليدوية بنجاح');
+}
+
+// تحديث وقت صلاة مفردة
+function updatePrayerTime(prayer) {
+    const timeInput = document.getElementById(prayer + 'Time');
+    if (timeInput && timeInput.value) {
+        // حفظ الوقت الجديد فوراً
+        const currentTimes = JSON.parse(localStorage.getItem('manualPrayerTimes') || '{}');
+        currentTimes[prayer] = timeInput.value;
+        localStorage.setItem('manualPrayerTimes', JSON.stringify(currentTimes));
+        
+        // تحديث العرض في التطبيق
+        if (typeof updatePrayerTimes === 'function') {
+            updatePrayerTimes();
+        }
+    }
 }
 
 function loadCurrentPrayerTimes() {
