@@ -1,7 +1,7 @@
 // نظام الصلاة القادمة الجديد - مبني من الصفر
 
-// مواقيت الصلاة الثابتة
-const PRAYER_TIMES = {
+// مواقيت الصلاة القابلة للتعديل
+let PRAYER_TIMES = {
     fajr: { hour: 4, minute: 12, name: 'الفجر' },
     dhuhr: { hour: 12, minute: 59, name: 'الظهر' },
     asr: { hour: 16, minute: 33, name: 'العصر' },
@@ -116,9 +116,76 @@ function updatePrayerTimesTable() {
     }
 }
 
+// وظائف لوحة التحكم
+function updatePrayerTime(prayer) {
+    const input = document.getElementById(`${prayer}Time`);
+    if (input && input.value) {
+        const [hour, minute] = input.value.split(':');
+        PRAYER_TIMES[prayer] = {
+            hour: parseInt(hour),
+            minute: parseInt(minute),
+            name: PRAYER_TIMES[prayer].name
+        };
+        savePrayerTimes();
+        updatePrayerTimesTable();
+        updateNextPrayerDisplay();
+    }
+}
+
+function savePrayerTimes() {
+    localStorage.setItem('customPrayerTimes', JSON.stringify(PRAYER_TIMES));
+    alert('✅ تم حفظ مواقيت الصلاة');
+}
+
+function resetPrayerTimes() {
+    if (confirm('هل تريد إعادة تعيين مواقيت الصلاة للقيم الافتراضية؟')) {
+        PRAYER_TIMES = {
+            fajr: { hour: 4, minute: 12, name: 'الفجر' },
+            dhuhr: { hour: 12, minute: 59, name: 'الظهر' },
+            asr: { hour: 16, minute: 33, name: 'العصر' },
+            maghrib: { hour: 19, minute: 59, name: 'المغرب' },
+            isha: { hour: 21, minute: 32, name: 'العشاء' }
+        };
+        
+        // تحديث الحقول في لوحة التحكم
+        Object.keys(PRAYER_TIMES).forEach(prayer => {
+            const input = document.getElementById(`${prayer}Time`);
+            if (input) {
+                const time = PRAYER_TIMES[prayer];
+                input.value = `${time.hour.toString().padStart(2, '0')}:${time.minute.toString().padStart(2, '0')}`;
+            }
+        });
+        
+        savePrayerTimes();
+        updatePrayerTimesTable();
+        updateNextPrayerDisplay();
+    }
+}
+
+function loadSavedPrayerTimes() {
+    const saved = localStorage.getItem('customPrayerTimes');
+    if (saved) {
+        PRAYER_TIMES = JSON.parse(saved);
+    }
+    
+    // تحديث حقول لوحة التحكم
+    setTimeout(() => {
+        Object.keys(PRAYER_TIMES).forEach(prayer => {
+            const input = document.getElementById(`${prayer}Time`);
+            if (input) {
+                const time = PRAYER_TIMES[prayer];
+                input.value = `${time.hour.toString().padStart(2, '0')}:${time.minute.toString().padStart(2, '0')}`;
+            }
+        });
+    }, 1000);
+}
+
 // تهيئة النظام
 function initNewPrayerSystem() {
     console.log('🕌 تهيئة نظام الصلاة القادمة الجديد...');
+    
+    // تحميل المواقيت المحفوظة
+    loadSavedPrayerTimes();
     
     // تحديث فوري
     updatePrayerTimesTable();

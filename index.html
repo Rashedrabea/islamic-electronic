@@ -2224,46 +2224,37 @@
                         <div class="control-row">
                             <span class="control-label">الفجر</span>
                             <div class="control-input">
-                                <input type="time" id="fajrTime" value="05:15">
-                            </div>
-                        </div>
-                        <div class="control-row">
-                            <span class="control-label">الشروق</span>
-                            <div class="control-input">
-                                <input type="time" id="sunriseTime" value="06:45">
+                                <input type="time" id="fajrTime" value="04:12" onchange="updatePrayerTime('fajr')">
                             </div>
                         </div>
                         <div class="control-row">
                             <span class="control-label">الظهر</span>
                             <div class="control-input">
-                                <input type="time" id="dhuhrTime" value="12:15">
+                                <input type="time" id="dhuhrTime" value="12:59" onchange="updatePrayerTime('dhuhr')">
                             </div>
                         </div>
                         <div class="control-row">
                             <span class="control-label">العصر</span>
                             <div class="control-input">
-                                <input type="time" id="asrTime" value="15:30">
+                                <input type="time" id="asrTime" value="16:33" onchange="updatePrayerTime('asr')">
                             </div>
                         </div>
                         <div class="control-row">
                             <span class="control-label">المغرب</span>
                             <div class="control-input">
-                                <input type="time" id="maghribTime" value="17:45">
+                                <input type="time" id="maghribTime" value="19:59" onchange="updatePrayerTime('maghrib')">
                             </div>
                         </div>
                         <div class="control-row">
                             <span class="control-label">العشاء</span>
                             <div class="control-input">
-                                <input type="time" id="ishaTime" value="19:15">
+                                <input type="time" id="ishaTime" value="21:32" onchange="updatePrayerTime('isha')">
                             </div>
                         </div>
                     </div>
                     <div class="control-buttons">
-                        <button class="control-btn" onclick="saveManualPrayerTimes()">💾 حفظ المواقيت</button>
-                        <button class="control-btn secondary" onclick="loadCurrentPrayerTimes()">🔄 تحميل المواقيت
-                            الحالية</button>
-                        <button class="control-btn secondary" onclick="disableManualPrayerTimes()">🌐 العودة للمواقيت
-                            التلقائية</button>
+                        <button class="control-btn" onclick="savePrayerTimes()">💾 حفظ المواقيت</button>
+                        <button class="control-btn secondary" onclick="resetPrayerTimes()">🔄 إعادة تعيين</button>
                     </div>
                 </div>
             </div>
@@ -2482,6 +2473,7 @@
 
     <script src="إصلاح_الصوت_النهائي.js"></script>
     <script src="نظام_الصلاة_القادمة_الجديد.js"></script>
+    <script src="إصلاح_لوحة_التحكم_الكامل.js"></script>
 
     <script src="إصلاح_صوت_التسبيح.js"></script>
     <script src="إصلاح_وضع_المطور_والأقسام.js"></script>
