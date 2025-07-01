@@ -1707,9 +1707,9 @@
             <!-- مربع الصلاة القادمة -->
             <div class="next-prayer-box" id="nextPrayerBox">
                 <div class="next-prayer-header">🕐 الصلاة القادمة</div>
-                <div class="next-prayer-name" id="nextPrayerName">العشاء</div>
+                <div class="next-prayer-name" id="nextPrayerName">الفجر</div>
                 <div class="next-prayer-countdown" id="nextPrayerCountdown">--:--:--</div>
-                <div class="next-prayer-time" id="nextPrayerTime">9:32 م</div>
+                <div class="next-prayer-time" id="nextPrayerTime">4:12 ص</div>
             </div>
 
             <div class="prayer-times" id="prayerTimesContainer">
@@ -2122,156 +2122,153 @@
                         </div>
                     </div>
                     <div class="control-row">
-                        <span class="control-label">تشغيل الأذان للعشاء</span>
-                        <div class="control-input">
+                        < <div class="control-input">
                             <input type="checkbox" id="ishaAdhanEnabled" onchange="togglePrayerAdhan('isha')">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- تبويب إدارة الأقسام -->
-            <div class="admin-tab-content" id="sections-tab" style="display: none;">
-                <div class="control-section">
-                    <h3>📋 إدارة أقسام التطبيق</h3>
-                    <div class="sections-manager" id="sectionsManager">
-                        <!-- سيتم ملء هذا القسم ديناميكياً -->
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="addNewSection()">➕ إضافة قسم جديد</button>
-                        <button class="control-btn secondary" onclick="updateSectionsManager()">🔄 تحديث
-                            القائمة</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- تبويب إدارة المحتوى -->
-            <div class="admin-tab-content" id="content-tab" style="display: none;">
-                <div class="control-section">
-                    <h3>� إدارة نصوص التطبيق</h3>
-                    <div class="control-row">
-                        <span class="control-label">عنوان التطبيق</span>
-                        <div class="control-input">
-                            <input type="text" id="appTitle" value="المسبحة الإلكترونية" placeholder="عنوان التطبيق">
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">الوصف</span>
-                        <div class="control-input">
-                            <textarea id="appDescription" rows="2"
-                                placeholder="وصف التطبيق">تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة</textarea>
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">رسالة الترحيب</span>
-                        <div class="control-input">
-                            <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
-                            أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
-                        </div>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="updateAppContent()">💾 حفظ التغييرات</button>
-                        <button class="control-btn secondary" onclick="previewContent()">�️ معاينة</button>
-                    </div>
-                </div>
-
-                <div class="control-section">
-                    <h3>🎨 إدارة الألوان والثيمات</h3>
-                    <div class="control-row">
-                        <span class="control-label">اللون الأساسي</span>
-                        <div class="control-input">
-                            <input type="color" id="primaryColor" value="#4CAF50">
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">لون الخلفية</span>
-                        <div class="control-input">
-                            <input type="color" id="backgroundColor" value="#f0f8ff">
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">لون النص</span>
-                        <div class="control-input">
-                            <input type="color" id="textColor" value="#333333">
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">نمط الخلفية</span>
-                        <div class="control-input">
-                            <select id="backgroundPattern">
-                                <option value="gradient">تدرج لوني</option>
-                                <option value="solid">لون واحد</option>
-                                <option value="pattern">نقشة إسلامية</option>
-                                <option value="image">صورة خلفية</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="applyTheme()">🎨 تطبيق الثيم</button>
-                        <button class="control-btn secondary" onclick="resetTheme()">🔄 استعادة الافتراضي</button>
-                    </div>
-                </div>
-
-                <div class="control-section">
-                    <h3>📱 إعدادات متقدمة</h3>
-                    <div class="control-row">
-                        <span class="control-label">تفعيل الرسوم المتحركة</span>
-                        <div class="toggle-switch active" id="animationsToggle" onclick="toggleAnimations()"></div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">تفعيل الأصوات</span>
-                        <div class="toggle-switch active" id="soundsToggle" onclick="toggleSounds()"></div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">حفظ تلقائي</span>
-                        <div class="toggle-switch active" id="autoSaveToggle" onclick="toggleAutoSave()"></div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">وضع المطور</span>
-                        <div class="toggle-switch" id="devModeToggle" onclick="toggleDevMode()"
-                            title="تفعيل أدوات المطور المتقدمة"></div>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="exportAppSettings()">📤 تصدير الإعدادات</button>
-                        <button class="control-btn secondary" onclick="importAppSettings()">� استيراد الإعدادات</button>
-                        <button class="control-btn danger" onclick="resetAllSettings()">🔄 إعادة تعيين كامل</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- تبويب الأمان -->
-            <div class="admin-tab-content" id="security-tab" style="display: none;">
-                <div class="control-section">
-                    <h3>🔒 تغيير بيانات تسجيل الدخول</h3>
-                    <div class="control-row">
-                        <span class="control-label">اسم المستخدم الجديد</span>
-                        <div class="control-input">
-                            <input type="text" id="newAdminUsername" placeholder="أدخل اسم مستخدم جديد">
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <span class="control-label">كلمة المرور الجديدة</span>
-                        <div class="control-input">
-                            <input type="password" id="newAdminPassword" placeholder="أدخل كلمة مرور جديدة">
-                        </div>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="changeAdminCredentials()">🔄 تغيير بيانات الدخول</button>
-                        <button class="control-btn danger" onclick="resetToDefault()">🔄 إعادة تعيين افتراضي</button>
-                    </div>
-                    <div
-                        style="margin-top: 15px; padding: 10px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 0.9em;">
-                        <strong>⚠️ ملاحظة:</strong> بيانات الدخول الافتراضية هي:<br>
-                        اسم المستخدم: <code>admin</code><br>
-                        كلمة المرور: <code>123456</code>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- تبويب إدارة الأقسام -->
+        <div class="admin-tab-content" id="sections-tab" style="display: none;">
+            <div class="control-section">
+                <h3>📋 إدارة أقسام التطبيق</h3>
+                <div class="sections-manager" id="sectionsManager">
+                    <!-- سيتم ملء هذا القسم ديناميكياً -->
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="addNewSection()">➕ إضافة قسم جديد</button>
+                    <button class="control-btn secondary" onclick="updateSectionsManager()">🔄 تحديث
+                        القائمة</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب إدارة المحتوى -->
+        <div class="admin-tab-content" id="content-tab" style="display: none;">
+            <div class="control-section">
+                <h3>📝 إدارة نصوص التطبيق</h3>
+                <div class="control-row">
+                    <span class="control-label">عنوان التطبيق</span>
+                    <div class="control-input">
+                        <input type="text" id="appTitle" value="المسبحة الإلكترونية - صدقة جارية">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">وصف التطبيق</span>
+                    <div class="control-input">
+                        <textarea id="appDescription" rows="3"
+                            placeholder="وصف التطبيق">تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة</textarea>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">رسالة الترحيب</span>
+                    <div class="control-input">
+                        <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
+أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="updateAppContent()">💾 حفظ التغييرات</button>
+                    <button class="control-btn secondary" onclick="previewContent()">👁️ معاينة</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>🎨 إدارة الألوان والثيمات</h3>
+                <div class="control-row">
+                    <span class="control-label">اللون الأساسي</span>
+                    <div class="control-input">
+                        <input type="color" id="primaryColor" value="#4CAF50">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">لون الخلفية</span>
+                    <div class="control-input">
+                        <input type="color" id="backgroundColor" value="#FFFFFF">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">لون النص</span>
+                    <div class="control-input">
+                        <input type="color" id="textColor" value="#333333">
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="applyThemeSettings()">✨ تطبيق الألوان</button>
+                    <button class="control-btn secondary" onclick="resetThemeSettings()">🔄 استعادة الافتراضي</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>📱 إعدادات متقدمة</h3>
+                <div class="control-row">
+                    <span class="control-label">الفونت العربي</span>
+                    <div class="control-input">
+                        <select id="arabicFont">
+                            <option value="cairo">Cairo</option>
+                            <option value="tajawal">Tajawal</option>
+                            <option value="amiri">Amiri</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">حجم الخط</span>
+                    <div class="control-input">
+                        <input type="range" id="fontSize" min="12" max="24" value="16">
+                        <span id="fontSizeValue">16px</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">تأثيرات الحركة</span>
+                    <div class="control-input">
+                        <select id="animationStyle">
+                            <option value="fade">تلاشي</option>
+                            <option value="slide">انزلاق</option>
+                            <option value="none">بدون</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="saveAdvancedSettings()">💾 حفظ الإعدادات</button>
+                    <button class="control-btn secondary" onclick="resetAdvancedSettings()">🔄 إعادة تعيين</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الأمان -->
+        <div class="admin-tab-content" id="security-tab" style="display: none;">
+            <div class="control-section">
+                <h3>🔒 تغيير بيانات تسجيل الدخول</h3>
+                <div class="control-row">
+                    <span class="control-label">اسم المستخدم الجديد</span>
+                    <div class="control-input">
+                        <input type="text" id="newAdminUsername" placeholder="أدخل اسم مستخدم جديد">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">كلمة المرور الجديدة</span>
+                    <div class="control-input">
+                        <input type="password" id="newAdminPassword" placeholder="أدخل كلمة مرور جديدة">
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="changeAdminCredentials()">🔄 تغيير بيانات الدخول</button>
+                    <button class="control-btn danger" onclick="resetToDefault()">🔄 إعادة تعيين افتراضي</button>
+                </div>
+                <div
+                    style="margin-top: 15px; padding: 10px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 0.9em;">
+                    <strong>⚠️ ملاحظة:</strong> بيانات الدخول الافتراضية هي:<br>
+                    اسم المستخدم: <code>admin</code><br>
+                    كلمة المرور: <code>123456</code>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script src="app.js"></script>
-
+    <script src="إصلاح_إدارة_المحتوى.js"></script>
     <script src="مؤشر_الأذكار_الداخلي.js"></script>
     <script src="إصلاح_نهائي_شامل.js"></script>
 
