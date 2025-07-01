@@ -2,41 +2,38 @@
 
 // إصلاح 1: مواقيت الصلاة الصحيحة
 function getCurrentPrayerTimes() {
+    // منطق دقيق لتحديد الصلاة القادمة بناءً على الوقت الكامل
+    // استخدم نفس مواقيت app.js الافتراضية (يمكنك تعديلها حسب الحاجة)
     const now = new Date();
-    const hour = now.getHours();
-    
-    // تحديد المواقيت حسب الوقت الحالي
-    if (hour >= 17 && hour < 19) {
-        // بين المغرب والعشاء - الصلاة القادمة العشاء
-        return {
-            current: 'المغرب',
-            next: { name: 'العشاء', time: { hour: 19, minute: 15 } }
-        };
-    } else if (hour >= 19 || hour < 5) {
-        // بعد العشاء أو قبل الفجر - الصلاة القادمة الفجر
-        return {
-            current: 'العشاء',
-            next: { name: 'الفجر', time: { hour: 5, minute: 15 } }
-        };
-    } else if (hour >= 5 && hour < 12) {
-        // بعد الفجر وقبل الظهر - الصلاة القادمة الظهر
-        return {
-            current: 'الفجر',
-            next: { name: 'الظهر', time: { hour: 12, minute: 15 } }
-        };
-    } else if (hour >= 12 && hour < 15) {
-        // بعد الظهر وقبل العصر - الصلاة القادمة العصر
-        return {
-            current: 'الظهر',
-            next: { name: 'العصر', time: { hour: 15, minute: 30 } }
-        };
-    } else {
-        // بعد العصر وقبل المغرب - الصلاة القادمة المغرب
-        return {
-            current: 'العصر',
-            next: { name: 'المغرب', time: { hour: 17, minute: 45 } }
-        };
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    const times = {
+        fajr: { name: 'الفجر', hour: 4, minute: 12 },
+        sunrise: { name: 'الشروق', hour: 5, minute: 58 },
+        dhuhr: { name: 'الظهر', hour: 12, minute: 59 },
+        asr: { name: 'العصر', hour: 16, minute: 33 },
+        maghrib: { name: 'المغرب', hour: 19, minute: 59 },
+        isha: { name: 'العشاء', hour: 21, minute: 32 }
+    };
+    const order = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
+    let next = null;
+    let current = null;
+    for (let i = 0; i < order.length; i++) {
+        const t = times[order[i]];
+        const tMinutes = t.hour * 60 + t.minute;
+        if (currentTime < tMinutes) {
+            next = { name: t.name, time: { hour: t.hour, minute: t.minute } };
+            // الصلاة الحالية هي السابقة
+            const prevIdx = (i - 1 + order.length) % order.length;
+            current = times[order[prevIdx]].name;
+            break;
+        }
     }
+    // إذا انتهت كل الصلوات اليوم، القادمة فجر الغد
+    if (!next) {
+        next = { name: times.fajr.name + ' (غداً)', time: { hour: times.fajr.hour, minute: times.fajr.minute } };
+        current = times.isha.name;
+    }
+    return { current, next };
 }
 
 // إصلاح 2: تحديث الصلاة القادمة بدقة
