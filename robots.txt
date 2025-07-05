@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /*.js
+Allow: /*.css
+Allow: /images/
+Allow: /sounds/
+
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# محركات البحث العربية
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
