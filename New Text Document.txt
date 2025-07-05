@@ -1,0 +1,4 @@
+cd "d:\New folder\متجر 2"
+npx http-server
+
+PS D:\New folder\المسبحة الاكترونيه 2>
