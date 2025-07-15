@@ -1,4 +1,4 @@
-<UPDATED_CODE><!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="rtl" lang="ar">
 
 <head>
@@ -8,19 +8,7 @@
     <meta name="keywords" content="المسبحة, الإلكترونية, صدقة جارية, راشد ربيع">
     <meta name="author" content="راشد ربيع">
     <meta name="author" content="راديو لايف">
-    <meta name="google-site-verification" content="Gb1tGCDhB8Ng_DO6EtbeZZwyfh5rKxUQdPw_CkiK9NU" />
-    <meta name="google-site-verification" content="google9272194b4df60de5.html">
     <title> المسبحة الإلكترونية | صدقة جارية </title>
-    <!-- Structured Data for Google -->
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "المسبحة الإلكترونية",
-    "url": "https://rashedrabea.github.io/electronic-tasbih/",
-    "description": "المسبحة الإلكترونية النهائية - صدقة جارية لكل المسلمين."
-    }
-    </script>
     <style>
         * {
             margin: 0;
@@ -202,77 +190,6 @@
             transform: scale(1.05);
         }
 
-        /* أنماط وضع الحذف - الميزة الجديدة المضافة */
-        .delete-mode-active .custom-dhikr {
-            border: 3px solid #f44336 !important;
-            box-shadow: 0 0 15px rgba(244, 67, 54, 0.6) !important;
-            animation: deleteModePulse 2s infinite;
-        }
-
-        .delete-mode-active .custom-dhikr::after {
-            content: '🗑️';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #f44336;
-            color: white;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes deleteModePulse {
-            0% {
-                box-shadow: 0 0 15px rgba(244, 67, 54, 0.6);
-            }
-
-            50% {
-                box-shadow: 0 0 25px rgba(244, 67, 54, 0.8);
-            }
-
-            100% {
-                box-shadow: 0 0 15px rgba(244, 67, 54, 0.6);
-            }
-        }
-
-        /* مؤشر وضع الحذف */
-        #deleteModeIndicator {
-            background: linear-gradient(135deg, #f44336, #d32f2f);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            margin: 15px 0;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
-            animation: indicatorBlink 1.5s infinite;
-        }
-
-        @keyframes indicatorBlink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        #deleteToggleBtn {
-            background: #f44336 !important;
-        }
-
-        #deleteToggleBtn:hover {
-            background: #d32f2f !important;
-        }
-
-
 
 
         /* قسم الراديو */
@@ -350,13 +267,8 @@
         }
 
         @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .next-prayer-header {
@@ -432,16 +344,8 @@
         }
 
         @keyframes blink {
-
-            0%,
-            50% {
-                opacity: 0.7;
-            }
-
-            51%,
-            100% {
-                opacity: 0.3;
-            }
+            0%, 50% { opacity: 0.7; }
+            51%, 100% { opacity: 0.3; }
         }
 
         .next-prayer-time {
@@ -486,13 +390,8 @@
         }
 
         @keyframes progressShine {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         @keyframes nextPrayerGlow {
@@ -500,7 +399,6 @@
                 box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
                 transform: translateY(0);
             }
-
             100% {
                 box-shadow: 0 20px 50px rgba(102, 126, 234, 0.7);
                 transform: translateY(-2px);
@@ -512,7 +410,6 @@
                 box-shadow: 0 15px 40px rgba(243, 156, 18, 0.5);
                 transform: translateY(0);
             }
-
             100% {
                 box-shadow: 0 20px 50px rgba(243, 156, 18, 0.8);
                 transform: translateY(-3px);
@@ -524,7 +421,6 @@
                 box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
                 transform: translateY(0) scale(1);
             }
-
             100% {
                 box-shadow: 0 25px 60px rgba(231, 76, 60, 0.9);
                 transform: translateY(-4px) scale(1.02);
@@ -540,4 +436,2248 @@
 
         .prayer-item {
             background: rgba(33, 150, 243, 0.1);
-            padding:
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .prayer-item.current {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .prayer-item.next {
+            border-color: #FF9800;
+            background: rgba(255, 152, 0, 0.2);
+        }
+
+        .prayer-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .prayer-time {
+            font-size: 1.2em;
+            color: #2196F3;
+        }
+
+        /* قسم الإحصائيات */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* أزرار التحكم الثابتة */
+        .fixed-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .fixed-controls .btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .fixed-controls .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* تنسيق زر الوضع الليلي */
+        #darkModeBtn {
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        body.dark-mode #darkModeBtn {
+            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+        }
+
+        #darkModeIcon {
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        #darkModeBtn:hover #darkModeIcon {
+            transform: scale(1.2);
+        }
+
+        #darkModeBtn:active #darkModeIcon {
+            transform: scale(0.9);
+        }
+
+        #darkModeBtn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        #darkModeBtn:hover::before {
+            transform: scale(1);
+        }
+
+        @keyframes rotateIcon {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* تنسيق زر الوضع الليلي */
+        #darkModeBtn {
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode #darkModeBtn {
+            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* وضع التركيز */
+        .focus-mode-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .focus-content {
+            text-align: center;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .focus-counter {
+            font-size: clamp(4em, 12vw, 10em);
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .focus-dhikr {
+            font-size: clamp(1.5em, 4vw, 3em);
+            margin: 30px 0;
+            max-width: 80%;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .focus-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            margin: 15px;
+            border-radius: 30px;
+            font-size: clamp(16px, 2.5vw, 24px);
+            cursor: pointer;
+            min-width: 120px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .focus-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .focus-btn.secondary {
+            background: #f44336;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .focus-btn.secondary:hover {
+            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+        }
+
+        .focus-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .focus-counter {
+                font-size: clamp(3em, 15vw, 8em);
+                margin: 20px 0;
+            }
+
+            .focus-dhikr {
+                font-size: clamp(1.2em, 5vw, 2.5em);
+                margin: 20px 0;
+                max-width: 90%;
+            }
+
+            .focus-btn {
+                padding: 15px 30px;
+                font-size: clamp(14px, 3vw, 20px);
+                margin: 10px 5px;
+            }
+
+            .focus-controls {
+                margin-top: 20px;
+                gap: 5px;
+            }
+        }
+
+        /* تحسينات للشاشات الكبيرة جداً */
+        @media (min-width: 1200px) {
+            .focus-counter {
+                font-size: 12em;
+            }
+
+            .focus-dhikr {
+                font-size: 3.5em;
+                max-width: 70%;
+            }
+        }
+
+        /* إشعارات الإنجازات */
+        .achievement-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .achievement-notification.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .achievement-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .achievement-icon {
+            font-size: 2em;
+        }
+
+        /* قسم الأذكار والأدعية */
+        .azkar-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .azkar-category-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .azkar-category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .azkar-category-btn.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+        }
+
+        .azkar-content {
+            background: rgb(43, 42, 42) border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .azkar-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        /* إصلاح عرض الأذكار في الوضع النهاري */
+        body:not(.dark-mode) .azkar-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+        }
+
+        body:not(.dark-mode) .azkar-text {
+            color: white !important;
+        }
+
+        body:not(.dark-mode) .azkar-count {
+            color: white !important;
+        }
+
+        /* إصلاح عناصر الأذكار الأخرى في الوضع النهاري */
+        body:not(.dark-mode) .azkar-counter-btn {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        body:not(.dark-mode) .azkar-counter-display {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        .azkar-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .azkar-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .azkar-count {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .azkar-counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .azkar-counter-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .azkar-counter-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .azkar-counter-display {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* قسم المشاركة */
+        .social-share {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        body.dark-mode .social-share {
+            background: rgba(52, 73, 94, 0.9);
+            color: white;
+        }
+
+        .social-share h3 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .social-share h3 {
+            color: #81C784;
+        }
+
+        .share-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .share-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .share-btn.telegram {
+            background: linear-gradient(135deg, #0088cc, #005577);
+        }
+
+        .share-btn.facebook {
+            background: linear-gradient(135deg, #1877F2, #0d47a1);
+        }
+
+        .share-btn.copy {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+
+        /* حقوق النشر */
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .copyright-content {
+            color: white;
+        }
+
+        /* لوحة التحكم الإدارية */
+        .control-panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .control-panel {
+            background: white;
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 95%;
+            max-height: 95vh;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        body.dark-mode .control-panel {
+            background: #2c2c2c;
+            color: white;
+        }
+
+        .control-panel-header {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .control-panel-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .close-panel {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-panel:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* تبويبات لوحة التحكم */
+        .admin-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            overflow-x: auto;
+            flex-shrink: 0;
+        }
+
+        .admin-tab {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: #666;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+
+        .admin-tab:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .admin-tab.active {
+            background: white;
+            color: #2196F3;
+            border-bottom-color: #2196F3;
+            font-weight: bold;
+        }
+
+        /* محتوى التبويبات */
+        .admin-tab-content {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .admin-tab-content:not(.active) {
+            display: none;
+        }
+
+        /* أنماط خاصة بإدارة الأذكار */
+        .azkar-edit-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .azkar-item {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .azkar-item textarea {
+            width: 100%;
+            min-height: 60px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .azkar-item-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .azkar-item-controls button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .azkar-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .azkar-save {
+            background: #4CAF50;
+            color: white;
+        }
+
+        /* أنماط إدارة الشعار */
+        .logo-preview {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .logo-preview img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .icon-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .icon-btn {
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: #e0e0e0;
+            border-color: #2196F3;
+            transform: scale(1.1);
+        }
+
+        .icon-btn.selected {
+            background: #2196F3;
+            color: white;
+            border-color: #1976D2;
+        }
+
+        /* أنماط إدارة الأقسام */
+        .sections-manager {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
+        .section-item:last-child {
+            border-bottom: none;
+        }
+
+        .section-item:hover {
+            background: #f5f5f5;
+        }
+
+        .section-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .section-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn.small {
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        .control-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 15px;
+            border-right: 4px solid #4CAF50;
+        }
+
+        /* مؤشر تشغيل الأذان */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #adhanIndicator {
+            animation: pulse 2s infinite;
+        }
+
+        /* أزرار ثانوية */
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .control-btn.secondary:hover {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .control-section {
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .control-section h3 {
+            margin: 0 0 15px 0;
+            color: #4CAF50;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        body.dark-mode .control-row {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* تحسينات إضافية للوضع الليلي */
+        body.dark-mode .counter-section,
+        body.dark-mode .dhikr-section,
+        body.dark-mode .azkar-section,
+        body.dark-mode .stats-section,
+        body.dark-mode .radio-section,
+        body.dark-mode .prayer-times-section {
+            background: rgba(44, 62, 80, 0.9) !important;
+            border: 1px solid #555 !important;
+        }
+
+        body.dark-mode .banner {
+            background: rgba(44, 62, 80, 0.9);
+            border: 1px solid #555;
+        }
+
+        body.dark-mode .counter-display {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+        }
+
+        body.dark-mode .dhikr-display {
+            background: rgba(33, 150, 243, 0.3);
+            border: 2px solid #2196F3;
+        }
+
+        /* الوضع الليلي - تصميم واضح وبسيط */
+        body.dark-mode {
+            background: #1a1a1a !important;
+            background-image: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=1920&auto=format&fit=crop') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            color: #ffffff !important;
+        }
+
+        body.dark-mode::before {
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.9) 0%, rgba(36, 59, 85, 0.9) 100%);
+        }
+
+        body.dark-mode .section {
+            background: #2c2c2c !important;
+            color: #ffffff !important;
+            border: 1px solid #444 !important;
+        }
+
+        body.dark-mode .banner {
+            background: #2c2c2c !important;
+            color: #ffffff !important;
+            border: 1px solid #444 !important;
+        }
+
+        body.dark-mode .btn {
+            background: #444 !important;
+            color: #ffffff !important;
+            border: 1px solid #666 !important;
+        }
+
+        body.dark-mode .btn:hover {
+            background: #555 !important;
+        }
+
+        .control-label {
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .control-input {
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .control-input input,
+        .control-input select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        body.dark-mode .control-input input,
+        body.dark-mode .control-input select {
+            background: #444;
+            color: white;
+            border-color: #666;
+        }
+
+        /* مؤشر حالة المواقيت */
+        .prayer-status {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        body.dark-mode .prayer-status {
+            background: #343a40;
+            border-color: #495057;
+        }
+
+        #prayerModeIndicator {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            left: 33px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .control-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .control-btn.danger {
+            background: #f44336;
+        }
+
+        .control-btn.danger:hover {
+            background: #d32f2f;
+        }
+
+        .control-btn.secondary {
+            background: #2196F3;
+        }
+
+        .control-btn.secondary:hover {
+            background: #1976D2;
+        }
+
+        /* الوضع الليلي */
+        .dark-mode {
+            background: #1a1a1a !important;
+            color: #ffffff !important;
+        }
+
+        .dark-mode .container {
+            background: #2d2d2d;
+        }
+
+        .dark-mode .section {
+            background: #333333;
+            border: 1px solid #555;
+        }
+
+        .dark-mode .btn {
+            background: #4a4a4a;
+            color: #ffffff;
+            border: 1px solid #666;
+        }
+
+        .dark-mode .btn:hover {
+            background: #5a5a5a;
+        }
+
+        .dark-mode .stat-card {
+            background: #404040;
+            border: 1px solid #555;
+        }
+
+        .dark-mode input,
+        .dark-mode select {
+            background: #404040;
+            color: #ffffff;
+            border: 1px solid #666;
+        }
+
+        .dark-mode .prayer-item {
+            background: #404040;
+            border: 1px solid #555;
+        }
+
+        .dark-mode .azkar-item {
+            background: #404040;
+            border: 1px solid #555;
+        }
+
+
+
+        /* رسالة تغيير الوضع */
+        .mode-change-message {
+            animation: fadeInOut 2.5s ease forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+
+            20% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            80% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        /* تأثيرات أيقونة الوضع الليلي */
+        #darkModeIcon {
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .dark-mode-rotate {
+            animation: rotateIcon 0.5s ease forwards;
+        }
+
+        @keyframes rotateIcon {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* أنماط وضع المطور */
+        .no-animations * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        /* نافذة تسجيل الدخول */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .login-panel {
+            background: white;
+            border-radius: 20px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        body.dark-mode .login-panel {
+            background: #2c2c2c;
+            color: white;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-header h2 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .login-content {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        body.dark-mode .form-group label {
+            color: white;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #2196F3;
+            outline: none;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+        }
+
+        body.dark-mode .form-group input {
+            background: #444;
+            color: white;
+            border-color: #666;
+        }
+
+        .login-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .login-buttons .control-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+        }
+
+        body.dark-mode .control-panel {
+            background: #2c2c2c !important;
+            color: white !important;
+        }
+
+        body.dark-mode .admin-tabs {
+            background: #333 !important;
+        }
+
+        body.dark-mode .admin-tab {
+            color: #ccc !important;
+        }
+
+        body.dark-mode .admin-tab:hover {
+            background: #444 !important;
+            color: white !important;
+        }
+
+        body.dark-mode .admin-tab.active {
+            background: #2c2c2c !important;
+            color: #2196F3 !important;
+        }
+
+        body.dark-mode .control-input input,
+        body.dark-mode .control-input select,
+        body.dark-mode .control-input textarea {
+            background: #444 !important;
+            color: white !important;
+            border-color: #666 !important;
+        }
+
+        body.dark-mode .azkar-item {
+            background: #444 !important;
+            color: white !important;
+        }
+
+        body.dark-mode .azkar-item textarea {
+            background: #333 !important;
+            color: white !important;
+            border-color: #666 !important;
+        }
+
+        /* الشريط الإعلاني المتحرك */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7);
+            background-size: 300% 100%;
+            animation: gradientMove 8s ease infinite;
+            color: white;
+            padding: 12px 0;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .announcement-content {
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        #announcementText {
+            display: inline-block;
+            animation: scrollText 40s linear infinite;
+            padding-right: 100%;
+        }
+
+        .announcement-close {
+            display: none;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* تعديل موضع الحاوية عند وجود الشريط */
+        body {
+            padding-top: 60px;
+        }
+        
+        .fixed-controls {
+            top: 70px;
+        }
+
+        .announcement-bar.hidden {
+            display: none;
+        }
+
+        body.no-announcement {
+            padding-top: 0;
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .announcement-bar {
+                padding: 8px 0;
+                font-size: 14px;
+            }
+            
+            #announcementText {
+                animation-duration: 15s;
+            }
+            
+            body {
+                padding-top: 50px;
+            }
+            
+            .fixed-controls {
+                top: 60px;
+            }
+            
+            #announcementText {
+                animation-duration: 30s;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .banner h1 {
+                font-size: 2em;
+            }
+
+            #counter {
+                font-size: 4em;
+            }
+
+            .radio-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .fixed-controls {
+                position: relative;
+                top: auto;
+                left: auto;
+                flex-direction: row;
+                justify-content: center;
+                margin: 20px 0;
+            }
+
+            .share-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .share-btn {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+
+            /* تحسينات للجوال - وضع المطور */
+            #devToolbar {
+                font-size: 10px !important;
+                padding: 5px !important;
+                flex-direction: column !important;
+                gap: 5px !important;
+            }
+
+            #devConsole {
+                width: 95% !important;
+                height: 250px !important;
+                top: 10px !important;
+                right: 2.5% !important;
+            }
+
+            #quickTestPanel {
+                top: 10px !important;
+                left: 10px !important;
+                font-size: 9px !important;
+            }
+
+            /* تحسينات للجوال - مربع الصلاة القادمة */
+            .next-prayer-box {
+                max-width: 350px;
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .announcement-close {
+                width: 25px;
+                height: 25px;
+                font-size: 16px;
+                margin-left: 10px;
+            }
+
+            .next-prayer-countdown {
+                font-size: 32px;
+                padding: 12px 15px;
+            }
+
+            .countdown-number {
+                font-size: 28px;
+            }
+
+            .countdown-label {
+                font-size: 11px;
+            }
+
+            .countdown-part {
+                min-width: 50px;
+            }
+
+            .countdown-separator {
+                font-size: 24px;
+            }
+        }
+
+        /* تحسينات الوضع الليلي لمربع الصلاة القادمة */
+        body.dark-mode .next-prayer-box {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+            border: 3px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        body.dark-mode .next-prayer-countdown {
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 2px solid rgba(255, 215, 0, 0.4) !important;
+        }
+
+        body.dark-mode .prayer-progress {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode .next-prayer-time {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- الشريط الإعلاني المتحرك -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="announcement-content">
+            <span id="announcementText">🎆مرحباً بكم في المسبحة الإلكترونية - صدقة جارية  🤲</span>
+        </div>
+        <button class="announcement-close" onclick="hideAnnouncementBar()">×</button>
+    </div>
+
+    <!-- أزرار التحكم الثابتة -->
+    <div class="fixed-controls">
+        <button class="btn" id="darkModeBtn" onclick="toggleDarkMode()" title="الوضع الليلي"><span
+                id="darkModeIcon">☀️</span></button>
+        <button class="btn" id="vibrationToggle" onclick="toggleVibration()" title="الاهتزاز">📳</button>
+        <button class="btn" id="soundToggle" onclick="toggleSound()" title="الصوت">🔊</button>
+        <button class="btn" onclick="showLoginPanel()" title="لوحة التحكم">⚙️</button>
+        <button class="btn" id="bgChangeBtn" onclick="quickChangeBackground()" title="تغيير الخلفية">🎨</button>
+    </div>
+
+    <div class="container">
+        <!-- البانر -->
+        <div class="banner">
+            <span class="banner-emoji">📿</span>
+            <h1> المسبحة الإلكترونية - صدقة جارية </h1>
+        </div>
+
+        <!-- قسم التسبيح -->
+        <div class="section counter-section">
+            <h2>📿 التسبيح الإلكتروني</h2>
+            <div id="counter">0</div>
+            <div class="milestone-indicator" id="milestoneIndicator"></div>
+
+            <div class="controls">
+                <button class="btn" onclick="increment()">✨ تسبيح</button>
+                <button class="btn reset" onclick="reset()">🔄 إعادة</button>
+                <button class="btn secondary" onclick="toggleFocusMode()">🎯 تركيز</button>
+                <button class="btn secondary" onclick="playTasbihSound('normal')">🔊 اختبار الصوت</button>
+            </div>
+
+            <div class="tasbeeh-buttons">
+                <button class="tasbeeh-btn" onclick="setDhikr('سبحان الله', this)">سبحان الله</button>
+                <button class="tasbeeh-btn" onclick="setDhikr('الحمد لله', this)">الحمد لله</button>
+                <button class="tasbeeh-btn" onclick="setDhikr('الله أكبر', this)">الله أكبر</button>
+                <button class="tasbeeh-btn" onclick="setDhikr('لا إله إلا الله', this)">لا إله إلا الله</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <input type="text" id="customDhikr" placeholder="أدخل ذكراً مخصصاً..."
+                    style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 250px; margin-left: 10px;">
+                <button class="btn secondary" onclick="addCustomDhikr()">➕ إضافة ذكر</button>
+            </div>
+        </div>
+
+        <!-- قسم الإحصائيات -->
+        <div class="section">
+            <h2>📊 الإحصائيات</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalCount">0</span>
+                    <span class="stat-label">إجمالي التسبيحات</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="todayCount">0</span>
+                    <span class="stat-label">تسبيحات اليوم</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="weekCount">0</span>
+                    <span class="stat-label">تسبيحات الأسبوع</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">أيام متتالية</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn secondary" onclick="exportStats()">📤 تصدير البيانات</button>
+                <button class="btn secondary" onclick="importStats()">📥 استيراد البيانات</button>
+                <button class="btn reset" onclick="resetStats()">🔄 إعادة تعيين</button>
+            </div>
+        </div>
+
+        <!-- قسم راديو القرآن -->
+        <div class="section">
+            <h2>📻 راديو القرآن الكريم</h2>
+            <div class="radio-controls">
+                <button class="btn" id="playRadio" onclick="toggleRadio()">▶️ تشغيل</button>
+                <button class="btn secondary" onclick="stopRadio()">⏹️ إيقاف</button>
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" onchange="setVolume(this.value)">
+                </div>
+            </div>
+            <select id="radioStation">
+                <option value="https://stream.radiojar.com/8s5u5tpdtwzuv">إذاعة القرآن الكريم - القاهرة</option>
+                <option value="https://backup.qurango.net/radio/mix">القرآن الكريم (متنوع)</option>
+                <option value="https://backup.qurango.net/radio/tafseer">إذاعة التفسير</option>
+                <option value="https://backup.qurango.net/radio/ahmad_alajmy">أحمد العجمي</option>
+                <option value="https://backup.qurango.net/radio/maher_almueaqly">ماهر المعيقلي</option>
+            </select>
+        </div>
+
+        <!-- قسم مواقيت الصلاة -->
+        <div class="section">
+            <h2>🕌 مواقيت الصلاة</h2>
+
+            <!-- مربع الصلاة القادمة -->
+            <div class="next-prayer-box" id="nextPrayerBox">
+                <div class="next-prayer-header">
+                    <span>🕐</span>
+                    <span>الصلاة القادمة</span>
+                </div>
+                <div class="next-prayer-name" id="nextPrayerName">الفجر</div>
+                
+                <div class="next-prayer-countdown" id="nextPrayerCountdown">
+                    <div class="countdown-parts">
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="hoursLeft">00</span>
+                            <span class="countdown-label">ساعة</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="minutesLeft">00</span>
+                            <span class="countdown-label">دقيقة</span>
+                        </div>
+                        <span class="countdown-separator">:</span>
+                        <div class="countdown-part">
+                            <span class="countdown-number" id="secondsLeft">00</span>
+                            <span class="countdown-label">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prayer-progress">
+                    <div class="prayer-progress-bar" id="prayerProgressBar" style="width: 0%"></div>
+                </div>
+                
+                <div class="next-prayer-time" id="nextPrayerTime">4:12 ص</div>
+            </div>
+
+            <div class="prayer-times" id="prayerTimesContainer">
+                <div class="prayer-item">
+                    <div class="prayer-name">الفجر</div>
+                    <div class="prayer-time" id="fajr-time">4:12 ص</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">الشروق</div>
+                    <div class="prayer-time" id="sunrise-time">5:58 ص</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">الظهر</div>
+                    <div class="prayer-time" id="dhuhr-time">12:59 م</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">العصر</div>
+                    <div class="prayer-time" id="asr-time">4:33 م</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">المغرب</div>
+                    <div class="prayer-time" id="maghrib-time">7:59 م</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">العشاء</div>
+                    <div class="prayer-time" id="isha-time">9:32 م</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn secondary" onclick="requestNotificationPermission()">🔔 تفعيل إشعارات الصلاة</button>
+                <button class="btn secondary" onclick="playAdhanSound()">🎵 اختبار صوت الأذان</button>
+                <div id="adhanIndicator" style="display: none; margin-top: 10px; color: #4CAF50; font-weight: bold;">🎵
+                    يتم تشغيل الأذان...</div>
+            </div>
+        </div>
+
+        <!-- قسم الأذكار والأدعية -->
+        <div class="section">
+            <h2>📿 الأذكار والأدعية</h2>
+
+            <!-- أزرار التصنيفات -->
+            <div class="azkar-categories">
+                <button class="azkar-category-btn active" onclick="showAzkarCategory('morning')">🌅 أذكار
+                    الصباح</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('evening')">🌆 أذكار المساء</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('sleep')">🌙 أذكار النوم</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('prayer')">🤲 أذكار الصلاة</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('travel')">✈️ أذكار السفر</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('food')">🍽️ أذكار الطعام</button>
+                <button class="azkar-category-btn" onclick="showAzkarCategory('general')">📖 أذكار عامة</button>
+            </div>
+
+            <!-- محتوى الأذكار -->
+            <div class="azkar-content" id="azkarContent">
+                <!-- سيتم ملء المحتوى بواسطة JavaScript -->
+            </div>
+        </div>
+
+        <!-- قسم المشاركة -->
+        <div class="social-share">
+            <h3>📢 شارك التطبيق</h3>
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" onclick="shareApp('whatsapp')">
+                    📱 واتساب
+                </button>
+                <button class="share-btn telegram" onclick="shareApp('telegram')">
+                    ✈️ تيليجرام
+                </button>
+                <button class="share-btn facebook" onclick="shareApp('facebook')">
+                    📘 فيسبوك
+                </button>
+                <button class="share-btn copy" onclick="copyAppLink()">
+                    📋 نسخ الرابط
+                </button>
+            </div>
+        </div>
+
+        <!-- حقوق النشر -->
+        <div class="copyright">
+            <div class="copyright-content">
+                <p>🌟 المسبحة الإلكترونية - تطبيق شامل للذكر والتسبيح</p>
+                <p>💻 تطوير: راشد ربيع</p>
+                <small>جميع الحقوق محفوظة © 2025</small>
+                <p>
+                    📧
+                    البريد الإلكتروني : <a href="mailto : rashedrbaee20081217@gmail.com"> rashedrbaee20081217@gmail.com
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- وضع التركيز -->
+    <div class="focus-mode-overlay" id="focusOverlay">
+        <div class="focus-content">
+            <div class="focus-dhikr" id="focusDhikr">اختر ذكراً للبدء</div>
+            <div class="focus-counter" id="focusCounter">0</div>
+            <div class="focus-controls">
+                <button class="focus-btn" onclick="focusIncrement()">تسبيح</button>
+                <button class="focus-btn secondary" onclick="toggleFocusMode()">خروج</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار الإنجازات -->
+    <div class="achievement-notification" id="achievementNotification">
+        <div class="achievement-content">
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-text" id="achievementText"></div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل الدخول -->
+    <div class="login-overlay" id="loginOverlay" style="display: none;">
+        <div class="login-panel">
+            <div class="login-header">
+                <h2>🔒 تسجيل الدخول</h2>
+                <button class="close-panel" onclick="closeLoginPanel()">✕</button>
+            </div>
+            <div class="login-content">
+                <div class="login-form">
+                    <div class="form-group">
+                        <label>👤 اسم المستخدم</label>
+                        <input type="text" id="adminUsername" placeholder="أدخل اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label>🔑 كلمة المرور</label>
+                        <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور">
+                    </div>
+                    <div class="login-buttons">
+                        <button class="control-btn" onclick="attemptLogin()">🔓 دخول</button>
+                        <button class="control-btn secondary" onclick="closeLoginPanel()">❌ إلغاء</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم الإدارية -->
+    <div class="control-panel-overlay" id="controlPanelOverlay" style="display: none;">
+        <div class="control-panel">
+            <div class="control-panel-header">
+                <h2>🛠️ لوحة التحكم الإدارية</h2>
+                <button class="close-panel" onclick="closeControlPanel()">✕</button>
+            </div>
+
+            <!-- قائمة التبويبات -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showAdminTab('azkar')">📿 إدارة الأذكار</button>
+                <button class="admin-tab" onclick="showAdminTab('logo')">🖼️ إدارة الشعار</button>
+                <button class="admin-tab" onclick="showAdminTab('prayers')">🕌 إدارة المواقيت</button>
+                <button class="admin-tab" onclick="showAdminTab('adhan')">🎵 إدارة الأذان</button>
+                <button class="admin-tab" onclick="showAdminTab('sections')">📋 إدارة الأقسام</button>
+                <button class="admin-tab" onclick="showAdminTab('content')">📝 إدارة المحتوى</button>
+                <button class="admin-tab" onclick="showAdminTab('security')">🔒 الأمان</button>
+            </div>
+
+            <!-- تبويب إدارة الأذكار -->
+            <div class="admin-tab-content" id="azkar-tab">
+                <div class="control-section">
+                    <h3>📿 إضافة ذكر جديد</h3>
+                    <div class="control-row">
+                        <span class="control-label">التصنيف</span>
+                        <div class="control-input">
+                            <select id="newAzkarCategory">
+                                <option value="morning">أذكار الصباح</option>
+                                <option value="evening">أذكار المساء</option>
+                                <option value="sleep">أذكار النوم</option>
+                                <option value="prayer">أذكار الصلاة</option>
+                                <option value="travel">أذكار السفر</option>
+                                <option value="food">أذكار الطعام</option>
+                                <option value="general">أذكار عامة</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">نص الذكر</span>
+                        <div class="control-input">
+                            <textarea id="newAzkarText" placeholder="أدخل نص الذكر هنا..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">عدد التكرار</span>
+                        <div class="control-input">
+                            <input type="number" id="newAzkarCount" min="1" max="1000" value="1">
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="addNewAzkar()">➕ إضافة الذكر</button>
+                        <button class="control-btn secondary" onclick="previewAzkar()">👁️ معاينة</button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>📝 تعديل الأذكار الموجودة</h3>
+                    <div class="control-row">
+                        <span class="control-label">اختر التصنيف</span>
+                        <div class="control-input">
+                            <select id="editAzkarCategory" onchange="loadAzkarForEdit()">
+                                <option value="morning">أذكار الصباح</option>
+                                <option value="evening">أذكار المساء</option>
+                                <option value="sleep">أذكار النوم</option>
+                                <option value="prayer">أذكار الصلاة</option>
+                                <option value="travel">أذكار السفر</option>
+                                <option value="food">أذكار الطعام</option>
+                                <option value="general">أذكار عامة</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="azkarEditList" class="azkar-edit-list">
+                        <!-- سيتم ملء هذا القسم ديناميكياً -->
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="saveAzkarChanges()">� حفظ التغييرات</button>
+                        <button class="control-btn danger" onclick="resetAzkarCategory()">🔄 استعادة الافتراضي</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب إدارة الشعار -->
+            <div class="admin-tab-content" id="logo-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>🖼️ تغيير شعار التطبيق</h3>
+                    <div class="control-row">
+                        <span class="control-label">الشعار الحالي</span>
+                        <div class="logo-preview">
+                            <img id="currentLogo"
+                                src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📿</text></svg>"
+                                alt="شعار التطبيق" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">رفع شعار جديد</span>
+                        <div class="control-input">
+                            <input type="file" id="logoUpload" accept="image/*" onchange="previewLogo()">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">أو استخدم رابط صورة</span>
+                        <div class="control-input">
+                            <input type="url" id="logoUrl" placeholder="https://example.com/logo.png"
+                                onchange="previewLogoFromUrl()">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">اختر من الأيقونات الجاهزة</span>
+                        <div class="icon-selector">
+                            <button class="icon-btn" onclick="selectIcon('📿', this)">📿</button>
+                            <button class="icon-btn" onclick="selectIcon('🕌', this)">🕌</button>
+                            <button class="icon-btn" onclick="selectIcon('☪️', this)">☪️</button>
+                            <button class="icon-btn" onclick="selectIcon('🤲', this)">🤲</button>
+                            <button class="icon-btn" onclick="selectIcon('📖', this)">📖</button>
+                            <button class="icon-btn" onclick="selectIcon('🌙', this)">🌙</button>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="applyNewLogo()">✅ تطبيق الشعار</button>
+                        <button class="control-btn secondary" onclick="resetLogo()">🔄 استعادة الافتراضي</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب إدارة مواقيت الصلاة -->
+            <div class="admin-tab-content" id="prayers-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>🕌 إعدادات مواقيت الصلاة</h3>
+                    <div class="prayer-status" id="prayerStatus">
+                        <span id="prayerModeIndicator">🌐 المواقيت التلقائية مفعلة</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">المدينة</span>
+                        <div class="control-input">
+                            <input type="text" id="cityName" placeholder="اسم المدينة" value="القاهرة">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">البلد</span>
+                        <div class="control-input">
+                            <input type="text" id="countryName" placeholder="اسم البلد" value="مصر">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">خط الطول</span>
+                        <div class="control-input">
+                            <input type="number" id="longitude" step="0.000001" placeholder="31.2357">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">خط العرض</span>
+                        <div class="control-input">
+                            <input type="number" id="latitude" step="0.000001" placeholder="30.0444">
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="updatePrayerLocation()">📍 تحديث الموقع</button>
+                        <button class="control-btn secondary" onclick="getCurrentLocation()">🌍 الموقع الحالي</button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>⏰ تعديل المواقيت يدوياً</h3>
+                    <div class="prayer-times-editor">
+                        <div class="control-row">
+                            <span class="control-label">الفجر</span>
+                            <div class="control-input">
+                                <input type="time" id="fajrTime" value="04:12" onchange="updatePrayerTime('fajr')">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">الشروق</span>
+                            <div class="control-input">
+                                <input type="time" id="sunriseTime" value="05:58" onchange="updatePrayerTime('sunrise')">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">الظهر</span>
+                            <div class="control-input">
+                                <input type="time" id="dhuhrTime" value="12:59" onchange="updatePrayerTime('dhuhr')">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">العصر</span>
+                            <div class="control-input">
+                                <input type="time" id="asrTime" value="16:33" onchange="updatePrayerTime('asr')">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">المغرب</span>
+                            <div class="control-input">
+                                <input type="time" id="maghribTime" value="19:59" onchange="updatePrayerTime('maghrib')">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <span class="control-label">العشاء</span>
+                            <div class="control-input">
+                                <input type="time" id="ishaTime" value="21:32" onchange="updatePrayerTime('isha')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="savePrayerTimes()">💾 حفظ المواقيت</button>
+                        <button class="control-btn secondary" onclick="resetPrayerTimes()">🔄 إعادة تعيين</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب إدارة الأذان -->
+            <div class="admin-tab-content" id="adhan-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>🎵 إدارة ملفات الأذان</h3>
+                    <div class="control-row">
+                        <span class="control-label">رفع ملف أذان جديد</span>
+                        <div class="control-input">
+                            <input type="file" id="adhanFileUpload" accept="audio/*" onchange="showSelectedFile()">
+                            <small id="selectedFileName" style="color: #666; margin-top: 5px; display: block;">اختر ملف
+                                صوتي (MP3, WAV)</small>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">أو استخدم رابط صوتي</span>
+                        <div class="control-input">
+                            <input type="url" id="adhanUrlInput" placeholder="https://example.com/adhan.mp3"
+                                style="width: 70%; margin-left: 10px;">
+                            <button class="control-btn small" onclick="addAdhanUrl()">إضافة</button>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">مستوى صوت الأذان</span>
+                        <div class="control-input">
+                            <input type="range" id="adhanVolume" min="0" max="100" value="80"
+                                oninput="updateAdhanVolume()">
+                            <span id="volumeValue" style="margin-right: 10px; font-weight: bold;">80%</span>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="testAdhan()">🔊 اختبار الأذان</button>
+                        <button class="control-btn" onclick="saveAdhanSettings()">💾 حفظ الإعدادات</button>
+                        <button class="control-btn secondary" onclick="stopAdhan()">⏹️ إيقاف</button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>⏰ إعدادات تشغيل الأذان</h3>
+                    <div class="control-row">
+                        <span class="control-label">تشغيل الأذان للفجر</span>
+                        <div class="control-input">
+                            <input type="checkbox" id="fajrAdhanEnabled" onchange="togglePrayerAdhan('fajr')">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">تشغيل الأذان للظهر</span>
+                        <div class="control-input">
+                            <input type="checkbox" id="dhuhrAdhanEnabled" onchange="togglePrayerAdhan('dhuhr')">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">تشغيل الأذان للعصر</span>
+                        <div class="control-input">
+                            <input type="checkbox" id="asrAdhanEnabled" onchange="togglePrayerAdhan('asr')">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">تشغيل الأذان للمغرب</span>
+                        <div class="control-input">
+                            <input type="checkbox" id="maghribAdhanEnabled" onchange="togglePrayerAdhan('maghrib')">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <div class="control-input">
+                            <input type="checkbox" id="ishaAdhanEnabled" onchange="togglePrayerAdhan('isha')">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب إدارة الأقسام -->
+        <div class="admin-tab-content" id="sections-tab" style="display: none;">
+            <div class="control-section">
+                <h3>📋 إدارة أقسام التطبيق</h3>
+                <div class="sections-manager" id="sectionsManager">
+                    <!-- سيتم ملء هذا القسم ديناميكياً -->
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="addNewSection()">➕ إضافة قسم جديد</button>
+                    <button class="control-btn secondary" onclick="updateSectionsManager()">🔄 تحديث
+                        القائمة</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب إدارة المحتوى -->
+        <div class="admin-tab-content" id="content-tab" style="display: none;">
+            <div class="control-section">
+                <h3>📝 إدارة نصوص التطبيق</h3>
+                <div class="control-row">
+                    <span class="control-label">عنوان التطبيق</span>
+                    <div class="control-input">
+                        <input type="text" id="appTitle" value="المسبحة الإلكترونية - صدقة جارية">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">وصف التطبيق</span>
+                    <div class="control-input">
+                        <textarea id="appDescription" rows="3"
+                            placeholder="وصف التطبيق">تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة</textarea>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">رسالة الترحيب</span>
+                    <div class="control-input">
+                        <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
+أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="updateAppContent()">💾 حفظ التغييرات</button>
+                    <button class="control-btn secondary" onclick="previewContent()">👁️ معاينة</button>
+                    <button class="control-btn secondary" onclick="exportContentAndThemeSettings()">📤 تصدير الإعدادات</button>
+                    <button class="control-btn secondary" onclick="importContentAndThemeSettings()">📥 استيراد الإعدادات</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>📢 إدارة الشريط الإعلاني</h3>
+                <div class="control-row">
+                    <span class="control-label">الإعلانات (كل إعلان في سطر)</span>
+                    <div class="control-input">
+                        <textarea id="announcementTextAdmin" rows="4" placeholder="اكتب كل إعلان في سطر منفصل:
+🎆 مرحباً بكم في المسبحة الإلكترونية
+🕊 لا تنسوا صلاة الفجر
+💫 اذكروا الله كثيراً">🎆 مرحباً بكم في المسبحة الإلكترونية
+🕊 لا تنسوا صلاة الفجر
+💫 اذكروا الله كثيراً</textarea>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">سرعة الحركة</span>
+                    <div class="control-input">
+                        <input type="range" id="announcementSpeed" min="10" max="60" value="40">
+                        <span id="speedValue">40ث</span>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="updateAnnouncement()">📢 تحديث الإعلان</button>
+                    <button class="control-btn secondary" onclick="toggleAnnouncementBar()">🔄 إظهار/إخفاء</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>🎨 إدارة الألوان والثيمات</h3>
+                <div class="control-row">
+                    <span class="control-label">اللون الأساسي</span>
+                    <div class="control-input">
+                        <input type="color" id="primaryColor" value="#4CAF50">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">لون الخلفية</span>
+                    <div class="control-input">
+                        <input type="color" id="backgroundColor" value="#FFFFFF">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">لون النص</span>
+                    <div class="control-input">
+                        <input type="color" id="textColor" value="#333333">
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="applyThemeSettings()">✨ تطبيق الألوان</button>
+                    <button class="control-btn secondary" onclick="resetThemeSettings()">🔄 استعادة الافتراضي</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>📱 إعدادات متقدمة</h3>
+                <div class="control-row">
+                    <span class="control-label">الفونت العربي</span>
+                    <div class="control-input">
+                        <select id="arabicFont">
+                            <option value="cairo">Cairo</option>
+                            <option value="tajawal">Tajawal</option>
+                            <option value="amiri">Amiri</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">حجم الخط</span>
+                    <div class="control-input">
+                        <input type="range" id="fontSize" min="12" max="24" value="16">
+                        <span id="fontSizeValue">16px</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">تأثيرات الحركة</span>
+                    <div class="control-input">
+                        <select id="animationStyle">
+                            <option value="fade">تلاشي</option>
+                            <option value="slide">انزلاق</option>
+                            <option value="none">بدون</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="saveAdvancedSettings()">💾 حفظ الإعدادات</button>
+                    <button class="control-btn secondary" onclick="resetAdvancedSettings()">🔄 إعادة تعيين</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- تبويب الأمان -->
+        <div class="admin-tab-content" id="security-tab" style="display: none;">
+            <div class="control-section">
+                <h3>🔒 تغيير بيانات تسجيل الدخول</h3>
+                <div class="control-row">
+                    <span class="control-label">اسم المستخدم الجديد</span>
+                    <div class="control-input">
+                        <input type="text" id="newAdminUsername" placeholder="أدخل اسم مستخدم جديد">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <span class="control-label">كلمة المرور الجديدة</span>
+                    <div class="control-input">
+                        <input type="password" id="newAdminPassword" placeholder="أدخل كلمة مرور جديدة">
+                    </div>
+                </div>
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="changeAdminCredentials()">🔄 تغيير بيانات الدخول</button>
+                    <button class="control-btn danger" onclick="resetToDefault()">🔄 إعادة تعيين افتراضي</button>
+                </div>
+                <div
+                    style="margin-top: 15px; padding: 10px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 0.9em;">
+                    <strong>⚠️ ملاحظة:</strong> بيانات الدخول الافتراضية هي:<br>
+                    اسم المستخدم: <code>admin</code><br>
+                    كلمة المرور: <code>123456</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="إصلاح_إدارة_المحتوى.js"></script>
+    <script src="مؤشر_الأذكار_الداخلي.js"></script>
+    <script src="إصلاح_نهائي_شامل.js"></script>
+
+    <script src="إصلاح_الصوت_النهائي.js"></script>
+    <script src="نظام_الصلاة_القادمة_الجديد.js"></script>
+    <script src="إصلاح_لوحة_التحكم_الكامل.js"></script>
+
+    <script src="إصلاح_صوت_التسبيح.js"></script>
+    <script src="إصلاح_وضع_المطور_والأقسام.js"></script>
+
+    <!-- إصلاح لوحة التحكم النهائي -->
+    <script src="إصلاح_لوحة_التحكم_النهائي.js"></script>
+
+    <!-- إصلاح المواقيت النهائي -->
+    <script src="إصلاح_المواقيت_النهائي.js"></script>
+
+    <!-- إصلاح إدارة المحتوى والثيمات النهائي -->
+    <script src="إصلاح_إدارة_المحتوى_والثيمات_النهائي.js"></script>
+
+    <!-- فتح لوحة التحكم تلقائياً من الرابط المباشر -->
+    <script>
+        window.addEventListener('load', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentUser = localStorage.getItem('currentUser');
+
+            if (urlParams.get('admin') === 'true' && currentUser) {
+                setTimeout(() => {
+                    showControlPanel();
+                }, 1000);
+            }
+        });
+    </script>
+
+    <!-- حماية ضد السرقة -->
+    <script>
+        // منع النقر بالزر الأيمن
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // منع اختصارات المطور
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+                (e.ctrlKey && e.key === 'U') ||
+                (e.ctrlKey && e.key === 'S')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // منع التحديد والنسخ
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
+
+        // حماية ضد طباعة الصفحة
+        window.addEventListener('beforeprint', e => {
+            e.preventDefault();
+            alert('🚫 الطباعة غير مسموحة');
+        });
+
+        // إخفاء المصدر
+        console.clear();
+        console.log('%c🔒 هذا التطبيق محمي بحقوق الطبع والنشر', 'color: red; font-size: 20px; font-weight: bold;');
+        console.log('%c© 2024 راشد ربيع - جميع الحقوق محفوظة', 'color: blue; font-size: 14px;');
+
+        // مراقبة أدوات المطور
+        setInterval(() => {
+            if (window.outerHeight - window.innerHeight > 200 ||
+                window.outerWidth - window.innerWidth > 200) {
+                document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:24px;color:red;">🚫 غير مسموح بفتح أدوات المطور</div>';
+            }
+        }, 100);
+    </script>
+</body>
+
+</html>
