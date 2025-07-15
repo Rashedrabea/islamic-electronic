@@ -1,0 +1,18 @@
+<!-- ضغط الصور -->
+<img src="image.webp" alt="وصف الصورة" loading="lazy">
+
+<!-- تحميل الخطوط بكفاءة -->
+<link rel="preload" href="fonts/arabic-font.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- تحسين CSS -->
+<style>
+/* استخدام CSS مضغوط */
+.optimized{display:flex;justify-content:center}
+</style>
+
+<!-- Service Worker للتخزين المؤقت -->
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+</script>

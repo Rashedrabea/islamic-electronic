@@ -1,0 +1,543 @@
+<UPDATED_CODE><!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="المسبحة الإلكترونية النهائية">
+    <meta name="keywords" content="المسبحة, الإلكترونية, صدقة جارية, راشد ربيع">
+    <meta name="author" content="راشد ربيع">
+    <meta name="author" content="راديو لايف">
+    <meta name="google-site-verification" content="Gb1tGCDhB8Ng_DO6EtbeZZwyfh5rKxUQdPw_CkiK9NU" />
+    <meta name="google-site-verification" content="google9272194b4df60de5.html">
+    <title> المسبحة الإلكترونية | صدقة جارية </title>
+    <!-- Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "المسبحة الإلكترونية",
+    "url": "https://rashedrabea.github.io/electronic-tasbih/",
+    "description": "المسبحة الإلكترونية النهائية - صدقة جارية لكل المسلمين."
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: url('https://images.unsplash.com/photo-1604147706283-d7119b5b822c?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            direction: rtl;
+            color: #333;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+            z-index: -1;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: #f0f0f0;
+            transition: all 0.5s ease;
+        }
+
+        /* تحسين الأزرار في الوضع الليلي */
+        body.dark-mode .btn {
+            background: linear-gradient(135deg, #4a4a4a, #2c2c2c);
+            color: #f0f0f0;
+            border: 1px solid #555;
+        }
+
+        body.dark-mode .btn:hover {
+            background: linear-gradient(135deg, #555, #333);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner h1 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: white;
+        }
+
+        .banner-emoji {
+            font-size: 3em;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode .section {
+            background: rgba(52, 73, 94, 0.9);
+            color: white;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            font-size: 1.8em;
+        }
+
+        body.dark-mode .section h2 {
+            color: #81C784;
+        }
+
+        /* قسم التسبيح */
+        .counter-section {
+            text-align: center;
+        }
+
+        #counter {
+            font-size: 5em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .counter-pulse {
+            transform: scale(1.1);
+            color: #e74c3c !important;
+        }
+
+        .milestone-indicator {
+            font-size: 1.2em;
+            color: #e74c3c;
+            margin: 10px 0;
+            min-height: 30px;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        .btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 5px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn.reset {
+            background: #f44336;
+        }
+
+        .btn.secondary {
+            background: #2196F3;
+        }
+
+        .tasbeeh-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tasbeeh-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .tasbeeh-btn:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
+
+        /* أنماط وضع الحذف - الميزة الجديدة المضافة */
+        .delete-mode-active .custom-dhikr {
+            border: 3px solid #f44336 !important;
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.6) !important;
+            animation: deleteModePulse 2s infinite;
+        }
+
+        .delete-mode-active .custom-dhikr::after {
+            content: '🗑️';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes deleteModePulse {
+            0% {
+                box-shadow: 0 0 15px rgba(244, 67, 54, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(244, 67, 54, 0.8);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(244, 67, 54, 0.6);
+            }
+        }
+
+        /* مؤشر وضع الحذف */
+        #deleteModeIndicator {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin: 15px 0;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+            animation: indicatorBlink 1.5s infinite;
+        }
+
+        @keyframes indicatorBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        #deleteToggleBtn {
+            background: #f44336 !important;
+        }
+
+        #deleteToggleBtn:hover {
+            background: #d32f2f !important;
+        }
+
+
+
+
+        /* قسم الراديو */
+        .radio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        /* قسم مواقيت الصلاة */
+        /* مربع الصلاة القادمة - تصميم محسن */
+        .next-prayer-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 25px auto;
+            max-width: 400px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: nextPrayerGlow 4s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-prayer-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .next-prayer-header {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .next-prayer-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .next-prayer-countdown {
+            font-size: 42px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            color: #FFD700;
+            text-shadow: 0 3px 12px rgba(255, 215, 0, 0.7);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-parts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-part {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .countdown-separator {
+            font-size: 30px;
+            opacity: 0.7;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 0.7;
+            }
+
+            51%,
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        .next-prayer-time {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prayer-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin: 15px 0 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .prayer-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .prayer-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes nextPrayerGlow {
+            0% {
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+                transform: translateY(0);
+            }
+
+            100% {
+                box-shadow: 0 20px 50px rgba(102, 126, 234, 0.7);
+                transform: translateY(-2px);
+            }
+        }
+
+        @keyframes nextPrayerWarning {
+            0% {
+                box-shadow: 0 15px 40px rgba(243, 156, 18, 0.5);
+                transform: translateY(0);
+            }
+
+            100% {
+                box-shadow: 0 20px 50px rgba(243, 156, 18, 0.8);
+                transform: translateY(-3px);
+            }
+        }
+
+        @keyframes nextPrayerUrgent {
+            0% {
+                box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                box-shadow: 0 25px 60px rgba(231, 76, 60, 0.9);
+                transform: translateY(-4px) scale(1.02);
+            }
+        }
+
+        .prayer-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .prayer-item {
+            background: rgba(33, 150, 243, 0.1);
+            padding:

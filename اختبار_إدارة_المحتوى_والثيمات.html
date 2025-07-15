@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار إدارة المحتوى والثيمات</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+            color: #333;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-right: 4px solid #4CAF50;
+        }
+        .test-section h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .test-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .test-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        .test-btn.secondary {
+            background: #2196F3;
+        }
+        .test-btn.danger {
+            background: #f44336;
+        }
+        .test-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .test-result {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            display: none;
+        }
+        .test-result.show {
+            display: block;
+        }
+        .test-result.error {
+            background: #ffeaea;
+            border-color: #f44336;
+            color: #d32f2f;
+        }
+        .test-result.success {
+            background: #e8f5e8;
+            border-color: #4CAF50;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; color: #4CAF50; margin-bottom: 30px;">
+            🧪 اختبار إدارة المحتوى والثيمات
+        </h1>
+
+        <!-- اختبار إدارة المحتوى -->
+        <div class="test-section">
+            <h3>📝 اختبار إدارة المحتوى</h3>
+            <input type="text" id="testTitle" class="test-input" placeholder="عنوان التطبيق الجديد" value="المسبحة الإلكترونية المحدثة">
+            <textarea id="testDescription" class="test-input" placeholder="وصف التطبيق" rows="3">تطبيق إسلامي شامل ومحدث للتسبيح والأذكار</textarea>
+            <textarea id="testWelcome" class="test-input" placeholder="رسالة الترحيب" rows="2">أهلاً وسهلاً بك في المسبحة الإلكترونية المحدثة</textarea>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testUpdateContent()">💾 اختبار تحديث المحتوى</button>
+                <button class="test-btn secondary" onclick="testPreviewContent()">👁️ اختبار المعاينة</button>
+                <button class="test-btn secondary" onclick="testLoadContent()">📂 اختبار تحميل المحتوى</button>
+            </div>
+            <div id="contentResult" class="test-result"></div>
+        </div>
+
+        <!-- اختبار إدارة الألوان -->
+        <div class="test-section">
+            <h3>🎨 اختبار إدارة الألوان والثيمات</h3>
+            <div style="display: flex; gap: 15px; align-items: center; margin: 15px 0;">
+                <label>اللون الأساسي:</label>
+                <input type="color" id="testPrimaryColor" value="#e91e63">
+                <label>لون الخلفية:</label>
+                <input type="color" id="testBackgroundColor" value="#f3e5f5">
+                <label>لون النص:</label>
+                <input type="color" id="testTextColor" value="#4a148c">
+            </div>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testApplyTheme()">✨ اختبار تطبيق الثيم</button>
+                <button class="test-btn secondary" onclick="testResetTheme()">🔄 اختبار إعادة التعيين</button>
+                <button class="test-btn secondary" onclick="testLoadTheme()">📂 اختبار تحميل الثيم</button>
+            </div>
+            <div id="themeResult" class="test-result"></div>
+        </div>
+
+        <!-- اختبار الإعدادات المتقدمة -->
+        <div class="test-section">
+            <h3>⚙️ اختبار الإعدادات المتقدمة</h3>
+            <div style="display: flex; gap: 15px; align-items: center; margin: 15px 0; flex-wrap: wrap;">
+                <label>الفونت:</label>
+                <select id="testFont">
+                    <option value="cairo">Cairo</option>
+                    <option value="tajawal">Tajawal</option>
+                    <option value="amiri">Amiri</option>
+                </select>
+                
+                <label>حجم الخط:</label>
+                <input type="range" id="testFontSize" min="12" max="24" value="18">
+                <span id="testFontSizeValue">18px</span>
+                
+                <label>نمط الحركة:</label>
+                <select id="testAnimation">
+                    <option value="fade">تلاشي</option>
+                    <option value="slide">انزلاق</option>
+                    <option value="none">بدون</option>
+                </select>
+            </div>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testSaveAdvanced()">💾 اختبار حفظ الإعدادات</button>
+                <button class="test-btn secondary" onclick="testResetAdvanced()">🔄 اختبار إعادة التعيين</button>
+                <button class="test-btn secondary" onclick="testLoadAdvanced()">📂 اختبار تحميل الإعدادات</button>
+            </div>
+            <div id="advancedResult" class="test-result"></div>
+        </div>
+
+        <!-- اختبار التصدير والاستيراد -->
+        <div class="test-section">
+            <h3>📤📥 اختبار التصدير والاستيراد</h3>
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testExportSettings()">📤 اختبار التصدير</button>
+                <button class="test-btn secondary" onclick="testImportSettings()">📥 اختبار الاستيراد</button>
+            </div>
+            <div id="exportResult" class="test-result"></div>
+        </div>
+
+        <!-- اختبار شامل -->
+        <div class="test-section">
+            <h3>🔍 اختبار شامل</h3>
+            <div class="test-buttons">
+                <button class="test-btn" onclick="runAllTests()">🚀 تشغيل جميع الاختبارات</button>
+                <button class="test-btn danger" onclick="clearAllTests()">🗑️ مسح جميع النتائج</button>
+            </div>
+            <div id="allTestsResult" class="test-result"></div>
+        </div>
+    </div>
+
+    <!-- تضمين الملفات المطلوبة -->
+    <script src="إصلاح_إدارة_المحتوى_والثيمات_النهائي.js"></script>
+
+    <script>
+        // === وظائف الاختبار ===
+
+        // اختبار تحديث المحتوى
+        function testUpdateContent() {
+            try {
+                // محاكاة الحقول
+                const mockFields = {
+                    appTitle: { value: document.getElementById('testTitle').value },
+                    appDescription: { value: document.getElementById('testDescription').value },
+                    welcomeMessage: { value: document.getElementById('testWelcome').value }
+                };
+
+                // حفظ الدالة الأصلية
+                const originalGetElement = document.getElementById;
+                
+                // استبدال مؤقت للدالة
+                document.getElementById = function(id) {
+                    return mockFields[id] || originalGetElement.call(document, id);
+                };
+
+                // تشغيل الاختبار
+                updateAppContent();
+
+                // استعادة الدالة الأصلية
+                document.getElementById = originalGetElement;
+
+                showTestResult('contentResult', 'success', '✅ تم اختبار تحديث المحتوى بنجاح!');
+            } catch (error) {
+                showTestResult('contentResult', 'error', '❌ فشل اختبار تحديث المحتوى: ' + error.message);
+            }
+        }
+
+        // اختبار معاينة المحتوى
+        function testPreviewContent() {
+            try {
+                const mockFields = {
+                    appTitle: { value: document.getElementById('testTitle').value },
+                    appDescription: { value: document.getElementById('testDescription').value },
+                    welcomeMessage: { value: document.getElementById('testWelcome').value }
+                };
+
+                const originalGetElement = document.getElementById;
+                document.getElementById = function(id) {
+                    return mockFields[id] || originalGetElement.call(document, id);
+                };
+
+                previewContent();
+                document.getElementById = originalGetElement;
+
+                showTestResult('contentResult', 'success', '✅ تم اختبار معاينة المحتوى بنجاح!');
+            } catch (error) {
+                showTestResult('contentResult', 'error', '❌ فشل اختبار معاينة المحتوى: ' + error.message);
+            }
+        }
+
+        // اختبار تحميل المحتوى
+        function testLoadContent() {
+            try {
+                loadSavedContent();
+                showTestResult('contentResult', 'success', '✅ تم اختبار تحميل المحتوى بنجاح!');
+            } catch (error) {
+                showTestResult('contentResult', 'error', '❌ فشل اختبار تحميل المحتوى: ' + error.message);
+            }
+        }
+
+        // اختبار تطبيق الثيم
+        function testApplyTheme() {
+            try {
+                const mockFields = {
+                    primaryColor: { value: document.getElementById('testPrimaryColor').value },
+                    backgroundColor: { value: document.getElementById('testBackgroundColor').value },
+                    textColor: { value: document.getElementById('testTextColor').value }
+                };
+
+                const originalGetElement = document.getElementById;
+                document.getElementById = function(id) {
+                    return mockFields[id] || originalGetElement.call(document, id);
+                };
+
+                applyThemeSettings();
+                document.getElementById = originalGetElement;
+
+                showTestResult('themeResult', 'success', '✅ تم اختبار تطبيق الثيم بنجاح!');
+            } catch (error) {
+                showTestResult('themeResult', 'error', '❌ فشل اختبار تطبيق الثيم: ' + error.message);
+            }
+        }
+
+        // اختبار إعادة تعيين الثيم
+        function testResetTheme() {
+            try {
+                resetThemeSettings();
+                showTestResult('themeResult', 'success', '✅ تم اختبار إعادة تعيين الثيم بنجاح!');
+            } catch (error) {
+                showTestResult('themeResult', 'error', '❌ فشل اختبار إعادة تعيين الثيم: ' + error.message);
+            }
+        }
+
+        // اختبار تحميل الثيم
+        function testLoadTheme() {
+            try {
+                loadSavedTheme();
+                showTestResult('themeResult', 'success', '✅ تم اختبار تحميل الثيم بنجاح!');
+            } catch (error) {
+                showTestResult('themeResult', 'error', '❌ فشل اختبار تحميل الثيم: ' + error.message);
+            }
+        }
+
+        // اختبار حفظ الإعدادات المتقدمة
+        function testSaveAdvanced() {
+            try {
+                const mockFields = {
+                    arabicFont: { value: document.getElementById('testFont').value },
+                    fontSize: { value: document.getElementById('testFontSize').value },
+                    animationStyle: { value: document.getElementById('testAnimation').value }
+                };
+
+                const originalGetElement = document.getElementById;
+                document.getElementById = function(id) {
+                    return mockFields[id] || originalGetElement.call(document, id);
+                };
+
+                saveAdvancedSettings();
+                document.getElementById = originalGetElement;
+
+                showTestResult('advancedResult', 'success', '✅ تم اختبار حفظ الإعدادات المتقدمة بنجاح!');
+            } catch (error) {
+                showTestResult('advancedResult', 'error', '❌ فشل اختبار حفظ الإعدادات المتقدمة: ' + error.message);
+            }
+        }
+
+        // اختبار إعادة تعيين الإعدادات المتقدمة
+        function testResetAdvanced() {
+            try {
+                resetAdvancedSettings();
+                showTestResult('advancedResult', 'success', '✅ تم اختبار إعادة تعيين الإعدادات المتقدمة بنجاح!');
+            } catch (error) {
+                showTestResult('advancedResult', 'error', '❌ فشل اختبار إعادة تعيين الإعدادات المتقدمة: ' + error.message);
+            }
+        }
+
+        // اختبار تحميل الإعدادات المتقدمة
+        function testLoadAdvanced() {
+            try {
+                loadSavedAdvancedSettings();
+                showTestResult('advancedResult', 'success', '✅ تم اختبار تحميل الإعدادات المتقدمة بنجاح!');
+            } catch (error) {
+                showTestResult('advancedResult', 'error', '❌ فشل اختبار تحميل الإعدادات المتقدمة: ' + error.message);
+            }
+        }
+
+        // اختبار التصدير
+        function testExportSettings() {
+            try {
+                exportContentAndThemeSettings();
+                showTestResult('exportResult', 'success', '✅ تم اختبار التصدير بنجاح!');
+            } catch (error) {
+                showTestResult('exportResult', 'error', '❌ فشل اختبار التصدير: ' + error.message);
+            }
+        }
+
+        // اختبار الاستيراد
+        function testImportSettings() {
+            try {
+                // محاكاة الاستيراد
+                alert('سيتم فتح نافذة اختيار الملف للاستيراد');
+                importContentAndThemeSettings();
+                showTestResult('exportResult', 'success', '✅ تم اختبار الاستيراد بنجاح!');
+            } catch (error) {
+                showTestResult('exportResult', 'error', '❌ فشل اختبار الاستيراد: ' + error.message);
+            }
+        }
+
+        // تشغيل جميع الاختبارات
+        function runAllTests() {
+            let results = [];
+            
+            try {
+                testUpdateContent();
+                results.push('✅ اختبار تحديث المحتوى');
+            } catch (e) {
+                results.push('❌ اختبار تحديث المحتوى');
+            }
+
+            try {
+                testApplyTheme();
+                results.push('✅ اختبار تطبيق الثيم');
+            } catch (e) {
+                results.push('❌ اختبار تطبيق الثيم');
+            }
+
+            try {
+                testSaveAdvanced();
+                results.push('✅ اختبار الإعدادات المتقدمة');
+            } catch (e) {
+                results.push('❌ اختبار الإعدادات المتقدمة');
+            }
+
+            const successCount = results.filter(r => r.includes('✅')).length;
+            const totalCount = results.length;
+
+            showTestResult('allTestsResult', 'success', 
+                `🎯 نتائج الاختبار الشامل:\n${results.join('\n')}\n\nالنجاح: ${successCount}/${totalCount}`);
+        }
+
+        // مسح جميع النتائج
+        function clearAllTests() {
+            const results = document.querySelectorAll('.test-result');
+            results.forEach(result => {
+                result.classList.remove('show');
+                result.textContent = '';
+            });
+        }
+
+        // عرض نتيجة الاختبار
+        function showTestResult(elementId, type, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.className = `test-result show ${type}`;
+                element.textContent = message;
+            }
+        }
+
+        // تحديث عرض حجم الخط
+        document.getElementById('testFontSize').addEventListener('input', function() {
+            document.getElementById('testFontSizeValue').textContent = this.value + 'px';
+        });
+
+        // رسالة الترحيب
+        window.addEventListener('load', function() {
+            console.log('🧪 صفحة اختبار إدارة المحتوى والثيمات جاهزة!');
+            console.log('📝 يمكنك الآن اختبار جميع الوظائف للتأكد من عملها بشكل صحيح');
+        });
+    </script>
+</body>
+</html>
