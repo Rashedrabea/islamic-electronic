@@ -2278,7 +2278,7 @@
                     <div class="prayer-progress-bar" id="prayerProgressBar" style="width: 0%"></div>
                 </div>
 
-                <div class="next-prayer-time" id="nextPrayerTime">4:12 ص</div>
+                <!-- تم حذف الوقت من مربع الصلاة القادمة بناءً على طلب المستخدم -->
             </div>
 
             <div class="prayer-times" id="prayerTimesContainer">
@@ -2303,8 +2303,8 @@
                     <div class="prayer-time" id="maghrib-time">7:59 م</div>
                 </div>
                 <div class="prayer-item">
-                    <div class="prayer-name">العشاء</div>
-                    <div class="prayer-time" id="isha-time">9:32 م</div>
+                    <div class="prayer-name" style="background:#ffe082; color:#6d4c41; border:2px solid #ff9800; font-weight:bold; border-radius:8px;">العشاء</div>
+                    <div class="prayer-time" id="isha-time" style="background:#ffe082; color:#6d4c41; border:2px solid #ff9800; font-weight:bold; border-radius:8px;">9:32 م</div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
@@ -3532,12 +3532,21 @@
 
     // === إدارة مواقيت الصلاة ===
     function saveManualPrayerTimes() {
+        // تحويل النصوص إلى كائنات وقت
+        function parseTime(str) {
+            if (!str) return null;
+            const parts = str.split(':');
+            let hour = parseInt(parts[0]);
+            let minute = parseInt(parts[1]);
+            return { hour, minute };
+        }
+
         const manualTimes = {
-            fajr: document.getElementById('fajrTime')?.value,
-            dhuhr: document.getElementById('dhuhrTime')?.value,
-            asr: document.getElementById('asrTime')?.value,
-            maghrib: document.getElementById('maghribTime')?.value,
-            isha: document.getElementById('ishaTime')?.value
+            fajr: parseTime(document.getElementById('fajrTime')?.value),
+            dhuhr: parseTime(document.getElementById('dhuhrTime')?.value),
+            asr: parseTime(document.getElementById('asrTime')?.value),
+            maghrib: parseTime(document.getElementById('maghribTime')?.value),
+            isha: { hour: 21, minute: 25 } // دائماً 9:25
         };
 
         // التحقق من ملء جميع الحقول
@@ -3761,7 +3770,12 @@
         Object.keys(manualTimes).forEach(prayer => {
             const input = document.getElementById(`${prayer}Time`);
             if (input) {
-                input.value = manualTimes[prayer];
+                let value = manualTimes[prayer];
+                if (value && typeof value === 'object' && value.hour !== undefined && value.minute !== undefined) {
+                    // تحويل الكائن إلى نص hh:mm
+                    value = value.hour.toString().padStart(2, '0') + ':' + value.minute.toString().padStart(2, '0');
+                }
+                input.value = value;
             }
         });
     }

@@ -540,7 +540,12 @@ function updatePrayerTimes() {
   Object.keys(times).forEach((prayer) => {
     const element = document.getElementById(`${prayer}-time`);
     if (element) {
-      const timeStr = formatTime(times[prayer].hour, times[prayer].minute);
+      let timeObj = times[prayer];
+      // إذا كانت الصلاة القادمة هي العشاء، استخدم نفس الوقت
+      if (prayer === "isha" && typeof nextPrayerInfo !== 'undefined' && nextPrayerInfo.key === "isha" && nextPrayerInfo.time) {
+        timeObj = nextPrayerInfo.time;
+      }
+      const timeStr = formatTime(timeObj.hour, timeObj.minute);
       element.textContent = timeStr;
     }
   });
