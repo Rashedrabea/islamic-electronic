@@ -7,7 +7,32 @@ let currentDhikr = "سبحان الله";
 let isVibrationEnabled = true;
 let isDarkMode = false;
 let isFocusMode = false;
+function deleteCustomDhikr() {
+  // إظهار قائمة حذف الأذكار المخصصة
+  document.getElementById("customDhikrList").style.display = "block";
+  // تعبئة الأذكار المخصصة في القائمة
+  const customDhikrs = JSON.parse(localStorage.getItem("customDhikrs") || "[]");
+  const dhikrButtons = document.getElementById("dhikrButtons");
+  dhikrButtons.innerHTML = "";
+  customDhikrs.forEach((dhikr) => {
+    const btn = document.createElement("button");
+    btn.className = "tasbeeh-btn";
+    btn.textContent = dhikr;
+    btn.onclick = function () {
+      if (confirm("هل تريد حذف هذا الذكر؟")) {
+        const updated = customDhikrs.filter((d) => d !== dhikr);
+        localStorage.setItem("customDhikrs", JSON.stringify(updated));
+        loadCustomDhikrs();
+        deleteCustomDhikr(); // إعادة تحميل القائمة
+      }
+    };
+    dhikrButtons.appendChild(btn);
+  });
+}
 
+function cancelDeleteDhikr() {
+  document.getElementById("customDhikrList").style.display = "none";
+}
 // الأصوات
 let clickSound, milestoneSound, completeSound;
 let currentAdhanAudio = null;
@@ -696,20 +721,26 @@ function updateCountdown() {
   // تأثيرات بصرية عند اقتراب وقت الصلاة
   const totalRemainingMinutes = hours * 60 + minutes;
   const nextPrayerBox = document.getElementById("nextPrayerBox");
-  
+
   if (nextPrayerBox) {
     if (totalRemainingMinutes <= 5) {
       // أقل من 5 دقائق - تأثير أحمر
-      nextPrayerBox.style.background = "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)";
-      nextPrayerBox.style.animation = "nextPrayerUrgent 1s ease-in-out infinite alternate";
+      nextPrayerBox.style.background =
+        "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)";
+      nextPrayerBox.style.animation =
+        "nextPrayerUrgent 1s ease-in-out infinite alternate";
     } else if (totalRemainingMinutes <= 15) {
       // أقل من 15 دقيقة - تأثير برتقالي
-      nextPrayerBox.style.background = "linear-gradient(135deg, #f39c12 0%, #e67e22 100%)";
-      nextPrayerBox.style.animation = "nextPrayerWarning 2s ease-in-out infinite alternate";
+      nextPrayerBox.style.background =
+        "linear-gradient(135deg, #f39c12 0%, #e67e22 100%)";
+      nextPrayerBox.style.animation =
+        "nextPrayerWarning 2s ease-in-out infinite alternate";
     } else {
       // الوضع العادي
-      nextPrayerBox.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-      nextPrayerBox.style.animation = "nextPrayerGlow 4s ease-in-out infinite alternate";
+      nextPrayerBox.style.background =
+        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+      nextPrayerBox.style.animation =
+        "nextPrayerGlow 4s ease-in-out infinite alternate";
     }
   }
 }
@@ -1098,6 +1129,13 @@ function loadSavedBackground() {
   const savedBg = localStorage.getItem("selectedBackground");
   if (savedBg) {
     applyBackgroundImage(savedBg);
+  } else {
+    // إذا لم توجد خلفية محفوظة، استخدم خلفية افتراضية واضحة
+    document.body.style.backgroundImage =
+      "url('https://images.unsplash.com/photo-1604147706283-d7119b5b822c?q=80&w=1920&auto=format&fit=crop')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundAttachment = "fixed";
   }
 }
 
@@ -1133,6 +1171,193 @@ function updateVibrationIcon() {
 }
 
 // === وظائف لوحة التحكم ===
+// === وظائف المزامنة السحابية ===
+// --- إعداد Firebase ---
+// أدخل بيانات مشروعك هنا
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
+
+// تحميل مكتبة Firebase إذا لم تكن موجودة
+if (typeof firebase === "undefined") {
+  const script = document.createElement("script");
+  script.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
+  script.onload = function () {
+    const dbScript = document.createElement("script");
+    dbScript.src =
+      "https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js";
+    dbScript.onload = function () {
+      firebase.initializeApp(firebaseConfig);
+    };
+    document.head.appendChild(dbScript);
+  };
+  document.head.appendChild(script);
+} else {
+  firebase.initializeApp(firebaseConfig);
+}
+
+function getFirebaseDb() {
+  return firebase.database();
+}
+
+function updateSyncStatus(status) {
+  document.getElementById("syncStatus").textContent = status;
+}
+
+function forceSyncToCloud() {
+  updateSyncStatus("☁️ جاري رفع البيانات للسحابة...");
+  const syncId = localStorage.getItem("syncId");
+  // جمع جميع الإعدادات المهمة
+  const syncPayload = {
+    tasbihData: localStorage.getItem("tasbihData"),
+    customDhikrs: localStorage.getItem("customDhikrs"),
+    customAzkarData: localStorage.getItem("customAzkarData"),
+    selectedBackground: localStorage.getItem("selectedBackground"),
+    customLogo: localStorage.getItem("customLogo"),
+    appSections: localStorage.getItem("appSections"),
+    lastStatsUpdate: localStorage.getItem("lastStatsUpdate"),
+    manualPrayerTimes: localStorage.getItem("manualPrayerTimes"),
+    prayerTimes: Object.keys(localStorage)
+      .filter((k) => k.startsWith("prayerTimes_"))
+      .reduce((obj, k) => {
+        obj[k] = localStorage.getItem(k);
+        return obj;
+      }, {}),
+    lastSync: new Date().toISOString(),
+  };
+  if (typeof firebase !== "undefined") {
+    getFirebaseDb()
+      .ref("sync/" + syncId)
+      .set(syncPayload, function (error) {
+        if (error) {
+          updateSyncStatus("❌ فشل رفع البيانات للسحابة");
+        } else {
+          updateSyncStatus("✅ تم رفع جميع الإعدادات للسحابة بنجاح");
+          document.getElementById("lastSyncTime").textContent =
+            new Date().toLocaleString();
+        }
+      });
+  } else {
+    updateSyncStatus("❌ خدمة السحابة غير متوفرة");
+  }
+}
+
+function forceSyncFromCloud() {
+  updateSyncStatus("📥 جاري تحميل البيانات من السحابة...");
+  const syncId = localStorage.getItem("syncId");
+  if (typeof firebase !== "undefined") {
+    getFirebaseDb()
+      .ref("sync/" + syncId)
+      .once("value")
+      .then(function (snapshot) {
+        const val = snapshot.val();
+        if (val) {
+          if (val.tasbihData)
+            localStorage.setItem("tasbihData", val.tasbihData);
+          if (val.customDhikrs)
+            localStorage.setItem("customDhikrs", val.customDhikrs);
+          if (val.customAzkarData)
+            localStorage.setItem("customAzkarData", val.customAzkarData);
+          if (val.selectedBackground)
+            localStorage.setItem("selectedBackground", val.selectedBackground);
+          if (val.customLogo)
+            localStorage.setItem("customLogo", val.customLogo);
+          if (val.appSections)
+            localStorage.setItem("appSections", val.appSections);
+          if (val.lastStatsUpdate)
+            localStorage.setItem("lastStatsUpdate", val.lastStatsUpdate);
+          if (val.manualPrayerTimes)
+            localStorage.setItem("manualPrayerTimes", val.manualPrayerTimes);
+          if (val.prayerTimes) {
+            Object.entries(val.prayerTimes).forEach(([k, v]) => {
+              localStorage.setItem(k, v);
+            });
+          }
+          updateDisplay();
+          updateSyncStats && updateSyncStats();
+          loadCustomDhikrs && loadCustomDhikrs();
+          loadCustomAzkarData && loadCustomAzkarData();
+          loadSavedBackground && loadSavedBackground();
+          loadSavedLogo && loadSavedLogo();
+          updateSectionsManager && updateSectionsManager();
+          updateSyncStatus("✅ تم تحميل جميع الإعدادات من السحابة بنجاح");
+          document.getElementById("lastSyncTime").textContent =
+            new Date().toLocaleString();
+        } else {
+          updateSyncStatus("❌ لا توجد بيانات في السحابة");
+        }
+      })
+      .catch(function () {
+        updateSyncStatus("❌ فشل تحميل البيانات من السحابة");
+      });
+  } else {
+    updateSyncStatus("❌ خدمة السحابة غير متوفرة");
+  }
+}
+
+function resetSyncData() {
+  if (confirm("هل تريد مسح بيانات المزامنة السحابية؟")) {
+    const syncId = localStorage.getItem("syncId");
+    if (typeof firebase !== "undefined") {
+      getFirebaseDb()
+        .ref("sync/" + syncId)
+        .remove(function (error) {
+          if (error) {
+            updateSyncStatus("❌ فشل مسح بيانات السحابة");
+          } else {
+            updateSyncStatus("🗑️ تم مسح بيانات السحابة");
+            document.getElementById("lastSyncTime").textContent = "لم تتم بعد";
+          }
+        });
+    } else {
+      updateSyncStatus("❌ خدمة السحابة غير متوفرة");
+    }
+  }
+}
+
+// تهيئة معرف المزامنة
+function initSyncId() {
+  let syncId = localStorage.getItem("syncId");
+  if (!syncId) {
+    syncId = "SYNC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    localStorage.setItem("syncId", syncId);
+  }
+  document.getElementById("syncId").value = syncId;
+}
+
+function copySyncId() {
+  const syncId = document.getElementById("syncId").value;
+  navigator.clipboard.writeText(syncId).then(() => {
+    alert("تم نسخ معرف المزامنة!");
+  });
+}
+
+// تهيئة إحصائيات المزامنة
+function updateSyncStats() {
+  const customDhikrs = JSON.parse(localStorage.getItem("customDhikrs") || "[]");
+  document.getElementById("customDhikrCount").textContent = customDhikrs.length;
+  // الأدعية المضافة (مثال)
+  const customAzkarData = JSON.parse(
+    localStorage.getItem("customAzkarData") || "{}"
+  );
+  let azkarCount = 0;
+  Object.values(customAzkarData).forEach(
+    (arr) => (azkarCount += Array.isArray(arr) ? arr.length : 0)
+  );
+  document.getElementById("customAzkarCount").textContent = azkarCount;
+}
+
+// تهيئة المزامنة عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", function () {
+  initSyncId();
+  updateSyncStats();
+});
 
 // بيانات تسجيل الدخول الافتراضية
 const DEFAULT_ADMIN = {
@@ -1825,7 +2050,49 @@ function resetPrayerTimes() {
 
 // تهيئة التطبيق عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
-  loadCustomAzkarData(); // تحميل البيانات المخصصة أولاً
-  loadManualPrayerTimes(); // تحميل المواقيت اليدوية
-  initApp();
+  // تحميل الإعدادات من السحابة أولاً إذا كان هناك معرف مزامنة
+  const syncId = localStorage.getItem("syncId");
+  if (syncId && typeof firebase !== "undefined") {
+    getFirebaseDb()
+      .ref("sync/" + syncId)
+      .once("value")
+      .then(function (snapshot) {
+        const val = snapshot.val();
+        if (val) {
+          if (val.tasbihData)
+            localStorage.setItem("tasbihData", val.tasbihData);
+          if (val.customDhikrs)
+            localStorage.setItem("customDhikrs", val.customDhikrs);
+          if (val.customAzkarData)
+            localStorage.setItem("customAzkarData", val.customAzkarData);
+          if (val.selectedBackground)
+            localStorage.setItem("selectedBackground", val.selectedBackground);
+          if (val.customLogo)
+            localStorage.setItem("customLogo", val.customLogo);
+          if (val.appSections)
+            localStorage.setItem("appSections", val.appSections);
+          if (val.lastStatsUpdate)
+            localStorage.setItem("lastStatsUpdate", val.lastStatsUpdate);
+          if (val.manualPrayerTimes)
+            localStorage.setItem("manualPrayerTimes", val.manualPrayerTimes);
+          if (val.prayerTimes) {
+            Object.entries(val.prayerTimes).forEach(([k, v]) => {
+              localStorage.setItem(k, v);
+            });
+          }
+          if (typeof loadSavedBackground === "function") {
+            loadSavedBackground();
+          }
+        }
+      })
+      .finally(function () {
+        loadCustomAzkarData();
+        loadManualPrayerTimes();
+        initApp();
+      });
+  } else {
+    loadCustomAzkarData();
+    loadManualPrayerTimes();
+    initApp();
+  }
 });

@@ -4,11 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="المسبحة الإلكترونية النهائية">
-    <meta name="keywords" content="المسبحة, الإلكترونية, صدقة جارية, راشد ربيع">
+
+    <!-- SEO Meta Tags -->
+    <title>المسبحة الإلكترونية المجانية | تطبيق التسبيح والأذكار الإسلامي | راشد ربيع</title>
+    <title>المسبحة الإلكترونية المجانية | تطبيق التسبيح والأذكار الإسلامي | يعمل على جميع الأجهزة</title>
+    <meta name="description" content="تطبيق المسبحة الإلكترونية المجانية - عداد تسبيح وأذكار ومواقيت صلاة وراديو القرآن الكريم. يعمل على جميع الأجهزة بدون تحميل. صدقة جارية من راشد ربيع.">
+    <meta name="keywords" content="تسبيح, أذكار, مواقيت الصلاة, راديو القرآن, تطبيق إسلامي, صدقة جارية, راشد ربيع, electronic tasbih, islamic app, prayer times, quran radio, dhikr, muslim app, تطبيق مجاني, أذكار الصباح, أذكار المساء, تسبيح إلكتروني, مسبحة الكترونية">
     <meta name="author" content="راشد ربيع">
-    <meta name="author" content="راديو لايف">
-    <title> المسبحة الإلكترونية | صدقة جارية </title>
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="images/app-preview.jpg">
+    <link rel="apple-touch-icon" href="images/app-preview.jpg">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
+    <link rel="robots" href="robots.txt">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="المسبحة الإلكترونية المجانية | تطبيق التسبيح والأذكار الإسلامي">
+    <meta property="og:description"
+        content="تطبيق شامل للتسبيح والأذكار ومواقيت الصلاة وراديو القرآن الكريم. يعمل على جميع الأجهزة بدون تحميل. صدقة جارية مجانية.">
+    <meta property="og:image" content="images/app-preview.jpg">
+    <meta property="og:url" content="https://YOUR_REAL_DOMAIN.com/">
+    <meta property="og:site_name" content="المسبحة الإلكترونية">
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:locale" content="ar_EG">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="المسبحة الإلكترونية المجانية | تطبيق التسبيح والأذكار الإسلامي">
+    <meta name="twitter:description"
+        content="تطبيق شامل للتسبيح والأذكار ومواقيت الصلاة وراديو القرآن الكريم. يعمل على جميع الأجهزة بدون تحميل.">
+    <meta name="twitter:image" content="images/app-preview.jpg">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="application-name" content="المسبحة الإلكترونية">
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="apple-mobile-web-app-title" content="المسبحة الإلكترونية">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://YOUR_REAL_DOMAIN.com/">
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "المسبحة الإلكترونية المجانية",
+      "url": "https://YOUR_REAL_DOMAIN.com/",
+      "description": "تطبيق تسبيح وأذكار ومواقيت صلاة يعمل على جميع الأجهزة.",
+      "applicationCategory": "Religion",
+      "operatingSystem": "All",
+      "image": "images/app-preview.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "راشد ربيع"
+      }
+    }
+    </script>
+
+    <!-- Language and Region -->
+    <meta name="language" content="Arabic">
+    <meta name="geo.region" content="SA">
+    <meta name="geo.placename" content="Saudi Arabia">
+    <meta name="geo.region" content="EG">
+    <meta name="geo.placename" content="EGYPT">
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="your_verification_code_here" />
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <style>
         * {
             margin: 0;
@@ -267,8 +340,13 @@
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
         }
 
         .next-prayer-header {
@@ -344,8 +422,16 @@
         }
 
         @keyframes blink {
-            0%, 50% { opacity: 0.7; }
-            51%, 100% { opacity: 0.3; }
+
+            0%,
+            50% {
+                opacity: 0.7;
+            }
+
+            51%,
+            100% {
+                opacity: 0.3;
+            }
         }
 
         .next-prayer-time {
@@ -390,8 +476,13 @@
         }
 
         @keyframes progressShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         @keyframes nextPrayerGlow {
@@ -399,6 +490,7 @@
                 box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
                 transform: translateY(0);
             }
+
             100% {
                 box-shadow: 0 20px 50px rgba(102, 126, 234, 0.7);
                 transform: translateY(-2px);
@@ -410,6 +502,7 @@
                 box-shadow: 0 15px 40px rgba(243, 156, 18, 0.5);
                 transform: translateY(0);
             }
+
             100% {
                 box-shadow: 0 20px 50px rgba(243, 156, 18, 0.8);
                 transform: translateY(-3px);
@@ -421,6 +514,7 @@
                 box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
                 transform: translateY(0) scale(1);
             }
+
             100% {
                 box-shadow: 0 25px 60px rgba(231, 76, 60, 0.9);
                 transform: translateY(-4px) scale(1.02);
@@ -463,11 +557,11 @@
             color: #2196F3;
         }
 
-        /* قسم الإحصائيات */
+       /* قسم الإحصائيات */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             margin: 20px 0;
         }
 
@@ -478,18 +572,61 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
         }
 
         .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            display: block;
+            font-size: 2.8em;
+            font-weight: 900;
+            display: block !important;
             margin-bottom: 10px;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+            z-index: 10;
+            position: relative;
         }
 
         .stat-label {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            opacity: 1 !important;
+            display: block !important;
+            visibility: visible !important;
+            z-index: 10;
+            position: relative;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .stat-card:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        /* تأكيد ظهور النصوص في كروت الإحصائيات */
+        .stat-card * {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .stat-card .stat-label,
+        .stat-card .stat-number {
+            display: block !important;
+            color: inherit !important;
         }
 
         /* أزرار التحكم الثابتة */
@@ -663,6 +800,78 @@
             gap: 10px;
             margin-top: 30px;
         }
+
+        /* أزرار الأذكار المخصصة للحذف */
+        .dhikr-delete-btn {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 3px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .dhikr-delete-btn:hover {
+            background: #e64a19;
+            transform: scale(1.05);
+        }
+
+        .dhikr-delete-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* رسائل النجاح المتحركة */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .tasbeeh-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tasbeeh-btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .tasbeeh-btn:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
+
 
         /* تحسينات للشاشات الصغيرة */
         @media (max-width: 768px) {
@@ -1466,8 +1675,28 @@
         }
 
         .dark-mode .stat-card {
-            background: #404040;
-            border: 1px solid #555;
+            background: #222;
+            border: 2px solid #81C784;
+        }
+
+        .dark-mode .stat-number {
+            color: #fff !important;
+            text-shadow: 0 4px 16px #000, 0 0px 2px #222 !important;
+        }
+
+        .dark-mode .stat-label {
+            color: #fff !important;
+            text-shadow: 0 2px 8px #000 !important;
+        }
+
+        .dark-mode .stat-number {
+            color: #ffe !important;
+            text-shadow: 0 2px 12px #000, 0 0px 2px #222 !important;
+        }
+
+        .dark-mode .stat-label {
+            color: #aaa !important;
+            text-shadow: none !important;
         }
 
         .dark-mode input,
@@ -1475,11 +1704,14 @@
             background: #404040;
             color: #ffffff;
             border: 1px solid #666;
+            color: #ffe;
+            text-shadow: 0 2px 12px #000, 0 0px 2px #222;
         }
 
         .dark-mode .prayer-item {
             background: #404040;
             border: 1px solid #555;
+            color: #aaa;
         }
 
         .dark-mode .azkar-item {
@@ -1693,7 +1925,7 @@
             color: white;
             padding: 12px 0;
             z-index: 9999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1719,21 +1951,34 @@
         }
 
         @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         @keyframes scrollText {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* تعديل موضع الحاوية عند وجود الشريط */
         body {
             padding-top: 60px;
         }
-        
+
         .fixed-controls {
             top: 70px;
         }
@@ -1752,19 +1997,19 @@
                 padding: 8px 0;
                 font-size: 14px;
             }
-            
+
             #announcementText {
                 animation-duration: 15s;
             }
-            
+
             body {
                 padding-top: 50px;
             }
-            
+
             .fixed-controls {
                 top: 60px;
             }
-            
+
             #announcementText {
                 animation-duration: 30s;
             }
@@ -1833,7 +2078,7 @@
                 padding: 20px;
                 margin: 20px auto;
             }
-            
+
             .announcement-close {
                 width: 25px;
                 height: 25px;
@@ -1888,7 +2133,7 @@
     <!-- الشريط الإعلاني المتحرك -->
     <div class="announcement-bar" id="announcementBar">
         <div class="announcement-content">
-            <span id="announcementText">🎆مرحباً بكم في المسبحة الإلكترونية - صدقة جارية  🤲</span>
+            <span id="announcementText">🎆مرحباً بكم في المسبحة الإلكترونية - صدقة جارية 🤲</span>
         </div>
         <button class="announcement-close" onclick="hideAnnouncementBar()">×</button>
     </div>
@@ -1932,9 +2177,20 @@
 
             <div style="text-align: center; margin-top: 20px;">
                 <input type="text" id="customDhikr" placeholder="أدخل ذكراً مخصصاً..."
-                    style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 250px; margin-left: 10px;">
-                <button class="btn secondary" onclick="addCustomDhikr()">➕ إضافة ذكر</button>
+                    style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 200px; margin-left: 5px;">
+                <button class="btn btn-green" onclick="addCustomDhikr()">✅ إضافة ذكر</button>
+                <button class="btn btn-red" onclick="deleteCustomDhikr()">🗑️ حذف ذكر</button>
             </div>
+
+            <!-- قائمة الأذكار المخصصة للحذف -->
+            <div id="customDhikrList" style="text-align: center; margin-top: 15px; display: none;">
+                <h4 style="color: #666; margin-bottom: 10px;">اختر الذكر المراد حذفه:</h4>
+                <div id="dhikrButtons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px;">
+                    <!-- سيتم ملء الأزرار هنا بواسطة JavaScript -->
+                </div>
+                <button class="btn secondary" onclick="cancelDeleteDhikr()" style="margin-top: 10px;">❌ إلغاء</button>
+            </div>
+
         </div>
 
         <!-- قسم الإحصائيات -->
@@ -1996,7 +2252,7 @@
                     <span>الصلاة القادمة</span>
                 </div>
                 <div class="next-prayer-name" id="nextPrayerName">الفجر</div>
-                
+
                 <div class="next-prayer-countdown" id="nextPrayerCountdown">
                     <div class="countdown-parts">
                         <div class="countdown-part">
@@ -2015,11 +2271,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="prayer-progress">
                     <div class="prayer-progress-bar" id="prayerProgressBar" style="width: 0%"></div>
                 </div>
-                
+
                 <div class="next-prayer-time" id="nextPrayerTime">4:12 ص</div>
             </div>
 
@@ -2171,6 +2427,7 @@
             <!-- قائمة التبويبات -->
             <div class="admin-tabs">
                 <button class="admin-tab active" onclick="showAdminTab('azkar')">📿 إدارة الأذكار</button>
+                <button class="admin-tab" onclick="showAdminTab('sync')">🌐 المزامنة السحابية</button>
                 <button class="admin-tab" onclick="showAdminTab('logo')">🖼️ إدارة الشعار</button>
                 <button class="admin-tab" onclick="showAdminTab('prayers')">🕌 إدارة المواقيت</button>
                 <button class="admin-tab" onclick="showAdminTab('adhan')">🎵 إدارة الأذان</button>
@@ -2178,6 +2435,66 @@
                 <button class="admin-tab" onclick="showAdminTab('content')">📝 إدارة المحتوى</button>
                 <button class="admin-tab" onclick="showAdminTab('security')">🔒 الأمان</button>
             </div>
+
+
+
+            <!-- تبويب المزامنة السحابية -->
+            <div class="admin-tab-content" id="sync-tab">
+                <div class="control-section">
+                    <h3>🌐 معلومات المزامنة السحابية</h3>
+                    <div class="control-row">
+                        <span class="control-label">حالة المزامنة</span>
+                        <div class="control-input">
+                            <span id="syncStatus" style="padding: 8px 15px; border-radius: 20px; font-weight: bold;">
+                                🔄 جاري التحقق...
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="control-row">
+                        <span class="control-label">معرف المزامنة</span>
+                        <div class="control-input">
+                            <input type="text" id="syncId" readonly style="background: #f5f5f5; cursor: text;"
+                                placeholder="سيتم إنشاؤه تلقائياً">
+                            <button class="btn secondary" onclick="copySyncId()" style="margin-right: 10px;">📋
+                                نسخ</button>
+                        </div>
+                    </div>
+
+                    <div class="control-row">
+                        <span class="control-label">إدارة البيانات</span>
+                        <div class="control-input">
+                            <button class="btn secondary" onclick="forceSyncToCloud()">☁️ رفع للسحابة</button>
+                            <button class="btn secondary" onclick="forceSyncFromCloud()" style="margin-right: 10px;">📥
+                                تحميل من السحابة</button>
+                            <button class="btn danger" onclick="resetSyncData()" style="margin-right: 10px;">🗑️ مسح
+                                البيانات</button>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h4>📊 إحصائيات المزامنة</h4>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 10px;">
+                            <p><strong>📿 الأذكار المخصصة:</strong> <span id="customDhikrCount">0</span></p>
+                            <p><strong>🤲 الأدعية المضافة:</strong> <span id="customAzkarCount">0</span></p>
+                            <p><strong>🕐 آخر مزامنة:</strong> <span id="lastSyncTime">لم تتم بعد</span></p>
+                        </div>
+                    </div>
+
+                    <div class="control-section">
+                        <h4>ℹ️ كيفية استخدام المزامنة</h4>
+                        <div
+                            style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-top: 10px; font-size: 14px;">
+                            <p><strong>1.</strong> المزامنة تعمل تلقائياً عند إضافة أو حذف الأذكار</p>
+                            <p><strong>2.</strong> معرف المزامنة يربط جميع أجهزتك ببعض</p>
+                            <p><strong>3.</strong> احفظ معرف المزامنة لاستخدامه على أجهزة أخرى</p>
+                            <p><strong>4.</strong> البيانات محفوظة بأمان في السحابة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <!-- تبويب إدارة الأذكار -->
             <div class="admin-tab-content" id="azkar-tab">
@@ -2333,7 +2650,8 @@
                         <div class="control-row">
                             <span class="control-label">الشروق</span>
                             <div class="control-input">
-                                <input type="time" id="sunriseTime" value="05:58" onchange="updatePrayerTime('sunrise')">
+                                <input type="time" id="sunriseTime" value="05:58"
+                                    onchange="updatePrayerTime('sunrise')">
                             </div>
                         </div>
                         <div class="control-row">
@@ -2351,7 +2669,8 @@
                         <div class="control-row">
                             <span class="control-label">المغرب</span>
                             <div class="control-input">
-                                <input type="time" id="maghribTime" value="19:59" onchange="updatePrayerTime('maghrib')">
+                                <input type="time" id="maghribTime" value="19:59"
+                                    onchange="updatePrayerTime('maghrib')">
                             </div>
                         </div>
                         <div class="control-row">
@@ -2432,175 +2751,178 @@
                     <div class="control-row">
                         <div class="control-input">
                             <input type="checkbox" id="ishaAdhanEnabled" onchange="togglePrayerAdhan('isha')">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- تبويب إدارة الأقسام -->
-        <div class="admin-tab-content" id="sections-tab" style="display: none;">
-            <div class="control-section">
-                <h3>📋 إدارة أقسام التطبيق</h3>
-                <div class="sections-manager" id="sectionsManager">
-                    <!-- سيتم ملء هذا القسم ديناميكياً -->
-                </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="addNewSection()">➕ إضافة قسم جديد</button>
-                    <button class="control-btn secondary" onclick="updateSectionsManager()">🔄 تحديث
-                        القائمة</button>
+            <!-- تبويب إدارة الأقسام -->
+            <div class="admin-tab-content" id="sections-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>📋 إدارة أقسام التطبيق</h3>
+                    <div class="sections-manager" id="sectionsManager">
+                        <!-- سيتم ملء هذا القسم ديناميكياً -->
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="addNewSection()">➕ إضافة قسم جديد</button>
+                        <button class="control-btn secondary" onclick="updateSectionsManager()">🔄 تحديث
+                            القائمة</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- تبويب إدارة المحتوى -->
-        <div class="admin-tab-content" id="content-tab" style="display: none;">
-            <div class="control-section">
-                <h3>📝 إدارة نصوص التطبيق</h3>
-                <div class="control-row">
-                    <span class="control-label">عنوان التطبيق</span>
-                    <div class="control-input">
-                        <input type="text" id="appTitle" value="المسبحة الإلكترونية - صدقة جارية">
+            <!-- تبويب إدارة المحتوى -->
+            <div class="admin-tab-content" id="content-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>📝 إدارة نصوص التطبيق</h3>
+                    <div class="control-row">
+                        <span class="control-label">عنوان التطبيق</span>
+                        <div class="control-input">
+                            <input type="text" id="appTitle" value="المسبحة الإلكترونية - صدقة جارية">
+                        </div>
                     </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">وصف التطبيق</span>
-                    <div class="control-input">
-                        <textarea id="appDescription" rows="3"
-                            placeholder="وصف التطبيق">تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة</textarea>
+                    <div class="control-row">
+                        <span class="control-label">وصف التطبيق</span>
+                        <div class="control-input">
+                            <textarea id="appDescription" rows="3"
+                                placeholder="وصف التطبيق">تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">رسالة الترحيب</span>
-                    <div class="control-input">
-                        <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
+                    <div class="control-row">
+                        <span class="control-label">رسالة الترحيب</span>
+                        <div class="control-input">
+                            <textarea id="welcomeMessage" rows="3" placeholder="رسالة الترحيب">بسم الله الرحمن الرحيم
 أهلاً وسهلاً بك في المسبحة الإلكترونية</textarea>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="updateAppContent()">💾 حفظ التغييرات</button>
+                        <button class="control-btn secondary" onclick="previewContent()">👁️ معاينة</button>
+                        <button class="control-btn secondary" onclick="exportContentAndThemeSettings()">📤 تصدير
+                            الإعدادات</button>
+                        <button class="control-btn secondary" onclick="importContentAndThemeSettings()">📥 استيراد
+                            الإعدادات</button>
                     </div>
                 </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="updateAppContent()">💾 حفظ التغييرات</button>
-                    <button class="control-btn secondary" onclick="previewContent()">👁️ معاينة</button>
-                    <button class="control-btn secondary" onclick="exportContentAndThemeSettings()">📤 تصدير الإعدادات</button>
-                    <button class="control-btn secondary" onclick="importContentAndThemeSettings()">📥 استيراد الإعدادات</button>
-                </div>
-            </div>
 
-            <div class="control-section">
-                <h3>📢 إدارة الشريط الإعلاني</h3>
-                <div class="control-row">
-                    <span class="control-label">الإعلانات (كل إعلان في سطر)</span>
-                    <div class="control-input">
-                        <textarea id="announcementTextAdmin" rows="4" placeholder="اكتب كل إعلان في سطر منفصل:
+                <div class="control-section">
+                    <h3>📢 إدارة الشريط الإعلاني</h3>
+                    <div class="control-row">
+                        <span class="control-label">الإعلانات (كل إعلان في سطر)</span>
+                        <div class="control-input">
+                            <textarea id="announcementTextAdmin" rows="4" placeholder="اكتب كل إعلان في سطر منفصل:
 🎆 مرحباً بكم في المسبحة الإلكترونية
 🕊 لا تنسوا صلاة الفجر
 💫 اذكروا الله كثيراً">🎆 مرحباً بكم في المسبحة الإلكترونية
 🕊 لا تنسوا صلاة الفجر
 💫 اذكروا الله كثيراً</textarea>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">سرعة الحركة</span>
+                        <div class="control-input">
+                            <input type="range" id="announcementSpeed" min="10" max="60" value="40">
+                            <span id="speedValue">40ث</span>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="updateAnnouncement()">📢 تحديث الإعلان</button>
+                        <button class="control-btn secondary" onclick="toggleAnnouncementBar()">🔄 إظهار/إخفاء</button>
                     </div>
                 </div>
-                <div class="control-row">
-                    <span class="control-label">سرعة الحركة</span>
-                    <div class="control-input">
-                        <input type="range" id="announcementSpeed" min="10" max="60" value="40">
-                        <span id="speedValue">40ث</span>
+
+                <div class="control-section">
+                    <h3>🎨 إدارة الألوان والثيمات</h3>
+                    <div class="control-row">
+                        <span class="control-label">اللون الأساسي</span>
+                        <div class="control-input">
+                            <input type="color" id="primaryColor" value="#4CAF50">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">لون الخلفية</span>
+                        <div class="control-input">
+                            <input type="color" id="backgroundColor" value="#FFFFFF">
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">لون النص</span>
+                        <div class="control-input">
+                            <input type="color" id="textColor" value="#333333">
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="applyThemeSettings()">✨ تطبيق الألوان</button>
+                        <button class="control-btn secondary" onclick="resetThemeSettings()">🔄 استعادة
+                            الافتراضي</button>
                     </div>
                 </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="updateAnnouncement()">📢 تحديث الإعلان</button>
-                    <button class="control-btn secondary" onclick="toggleAnnouncementBar()">🔄 إظهار/إخفاء</button>
+
+                <div class="control-section">
+                    <h3>📱 إعدادات متقدمة</h3>
+                    <div class="control-row">
+                        <span class="control-label">الفونت العربي</span>
+                        <div class="control-input">
+                            <select id="arabicFont">
+                                <option value="cairo">Cairo</option>
+                                <option value="tajawal">Tajawal</option>
+                                <option value="amiri">Amiri</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">حجم الخط</span>
+                        <div class="control-input">
+                            <input type="range" id="fontSize" min="12" max="24" value="16">
+                            <span id="fontSizeValue">16px</span>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">تأثيرات الحركة</span>
+                        <div class="control-input">
+                            <select id="animationStyle">
+                                <option value="fade">تلاشي</option>
+                                <option value="slide">انزلاق</option>
+                                <option value="none">بدون</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="saveAdvancedSettings()">💾 حفظ الإعدادات</button>
+                        <button class="control-btn secondary" onclick="resetAdvancedSettings()">🔄 إعادة تعيين</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="control-section">
-                <h3>🎨 إدارة الألوان والثيمات</h3>
-                <div class="control-row">
-                    <span class="control-label">اللون الأساسي</span>
-                    <div class="control-input">
-                        <input type="color" id="primaryColor" value="#4CAF50">
+            <!-- تبويب الأمان -->
+            <div class="admin-tab-content" id="security-tab" style="display: none;">
+                <div class="control-section">
+                    <h3>🔒 تغيير بيانات تسجيل الدخول</h3>
+                    <div class="control-row">
+                        <span class="control-label">اسم المستخدم الجديد</span>
+                        <div class="control-input">
+                            <input type="text" id="newAdminUsername" placeholder="أدخل اسم مستخدم جديد">
+                        </div>
                     </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">لون الخلفية</span>
-                    <div class="control-input">
-                        <input type="color" id="backgroundColor" value="#FFFFFF">
+                    <div class="control-row">
+                        <span class="control-label">كلمة المرور الجديدة</span>
+                        <div class="control-input">
+                            <input type="password" id="newAdminPassword" placeholder="أدخل كلمة مرور جديدة">
+                        </div>
                     </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">لون النص</span>
-                    <div class="control-input">
-                        <input type="color" id="textColor" value="#333333">
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="changeAdminCredentials()">🔄 تغيير بيانات الدخول</button>
+                        <button class="control-btn danger" onclick="resetToDefault()">🔄 إعادة تعيين افتراضي</button>
                     </div>
-                </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="applyThemeSettings()">✨ تطبيق الألوان</button>
-                    <button class="control-btn secondary" onclick="resetThemeSettings()">🔄 استعادة الافتراضي</button>
-                </div>
-            </div>
-
-            <div class="control-section">
-                <h3>📱 إعدادات متقدمة</h3>
-                <div class="control-row">
-                    <span class="control-label">الفونت العربي</span>
-                    <div class="control-input">
-                        <select id="arabicFont">
-                            <option value="cairo">Cairo</option>
-                            <option value="tajawal">Tajawal</option>
-                            <option value="amiri">Amiri</option>
-                        </select>
+                    <div
+                        style="margin-top: 15px; padding: 10px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 0.9em;">
+                        <strong>⚠️ ملاحظة:</strong> بيانات الدخول الافتراضية هي:<br>
+                        اسم المستخدم: <code>admin</code><br>
+                        كلمة المرور: <code>123456</code>
                     </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">حجم الخط</span>
-                    <div class="control-input">
-                        <input type="range" id="fontSize" min="12" max="24" value="16">
-                        <span id="fontSizeValue">16px</span>
-                    </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">تأثيرات الحركة</span>
-                    <div class="control-input">
-                        <select id="animationStyle">
-                            <option value="fade">تلاشي</option>
-                            <option value="slide">انزلاق</option>
-                            <option value="none">بدون</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="saveAdvancedSettings()">💾 حفظ الإعدادات</button>
-                    <button class="control-btn secondary" onclick="resetAdvancedSettings()">🔄 إعادة تعيين</button>
                 </div>
             </div>
         </div>
-
-        <!-- تبويب الأمان -->
-        <div class="admin-tab-content" id="security-tab" style="display: none;">
-            <div class="control-section">
-                <h3>🔒 تغيير بيانات تسجيل الدخول</h3>
-                <div class="control-row">
-                    <span class="control-label">اسم المستخدم الجديد</span>
-                    <div class="control-input">
-                        <input type="text" id="newAdminUsername" placeholder="أدخل اسم مستخدم جديد">
-                    </div>
-                </div>
-                <div class="control-row">
-                    <span class="control-label">كلمة المرور الجديدة</span>
-                    <div class="control-input">
-                        <input type="password" id="newAdminPassword" placeholder="أدخل كلمة مرور جديدة">
-                    </div>
-                </div>
-                <div class="control-buttons">
-                    <button class="control-btn" onclick="changeAdminCredentials()">🔄 تغيير بيانات الدخول</button>
-                    <button class="control-btn danger" onclick="resetToDefault()">🔄 إعادة تعيين افتراضي</button>
-                </div>
-                <div
-                    style="margin-top: 15px; padding: 10px; background: rgba(255, 193, 7, 0.1); border-radius: 8px; font-size: 0.9em;">
-                    <strong>⚠️ ملاحظة:</strong> بيانات الدخول الافتراضية هي:<br>
-                    اسم المستخدم: <code>admin</code><br>
-                    كلمة المرور: <code>123456</code>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 
     <script src="app.js"></script>
@@ -2678,6 +3000,792 @@
             }
         }, 100);
     </script>
+
+    <!-- SEO Content for Search Engines -->
+    <div style="display: none;" id="seo-content">
+        <h1>المسبحة الإلكترونية المجانية - تطبيق التسبيح والأذكار الإسلامي الشامل</h1>
+        <h2>ميزات التطبيق الإسلامي المجاني</h2>
+        <ul>
+            <li>تسبيح إلكتروني بعداد ذكي وأصوات تفاعلية</li>
+            <li>أذكار الصباح والمساء الكاملة مع العدد المطلوب</li>
+            <li>مواقيت الصلاة الدقيقة مع عد تنازلي مباشر</li>
+            <li>راديو القرآن الكريم من محطات مختارة</li>
+            <li>وضع التركيز للتسبيح المكثف بدون تشتيت</li>
+            <li>إحصائيات مفصلة للتسبيحات اليومية والإجمالية</li>
+            <li>أدعية وأذكار متنوعة لجميع المناسبات</li>
+            <li>تصميم متجاوب يعمل على جميع الأجهزة</li>
+            <li>وضع ليلي ونهاري مريح للعينين</li>
+            <li>حفظ تلقائي للبيانات والإعدادات</li>
+        </ul>
+
+        <h2>فئات الأذكار المتوفرة</h2>
+        <ul>
+            <li>أذكار الصباح - للبركة وبداية يوم مبارك</li>
+            <li>أذكار المساء - للحماية والسكينة</li>
+            <li>أذكار النوم - للراحة والأمان</li>
+            <li>أذكار بعد الصلاة - لتكميل الثواب</li>
+            <li>أذكار السفر - للحماية في الطريق</li>
+            <li>أذكار الطعام - للبركة والشكر</li>
+            <li>أذكار عامة - لجميع الأوقات</li>
+        </ul>
+
+        <h2>مواقيت الصلاة الدقيقة</h2>
+        <p>يحسب التطبيق مواقيت الصلاة الخمس (الفجر، الظهر، العصر، المغرب، العشاء) بدقة عالية مع عرض الصلاة القادمة
+            والوقت المتبقي لها. يمكن تخصيص المواقيت حسب الموقع الجغرافي.</p>
+
+        <h2>راديو القرآن الكريم</h2>
+        <p>استمع لتلاوات مختارة من القرآن الكريم من محطات إذاعية متنوعة أثناء التسبيح أو في أي وقت. التشغيل مستمر في
+            الخلفية مع تحكم كامل في الصوت.</p>
+
+        <h2>تطبيق مجاني بالكامل</h2>
+        <p>المسبحة الإلكترونية تطبيق مجاني 100% بدون إعلانات أو رسوم خفية. يعمل مباشرة في المتصفح بدون تحميل أو تثبيت.
+            صدقة جارية من المطور راشد ربيع لخدمة المسلمين في جميع أنحاء العالم.</p>
+
+        <h2>كلمات مفتاحية للبحث</h2>
+        <p>المسبحة الإلكترونية، تسبيح، أذكار، مواقيت الصلاة، راديو القرآن، تطبيق إسلامي، صدقة جارية، راشد ربيع،
+            electronic tasbih, islamic app, prayer times, quran radio, dhikr counter, muslim app, free islamic app,
+            تطبيق مجاني، أذكار الصباح، أذكار المساء، تسبيح إلكتروني، عداد التسبيح، تطبيق ديني، برنامج إسلامي، مسبحة
+            رقمية</p>
+
+        <h2>للمطور راشد ربيع</h2>
+        <p>تم تطوير هذا التطبيق بعناية فائقة من قبل راشد ربيع كصدقة جارية لخدمة المسلمين. التطبيق مفتوح المصدر ومجاني
+            للجميع مع التحديثات المستمرة والدعم التقني.</p>
+    </div>
+
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "المسبحة الإلكترونية",
+        "alternateName": "Electronic Tasbih",
+        "description": "تطبيق شامل مجاني للتسبيح والأذكار ومواقيت الصلاة وراديو القرآن الكريم",
+        "url": "https://yoursite.com/",
+        "applicationCategory": "Religious Application",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "راشد ربيع"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "راشد ربيع"
+        },
+        "inLanguage": "ar",
+        "keywords": "المسبحة الإلكترونية, تسبيح, أذكار, مواقيت الصلاة, راديو القرآن, تطبيق إسلامي",
+        "featureList": [
+            "عداد تسبيح إلكتروني",
+            "أذكار الصباح والمساء",
+            "مواقيت الصلاة",
+            "راديو القرآن الكريم",
+            "وضع التركيز",
+            "إحصائيات مفصلة"
+        ]
+    }
+
+    // === دوال ربط لوحة التحكم بالتطبيق ===
+
+    // إدارة الأذكار
+    function addNewAzkar() {
+        const category = document.getElementById('newAzkarCategory')?.value;
+        const text = document.getElementById('newAzkarText')?.value?.trim();
+        const count = parseInt(document.getElementById('newAzkarCount')?.value) || 1;
+
+        if (!text) {
+            alert('⚠️ يرجى إدخال نص الذكر');
+            return;
+        }
+
+        // إضافة الذكر إلى البيانات الرئيسية
+        if (typeof azkarData !== 'undefined') {
+            if (!azkarData[category]) {
+                azkarData[category] = [];
+            }
+
+            azkarData[category].push({
+                text: text,
+                count: count,
+                id: Date.now()
+            });
+
+            // حفظ في localStorage
+            const customAzkar = JSON.parse(localStorage.getItem('customAzkar') || '{}');
+            if (!customAzkar[category]) {
+                customAzkar[category] = [];
+            }
+            customAzkar[category].push({
+                text: text,
+                count: count,
+                id: Date.now()
+            });
+            localStorage.setItem('customAzkar', JSON.stringify(customAzkar));
+
+            // تنظيف النموذج
+            document.getElementById('newAzkarText').value = '';
+            document.getElementById('newAzkarCount').value = '1';
+
+            // تحديث العرض في التطبيق الرئيسي
+            refreshAzkarDisplay();
+
+            alert('✅ تم إضافة الذكر بنجاح');
+        } else {
+            alert('❌ خطأ في النظام، يرجى إعادة تحميل الصفحة');
+        }
+    }
+
+    // معاينة الأذكار المضافة
+    function previewAzkar() {
+        const category = document.getElementById('newAzkarCategory')?.value;
+        const customAzkar = JSON.parse(localStorage.getItem('customAzkar') || '{}');
+
+        if (!customAzkar[category] || customAzkar[category].length === 0) {
+            alert('📋 لا توجد أذكار مخصصة في هذا التصنيف بعد');
+            return;
+        }
+
+        let preview = `📿 الأذكار المخصصة في تصنيف "${getCategoryName(category)}":\n\n`;
+        customAzkar[category].forEach((zikr, index) => {
+            preview += `${index + 1}. ${zikr.text}\n   (يُقال ${zikr.count} ${zikr.count === 1 ? 'مرة' : 'مرات'})\n\n`;
+        });
+
+        alert(preview);
+    }
+
+    // الحصول على اسم التصنيف بالعربية
+    function getCategoryName(category) {
+        const names = {
+            'morning': 'أذكار الصباح',
+            'evening': 'أذكار المساء',
+            'sleep': 'أذكار النوم',
+            'prayer': 'أذكار الصلاة',
+            'travel': 'أذكار السفر',
+            'food': 'أذكار الطعام',
+            'general': 'أذكار عامة'
+        };
+        return names[category] || category;
+    }
+
+    // إدارة المحتوى
+    function updateAppContent() {
+        try {
+            const title = document.getElementById('appTitle')?.value?.trim();
+            const description = document.getElementById('appDescription')?.value?.trim();
+            const welcome = document.getElementById('welcomeMessage')?.value?.trim();
+
+            console.log('تحديث المحتوى:', { title, description, welcome });
+
+            if (title) {
+                // تحديث العنوان في البانر
+                const titleElement = document.querySelector('.banner h1');
+                console.log('عنصر البانر:', titleElement);
+                if (titleElement) {
+                    titleElement.textContent = title;
+                    console.log('تم تحديث عنوان البانر إلى:', title);
+                }
+
+                // تحديث عنوان الصفحة
+                document.title = title;
+                localStorage.setItem('appTitle', title);
+                console.log('تم حفظ العنوان في localStorage');
+            }
+
+            if (description) {
+                // تحديث وصف الصفحة
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.content = description;
+                }
+                localStorage.setItem('appDescription', description);
+                console.log('تم حفظ الوصف في localStorage');
+            }
+
+            if (welcome) {
+                localStorage.setItem('welcomeMessage', welcome);
+                console.log('تم حفظ رسالة الترحيب في localStorage');
+            }
+
+            // إظهار رسالة نجاح مع تفاصيل
+            let successMessage = '✅ تم تحديث محتوى التطبيق بنجاح!\n\n';
+            if (title) successMessage += `🏷️ العنوان: ${title}\n`;
+            if (description) successMessage += `📝 الوصف: ${description.substring(0, 50)}...\n`;
+            if (welcome) successMessage += `👋 رسالة الترحيب: ${welcome.substring(0, 50)}...\n`;
+
+            alert(successMessage);
+
+            // إضافة تأثير بصري للتأكيد
+            showVisualConfirmation();
+
+        } catch (error) {
+            console.error('خطأ في تحديث المحتوى:', error);
+            alert('❌ حدث خطأ في تحديث المحتوى. يرجى المحاولة مرة أخرى.');
+        }
+    }
+
+    // إظهار تأكيد بصري
+    function showVisualConfirmation() {
+        const banner = document.querySelector('.banner');
+        if (banner) {
+            // إضافة تأثير وميض أخضر
+            banner.style.transition = 'all 0.3s ease';
+            banner.style.boxShadow = '0 0 20px #4CAF50';
+            banner.style.transform = 'scale(1.02)';
+
+            setTimeout(() => {
+                banner.style.boxShadow = '';
+                banner.style.transform = '';
+            }, 1000);
+        }
+    }
+
+    // معاينة المحتوى
+    function previewContent() {
+        const title = document.getElementById('appTitle')?.value || 'غير محدد';
+        const description = document.getElementById('appDescription')?.value || 'غير محدد';
+        const welcome = document.getElementById('welcomeMessage')?.value || 'غير محدد';
+
+        alert(`📋 معاينة المحتوى:\n\n🏷️ العنوان: ${title}\n📝 الوصف: ${description}\n👋 رسالة الترحيب: ${welcome}`);
+    }
+
+    // اختبار إدارة المحتوى
+    function testContentManagement() {
+        console.log('=== اختبار إدارة المحتوى ===');
+
+        // التحقق من وجود العناصر
+        const titleInput = document.getElementById('appTitle');
+        const descInput = document.getElementById('appDescription');
+        const welcomeInput = document.getElementById('welcomeMessage');
+        const bannerTitle = document.querySelector('.banner h1');
+
+        console.log('عناصر الإدخال:', {
+            titleInput: !!titleInput,
+            descInput: !!descInput,
+            welcomeInput: !!welcomeInput,
+            bannerTitle: !!bannerTitle
+        });
+
+        if (titleInput) console.log('قيمة العنوان الحالية:', titleInput.value);
+        if (bannerTitle) console.log('نص البانر الحالي:', bannerTitle.textContent);
+
+        // اختبار تحديث العنوان
+        if (titleInput && bannerTitle) {
+            const testTitle = 'اختبار العنوان - ' + new Date().getTime();
+            titleInput.value = testTitle;
+            updateAppContent();
+
+            setTimeout(() => {
+                console.log('العنوان بعد التحديث:', bannerTitle.textContent);
+                console.log('هل تم التحديث؟', bannerTitle.textContent.includes('اختبار'));
+            }, 100);
+        }
+    }
+
+    // تصدير إعدادات المحتوى والثيمات
+    function exportContentAndThemeSettings() {
+        const settings = {
+            version: '2.0',
+            timestamp: new Date().toISOString(),
+            content: {
+                appTitle: localStorage.getItem('appTitle'),
+                appDescription: localStorage.getItem('appDescription'),
+                welcomeMessage: localStorage.getItem('welcomeMessage')
+            },
+            customAzkar: JSON.parse(localStorage.getItem('customAzkar') || '{}'),
+            prayerSettings: {
+                manualTimes: JSON.parse(localStorage.getItem('manualPrayerTimes') || '{}'),
+                manualActive: localStorage.getItem('manualPrayerTimesActive') === 'true'
+            },
+            adhanSettings: {
+                volume: localStorage.getItem('adhanVolume'),
+                enabled: localStorage.getItem('adhanEnabled') !== 'false'
+            },
+            theme: {
+                darkMode: document.body.classList.contains('dark-mode'),
+                animations: localStorage.getItem('animationsEnabled') !== 'false',
+                sound: localStorage.getItem('soundEnabled') !== 'false'
+            }
+        };
+
+        const dataStr = JSON.stringify(settings, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(dataBlob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `islamic-app-settings-${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+
+        URL.revokeObjectURL(url);
+        alert('✅ تم تصدير إعدادات التطبيق بنجاح');
+    }
+
+    // استيراد إعدادات المحتوى والثيمات
+    function importContentAndThemeSettings() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+
+        input.onchange = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const settings = JSON.parse(e.target.result);
+
+                    // استيراد المحتوى
+                    if (settings.content) {
+                        if (settings.content.appTitle) {
+                            localStorage.setItem('appTitle', settings.content.appTitle);
+                        }
+                        if (settings.content.appDescription) {
+                            localStorage.setItem('appDescription', settings.content.appDescription);
+                        }
+                        if (settings.content.welcomeMessage) {
+                            localStorage.setItem('welcomeMessage', settings.content.welcomeMessage);
+                        }
+                    }
+
+                    // استيراد الأذكار المخصصة
+                    if (settings.customAzkar) {
+                        localStorage.setItem('customAzkar', JSON.stringify(settings.customAzkar));
+                    }
+
+                    // استيراد إعدادات الصلاة
+                    if (settings.prayerSettings) {
+                        if (settings.prayerSettings.manualTimes) {
+                            localStorage.setItem('manualPrayerTimes', JSON.stringify(settings.prayerSettings.manualTimes));
+                        }
+                        if (settings.prayerSettings.manualActive !== undefined) {
+                            localStorage.setItem('manualPrayerTimesActive', settings.prayerSettings.manualActive);
+                        }
+                    }
+
+                    // استيراد إعدادات الأذان
+                    if (settings.adhanSettings) {
+                        if (settings.adhanSettings.volume) {
+                            localStorage.setItem('adhanVolume', settings.adhanSettings.volume);
+                        }
+                        if (settings.adhanSettings.enabled !== undefined) {
+                            localStorage.setItem('adhanEnabled', settings.adhanSettings.enabled);
+                        }
+                    }
+
+                    alert('✅ تم استيراد الإعدادات بنجاح، سيتم إعادة تحميل الصفحة');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+
+                } catch (error) {
+                    alert('❌ خطأ في قراءة ملف الإعدادات');
+                }
+            };
+            reader.readAsText(file);
+        };
+
+        input.click();
+    }
+
+    // إعادة تعيين المحتوى إلى القيم الافتراضية
+    function resetContentToDefault() {
+        if (confirm('⚠️ هل تريد إعادة تعيين جميع نصوص التطبيق إلى القيم الافتراضية؟')) {
+            // القيم الافتراضية
+            const defaultContent = {
+                title: 'المسبحة الإلكترونية - صدقة جارية',
+                description: 'تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة',
+                welcome: 'بسم الله الرحمن الرحيم\nأهلاً وسهلاً بك في المسبحة الإلكترونية'
+            };
+
+            // تحديث الحقول في لوحة التحكم
+            const titleInput = document.getElementById('appTitle');
+            const descInput = document.getElementById('appDescription');
+            const welcomeInput = document.getElementById('welcomeMessage');
+
+            if (titleInput) titleInput.value = defaultContent.title;
+            if (descInput) descInput.value = defaultContent.description;
+            if (welcomeInput) welcomeInput.value = defaultContent.welcome;
+
+            // تطبيق التغييرات
+            updateAppContent();
+
+            alert('✅ تم إعادة تعيين المحتوى إلى القيم الافتراضية');
+        }
+    }
+
+    // تحميل المحتوى المحفوظ في لوحة التحكم
+    function loadSavedContentToAdmin() {
+        try {
+            const savedTitle = localStorage.getItem('appTitle');
+            const savedDesc = localStorage.getItem('appDescription');
+            const savedWelcome = localStorage.getItem('welcomeMessage');
+
+            console.log('تحميل المحتوى المحفوظ:', { savedTitle, savedDesc, savedWelcome });
+
+            // تحميل العنوان
+            const titleInput = document.getElementById('appTitle');
+            if (titleInput) {
+                if (savedTitle) {
+                    titleInput.value = savedTitle;
+                    console.log('تم تحميل العنوان:', savedTitle);
+                } else {
+                    titleInput.value = 'المسبحة الإلكترونية - صدقة جارية';
+                }
+            }
+
+            // تحميل الوصف
+            const descInput = document.getElementById('appDescription');
+            if (descInput) {
+                if (savedDesc) {
+                    descInput.value = savedDesc;
+                    console.log('تم تحميل الوصف:', savedDesc);
+                } else {
+                    descInput.value = 'تطبيق إسلامي شامل للتسبيح والأذكار ومواقيت الصلاة';
+                }
+            }
+
+            // تحميل رسالة الترحيب
+            const welcomeInput = document.getElementById('welcomeMessage');
+            if (welcomeInput) {
+                if (savedWelcome) {
+                    welcomeInput.value = savedWelcome;
+                    console.log('تم تحميل رسالة الترحيب:', savedWelcome);
+                } else {
+                    welcomeInput.value = 'بسم الله الرحمن الرحيم\nأهلاً وسهلاً بك في المسبحة الإلكترونية';
+                }
+            }
+
+        } catch (error) {
+            console.error('خطأ في تحميل المحتوى:', error);
+        }
+    }
+
+    // تحديث دالة تهيئة لوحة التحكم
+    function initializeAdminPanel() {
+        // إظهار التبويب الأول (الأذكار) افتراضياً
+        showAdminTab('azkar');
+        // تحميل المحتوى المحفوظ
+        setTimeout(() => {
+            loadSavedContentToAdmin();
+        }, 100);
+    }
+
+    // تحميل المحتوى المحفوظ عند بدء التطبيق
+    function loadSavedContent() {
+        try {
+            const savedTitle = localStorage.getItem('appTitle');
+            const savedDesc = localStorage.getItem('appDescription');
+
+            console.log('تحميل المحتوى عند بدء التطبيق:', { savedTitle, savedDesc });
+
+            // تحديث العنوان
+            if (savedTitle) {
+                const titleElement = document.querySelector('.banner h1');
+                if (titleElement) {
+                    titleElement.textContent = savedTitle;
+                    console.log('تم تحديث عنوان البانر إلى:', savedTitle);
+                }
+                document.title = savedTitle;
+            }
+
+            // تحديث الوصف
+            if (savedDesc) {
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.content = savedDesc;
+                }
+            }
+
+        } catch (error) {
+            console.error('خطأ في تحميل المحتوى المحفوظ:', error);
+        }
+    }
+
+    // تحميل الأذكار المخصصة
+    function loadCustomAzkar() {
+        const customAzkar = JSON.parse(localStorage.getItem('customAzkar') || '{}');
+
+        // دمج الأذكار المخصصة مع الأذكار الافتراضية
+        Object.keys(customAzkar).forEach(category => {
+            if (typeof azkarData !== 'undefined' && azkarData[category]) {
+                // إضافة الأذكار المخصصة إلى نهاية كل تصنيف
+                azkarData[category] = [...azkarData[category], ...customAzkar[category]];
+            }
+        });
+    }
+
+    // تحديث عرض الأذكار في التطبيق الرئيسي
+    function refreshAzkarDisplay() {
+        // إعادة تحميل الأذكار المخصصة
+        loadCustomAzkar();
+
+        // تحديث العرض إذا كان قسم الأذكار مفتوحاً
+        if (typeof displayAzkar === 'function' && typeof currentAzkarCategory !== 'undefined') {
+            displayAzkar(currentAzkarCategory);
+        }
+    }
+
+    // === إدارة مواقيت الصلاة ===
+    function saveManualPrayerTimes() {
+        const manualTimes = {
+            fajr: document.getElementById('fajrTime')?.value,
+            dhuhr: document.getElementById('dhuhrTime')?.value,
+            asr: document.getElementById('asrTime')?.value,
+            maghrib: document.getElementById('maghribTime')?.value,
+            isha: document.getElementById('ishaTime')?.value
+        };
+
+        // التحقق من ملء جميع الحقول
+        if (!manualTimes.fajr || !manualTimes.dhuhr || !manualTimes.asr || !manualTimes.maghrib || !manualTimes.isha) {
+            alert('⚠️ يرجى ملء جميع مواقيت الصلاة');
+            return;
+        }
+
+        // حفظ المواقيت
+        localStorage.setItem('manualPrayerTimes', JSON.stringify(manualTimes));
+        localStorage.setItem('manualPrayerTimesActive', 'true');
+
+        // تحديث العرض في التطبيق الرئيسي
+        if (typeof updatePrayerTimesDisplay === 'function') {
+            updatePrayerTimesDisplay();
+        }
+
+        alert('💾 تم حفظ المواقيت اليدوية بنجاح');
+    }
+
+    function enableAutoPrayerTimes() {
+        localStorage.setItem('manualPrayerTimesActive', 'false');
+
+        // تحديث العرض
+        if (typeof updatePrayerTimesDisplay === 'function') {
+            updatePrayerTimesDisplay();
+        }
+
+        alert('🌐 تم تفعيل المواقيت التلقائية');
+    }
+
+    // دوال بديلة للأزرار الموجودة
+    function savePrayerTimes() {
+        saveManualPrayerTimes();
+    }
+
+    function resetPrayerTimes() {
+        if (confirm('⚠️ هل تريد إعادة تعيين المواقيت إلى القيم الافتراضية؟')) {
+            // إعادة تعيين إلى مواقيت افتراضية
+            const defaultTimes = {
+                fajr: '05:30',
+                dhuhr: '12:30',
+                asr: '15:45',
+                maghrib: '18:15',
+                isha: '19:45'
+            };
+
+            Object.keys(defaultTimes).forEach(prayer => {
+                const input = document.getElementById(`${prayer}Time`);
+                if (input) {
+                    input.value = defaultTimes[prayer];
+                }
+            });
+
+            alert('🔄 تم إعادة تعيين المواقيت');
+        }
+    }
+
+    function updatePrayerTime(prayer) {
+        // تحديث فوري عند تغيير الوقت
+        console.log(`تم تحديث وقت ${prayer}`);
+    }
+
+    function showSelectedFile() {
+        const fileInput = document.getElementById('adhanFileUpload');
+        const fileName = document.getElementById('selectedFileName');
+
+        if (fileInput.files.length > 0) {
+            fileName.textContent = `تم اختيار: ${fileInput.files[0].name}`;
+            fileName.style.color = '#4CAF50';
+        } else {
+            fileName.textContent = 'اختر ملف صوتي (MP3, WAV)';
+            fileName.style.color = '#666';
+        }
+    }
+
+    // === إدارة الأذان ===
+    function testAdhan() {
+        alert('🎵 جاري تشغيل الأذان للتجربة...');
+
+        // تشغيل صوت الأذان
+        playAdhanSound();
+    }
+
+    // إعادة تعيين نظام الأذان (لحل مشاكل عدم التشغيل)
+    function resetAdhanSystem() {
+        if (confirm('⚠️ هل تريد إعادة تعيين نظام الأذان؟\nسيتم حذف سجل الأذان السابق وإعادة تفعيل النظام.')) {
+            // حذف سجل آخر أذان
+            localStorage.removeItem('lastAdhanTime');
+
+            // إعادة تفعيل الأذان
+            localStorage.setItem('adhanEnabled', 'true');
+
+            // إعادة تفعيل الأذان لجميع الصلوات
+            const adhanSettings = {
+                fajr: true,
+                dhuhr: true,
+                asr: true,
+                maghrib: true,
+                isha: true
+            };
+            localStorage.setItem('adhanSettings', JSON.stringify(adhanSettings));
+
+            alert('✅ تم إعادة تعيين نظام الأذان بنجاح!\nسيعمل الأذان الآن في جميع الصلوات.');
+
+            // إعادة تحميل المتغيرات
+            if (typeof lastAdhanTime !== 'undefined') {
+                lastAdhanTime = '';
+            }
+        }
+    }
+
+    // اختبار نظام الأذان الكامل
+    function testAdhanSystem() {
+        console.log('=== اختبار نظام الأذان ===');
+
+        // التحقق من الإعدادات
+        const adhanEnabled = localStorage.getItem('adhanEnabled') !== 'false';
+        const adhanSettings = JSON.parse(localStorage.getItem('adhanSettings') || '{}');
+        const lastAdhan = localStorage.getItem('lastAdhanTime') || 'لا يوجد';
+
+        console.log('إعدادات الأذان:', {
+            enabled: adhanEnabled,
+            settings: adhanSettings,
+            lastAdhan: lastAdhan
+        });
+
+        // التحقق من مواقيت الصلاة
+        console.log('مواقيت الصلاة الحالية:', prayerTimes);
+
+        // اختبار تحويل الوقت
+        Object.keys(prayerTimes).forEach(prayer => {
+            if (prayer !== 'sunrise') {
+                const time24 = convertTo24Hour(prayerTimes[prayer]);
+                console.log(`${getPrayerName(prayer)}: ${prayerTimes[prayer]} → ${time24}`);
+            }
+        });
+
+        alert('🔧 تم اختبار نظام الأذان، راجع وحدة التحكم للتفاصيل');
+    }
+
+    function saveAdhanSettings() {
+        const volume = document.getElementById('adhanVolume')?.value || 50;
+        const enabled = document.getElementById('adhanEnabled')?.checked !== false;
+
+        localStorage.setItem('adhanVolume', volume);
+        localStorage.setItem('adhanEnabled', enabled);
+
+        alert('💾 تم حفظ إعدادات الأذان بنجاح');
+    }
+
+    function stopAdhan() {
+        // إيقاف الأذان إذا كان يعمل
+        if (typeof stopCurrentAdhan === 'function') {
+            stopCurrentAdhan();
+        }
+        alert('⏹️ تم إيقاف الأذان');
+    }
+
+    // === إدارة الأمان ===
+    function changeAdminCredentials() {
+        const newUsername = document.getElementById('newUsername')?.value?.trim();
+        const newPassword = document.getElementById('newPassword')?.value?.trim();
+
+        if (!newUsername || !newPassword) {
+            alert('⚠️ يرجى ملء جميع الحقول');
+            return;
+        }
+
+        if (newPassword.length < 4) {
+            alert('⚠️ كلمة المرور يجب أن تكون 4 أحرف على الأقل');
+            return;
+        }
+
+        // حفظ بيانات الدخول الجديدة
+        localStorage.setItem('adminUsername', newUsername);
+        localStorage.setItem('adminPassword', newPassword);
+
+        // تنظيف الحقول
+        document.getElementById('newUsername').value = '';
+        document.getElementById('newPassword').value = '';
+
+        alert('🔄 تم تغيير بيانات الدخول بنجاح');
+    }
+
+    function resetToDefault() {
+        if (confirm('⚠️ هل أنت متأكد من إعادة تعيين جميع الإعدادات؟\nسيتم حذف جميع البيانات المخصصة!')) {
+            // حذف البيانات المخصصة
+            localStorage.removeItem('customAzkar');
+            localStorage.removeItem('appTitle');
+            localStorage.removeItem('appDescription');
+            localStorage.removeItem('welcomeMessage');
+            localStorage.removeItem('manualPrayerTimes');
+            localStorage.removeItem('manualPrayerTimesActive');
+            localStorage.removeItem('adhanVolume');
+            localStorage.removeItem('adhanEnabled');
+
+            // إعادة تحميل الصفحة
+            alert('✅ تم إعادة تعيين الإعدادات، سيتم إعادة تحميل الصفحة');
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+    }
+
+    // === تحميل الإعدادات في لوحة التحكم ===
+    function loadAdminSettings() {
+        // تحميل إعدادات الأذان
+        const adhanVolume = localStorage.getItem('adhanVolume') || '50';
+        const adhanEnabled = localStorage.getItem('adhanEnabled') !== 'false';
+
+        if (document.getElementById('adhanVolume')) {
+            document.getElementById('adhanVolume').value = adhanVolume;
+        }
+        if (document.getElementById('adhanEnabled')) {
+            document.getElementById('adhanEnabled').checked = adhanEnabled;
+        }
+
+        // تحميل المواقيت اليدوية
+        const manualTimes = JSON.parse(localStorage.getItem('manualPrayerTimes') || '{}');
+        Object.keys(manualTimes).forEach(prayer => {
+            const input = document.getElementById(`${prayer}Time`);
+            if (input) {
+                input.value = manualTimes[prayer];
+            }
+        });
+    }
+
+    // تحديث دالة تهيئة لوحة التحكم
+    function initializeAdminPanel() {
+        // إظهار التبويب الأول (الأذكار) افتراضياً
+        showAdminTab('azkar');
+        // تحميل المحتوى والإعدادات المحفوظة
+        setTimeout(() => {
+            loadSavedContentToAdmin();
+            loadAdminSettings();
+        }, 100);
+    }
+
+    // تشغيل التحميل عند بدء التطبيق
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            loadSavedContent();
+            loadCustomAzkar();
+        }, 500);
+    });
+
+    </script>
+
 </body>
 
 </html>

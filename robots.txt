@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
+Allow: /index.html
+Allow: /*.js
+Allow: /*.css
+Allow: /images/
+Allow: /sounds/
 
 Sitemap: https://yourdomain.com/sitemap.xml
 
