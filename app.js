@@ -2069,3 +2069,25 @@ document.addEventListener("DOMContentLoaded", function () {
     initApp();
   }
 });
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDnkHyomMCGVZi36mv3CVoUetHO9HJ_kA8",
+  authDomain: "islamic-electronic.firebaseapp.com",
+  projectId: "islamic-electronic",
+  storageBucket: "islamic-electronic.firebasestorage.app",
+  messagingSenderId: "911387104775",
+  appId: "1:911387104775:web:6e4f544523229892f2bca2",
+  measurementId: "G-LW59ZDZVVQ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
